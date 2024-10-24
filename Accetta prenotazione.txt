@@ -1,0 +1,37 @@
+Nome: Accetta Prenotazione
+Attori: Driver
+
+Descrizione:
+Il driver accetta o rifiuta la richiesta di prenotazione inviata da un utente regolare
+
+Precondizioni:
+L'utente deve essere un profilo di tipo driver
+
+
+Scenario Base:
+-utente: ricerca le prenotazioni relative al suo account con stato "in sospeso"
+-sistema: ritorna una lista con i risultati della ricerca
+-utente: seleziona e accetta una prenotazione
+-sistema: effettua un update sullo stato della prenotazione cambiandola da "in sospeso" a "accettata" e invia notifica
+
+Scenario alternativo A:
+-utente: ricerca le prenotazioni relative al suo account con stato in sospeso
+-sistema: ritorna una lista con i risultati della ricerca
+-utente: rifiuta la prenotazione
+-sistema: effettua un update sullo stato della prenotazione cambiandola da "in sospeso" a "chiusa" e invia notifica
+
+Scenario alternativo A2*:
+-utente: ricerca le prenotazioni relative al suo account con stato "in sospeso"
+-sistema: ritorna una lista con i risultati della ricerca
+-utente: seleziona e rifiuta una prenotazione
+-sistema: invia un messaggio di errore
+
+Scenario alternativo B*:
+-utente: ricerca le prenotazioni relative al suo account con stato "in sospeso"
+-sistema: ritorna una lista con i risultati della ricerca
+-utente: seleziona e accetta una prenotazione
+-sistema: invia un messaggio di errore
+
+Note:
+Scenario alternativo B: Prenotazione non è più con stato in sospeso quando il driver prova ad accettarla (ad esempio l'utente l'ha cancellata nel tempo tra la ricerca delle prenotazioni e l'accettazione)
+Scenario alternativo A2: Prenotazione non è più con stato in sospeso quando il driver prova ad rifiutarla (ad esempio l'utente l'ha cancellata nel tempo tra la ricerca delle prenotazioni e il rifiuto)
