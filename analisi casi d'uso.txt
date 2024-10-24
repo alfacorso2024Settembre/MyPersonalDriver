@@ -1,0 +1,40 @@
+Nome: Modifica account
+Attori: User
+
+Descrizione: L'utente desidera modificare i dati del suo account (ad esempio nome, email, password...)
+Precondizioni: L'utente deve essere registrato e autenticato.
+Scenario Base:
+-user: fa il login
+-user: Modifica i suoi dati nel profilo
+-sistema: Invia la notifica all'admin riguardo alla richiesta di modifica
+-admin: accetta la modifica o la respinge
+-sistema: Se l'amministratore accetta, aggiorna i dati dell'account; se l'amministratore respinge, l'utente viene informato
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nome: Modifica account
+Attori: Driver
+
+Descrizione: Il  driver desidera modificare i dati del suo account (ad esempio nome, email, password...)
+Precondizioni: Il  driver deve essere registrato e autenticato.
+Scenario Base:
+-driver: fa il login
+-driver: modifica i suoi dati nel profilo
+-sistema: Invia la notifica all'admin riguardo alla richiesta di modifica
+-admin: accetta la modifica o la respinge
+-sistema: Se l'amministratore accetta, aggiorna i dati dell'account; se l'amministratore respinge, il driver viene informato
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nome: Accetta modifica account
+Attori: Admin
+
+Descrizione: L'admin permette di far apportare modifiche all'account dello user o del driver
+Precondizioni: L'admin deve essere autenticato. Deve essere presente una richiesta di modifica dell'account
+da parte di un utente o di un driver.
+Scenario Base:
+-admin: fa l'accesso
+-sistema: mostra una lista con le richieste di modifica dell'account degli utenti/driver
+-admin: seleziona la richiesta di modifica da valutare e visualizza i dettagli delle modifiche proposte
+-admin: accetta o rifiuta la richiesta di modifica
+-sistema: aggiorna i dati se l'admin ha accettato la richiesta, altrimenti non li aggiorna. (in  ogni caso viene inviata una notifica allo user/driver)
