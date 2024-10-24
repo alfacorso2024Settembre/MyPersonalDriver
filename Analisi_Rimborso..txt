@@ -1,0 +1,11 @@
+Nome: Rimborso
+ID: //
+Attori: Admin
+
+Descrizione: L'utente deve richiedere un rimborso. 
+    <SCENARIO BASE>
+        - sistema: Per quale corsa stai richiedendo il rimborso?
+        - utente: sceglie la corsa per cui desidera richiedere il rimborso
+        - sistema: Dacci una breve spiegazione sul motivo per il quale stai richiedendo un rimborso
+        - utente: Scrive una descrizione del problema e inoltra il messaggio
+        - sistema: La tua richiesta è stata presa in carico, verrai ricontattato a breve

@@ -1,0 +1,44 @@
+Nome: Segnalazione
+ID: //
+Attori: User autenticato, Driver autenticato
+
+Descrizione: L'utente desidera inviare una segnalazione all'admin, potrà selezionare vari tipi di segnalazioni in base al problema:
+    - Segnala Incidente
+    - Segnala Driver/User per atteggiamento sospetto
+    - Segnala anomalie nel pagamento
+    In particolare potrà effettuare varie scelte in base alla segnalazione 
+
+    Se effettua la scelta su Segnala incidente:
+        - Confermo di essere coinvolto in un incidente stradale
+            <SCENARIO BASE>
+                - utente: seleziona l'opzione 
+                - sistema: fa apparire la schermata "Abbiamo ricevuto la tua segnalazione, in caso di necessità chiamare i soccorsi"
+                - sistema: invia una mail all'utente e al driver con tutte le informazioni(luogo, orario, nominativi del driver e dell'user) al momento della segnalazione
+        - Tornare alla schermata precedente
+            <SCENARIO BASE>
+                - utente: seleziona l'opzione
+                - sistema: mostra la schermata generale delle segnalazioni
+
+    Se effettua la scelta su Segnala Driver/User per atteggiamento sospetto:
+        - Voglio inviare una descrizione del problema che ho avuto con il mio driver/utente
+             <SCENARIO BASE>
+                - utente: seleziona l'opzione
+                - sistema: mostra la schermata "Inserisci qui la tua descrizione", dove l'utente potrà inserire ed inviare la propria segnalazione tramite un bottone di invio, oppure annullare.
+                - utente: scrive la descrizione e invia il messaggio
+                - sistema: farà apparire la schermata con su scritto "Grazie per la segnalazione, seguiranno le verifiche sul Driver/User"
+        - Tornare alla schermata precedente
+             <SCENARIO BASE>
+                - utente: seleziona l'opzione
+                - sistema: mostra la schermata generale delle segnalazioni
+
+    Se effettua la scelta su Segnala anomalie nel pagamento:
+        - Apparirà la schermata "Invia una descrizione del problema alla mail admin@mypersonaldriver.it descrivendo il tuo problema, un operatore ti contatterà il prima possibile. Se il problema è urgente, contatta il nomero 123456789." sarà poi presente un bottone per annullare l'operazione.
+             <SCENARIO BASE>
+                - utente: seleziona l'opzione
+                - sistema: mostra la schermata generale delle segnalazioni
+        - Tornare alla schermata precedente
+             <SCENARIO BASE>
+                - utente: seleziona l'opzione
+                - sistema: mostra la schermata generale delle segnalazioni
+
+
