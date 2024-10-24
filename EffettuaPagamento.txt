@@ -1,0 +1,31 @@
+Nome: 
+Effettua Pagamento
+
+Attori: 
+User - Driver
+
+Descrizione:
+L'utente effettua il pagamento con le modalità disponibili (*) al termine della corsa, l'importo viene dunque sottratto dal conto dell'utente e verrà versato sul conto del driver(**).
+
+Precondizioni:
+L'utente deve essere registrato e autenticato.
+Il driver deve essere registrato, autenticato e verificato.
+L'utente e il driver hanno effettuato la corsa correttamente.
+
+Scenario base:
+-Sistema: definisce l'importo dovuto (*) a corsa terminata
+-Utente: effettua il pagamento
+-Driver: riceve il pagamento
+
+Scenario alternativo:
+Descrizione - come nell'esempio di (**)
+-Utente: deposita quantità iniziale
+-Driver: termina corsa correttamente
+-Sistema: definisce l'importo dovuto (*) a corsa terminata
+-Sistema: addebita o rimborsa l'utente
+-Utente: riceve o integra il pagamento
+-Driver: riceve il pagamento
+
+Note:
+(*) da vedere in dettaglio successivamente
+(**) da decidere la modalità con cui gestire la transazione - per esempio è possibile detrarre ad inizio corsa un certo importo, ed a fine corsa si va a integrare o a restituire il credito.

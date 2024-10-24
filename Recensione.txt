@@ -1,0 +1,23 @@
+Nome:
+Recensione
+
+Attori:
+User - Driver
+
+Descrizione:
+A corsa terminata, viene data la possibilità a User e Driver di lasciare una recensione sulla corsa (*) o sull'altra parte (**)
+
+Precondizioni:
+L'utente deve essere registrato e autenticato.
+Il driver deve essere registrato, autenticato e verificato.
+L'utente e il driver hanno effettuato la corsa correttamente.
+
+Scenario base:
+Descrizione - si consideri (**)
+-Utente: Decide se lasciare una recensione o meno
+-Driver: Decide se lasciare una recensione o meno
+-Sistema: Effettua l'aggiornamento delle valutazioni dei due se sono state lasciate delle recensioni
+
+Note:
+(*) Per esempio, a fine corsa, spunta un pop-up che dice "Com'è andato questo viaggio?" con la possibilità di scegliere da 1 a 5 stelle.
+(**) Si può considerare l'opzione di aggiungere un sistema di reputazione sia per gli utenti che per i driver
