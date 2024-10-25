@@ -1,6 +1,6 @@
 Nome: Cerca Driver
 ID: UC-06
-Attori: Utente Autenticato, Driver Autenticato
+Attori: Utente Autenticato
 
 Descrizione: 
 L'utente ricerca i Driver disponibili nella sua zona per
@@ -8,12 +8,10 @@ poter prenotare la corsa in seguito.
 
 Precondizioni: 
 1) L'utente deve essere registrato e autenticato nel sistema
-2) Il Driver deve essere registrato e autenticato nel sistema
-3) Il Driver deve essere disponibile e nelle vicinanze dell'utente
 
 Scenario Base:
 - utente: ricerca un Driver
-- sistema: mostra i Driver disponibili
+- sistema: mostra i Driver disponibili e nelle vicinanze
 - utente: seleziona un Driver disponibile e clicca "Prenota"
 
 Note:

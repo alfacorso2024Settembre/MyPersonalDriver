@@ -1,6 +1,6 @@
 Nome: Segnalazione
 ID: //
-Attori: User autenticato, Driver autenticato
+Attori: User autenticato, Driver autenticato, admin
 
 Descrizione: L'utente desidera inviare una segnalazione all'admin, potrà selezionare vari tipi di segnalazioni in base al problema:
     - Segnala Incidente
@@ -32,7 +32,7 @@ Descrizione: L'utente desidera inviare una segnalazione all'admin, potrà selezi
                 - sistema: mostra la schermata generale delle segnalazioni
 
     Se effettua la scelta su Segnala anomalie nel pagamento:
-        - Apparirà la schermata "Invia una descrizione del problema alla mail admin@mypersonaldriver.it descrivendo il tuo problema, un operatore ti contatterà il prima possibile. Se il problema è urgente, contatta il nomero 123456789." sarà poi presente un bottone per annullare l'operazione.
+        - Apparirà la schermata "Invia una descrizione del problema alla mail admin@mypersonaldriver.it descrivendo il tuo problema, un operatore ti contatterà il prima possibile. Se il problema è urgente, contatta il numero 123456789." sarà poi presente un bottone per annullare l'operazione.
              <SCENARIO BASE>
                 - utente: seleziona l'opzione
                 - sistema: mostra la schermata generale delle segnalazioni

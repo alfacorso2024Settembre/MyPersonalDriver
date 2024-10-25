@@ -23,3 +23,6 @@ Impossibile eliminare il profilo perche gia' eliminato da admin.
 ### Eccezione 4.1
 Se utente è un user: impossibile eliminare il profilo con un rimborso in corso.
 
+### Eccezione 4.2
+Se utente è un user o driver: impossibile eliminare il profilo con una corsa in corso.
+

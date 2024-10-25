@@ -2,14 +2,18 @@ Nome: Prenota Corsa
 ID: UC-03
 Attori: Utente Autenticato
 Descrizione: L'utente desidera prenotare un Driver disponibile dalla ricerca
-precendentemente fatta.
+precedentemente fatta.
 
 Precondizioni: 
 1) L'utente deve essere registrato e autenticato nel sistema
-2) Il Driver deve essere registrato e autenticato nel sistema
-3) Il Driver deve essere disponibile e nelle vicinanze dell'utente
-4) La ricerca dei driver deve aver visualizzato almeno un Driver
+2) La ricerca dei driver deve aver visualizzato almeno un Driver
+3) L'utente deve aver precedentemente ricercato un Driver e la ricerca deve aver prodotto almeno 1 risultato
 
 Scenario Base:
-- utente: ricerca i Driver dall'apposita ricerca 
 - utente: seleziona un Driver e lo Prenota
+- sistema: manda un messaggio di conferma
+
+Scenario alternativo 1:
+L'utente vuole prenotare la corsa, ma in quel momento il Driver non è più disponibile.
+Scenario Base:
+- sistema: manda un messaggio di errore

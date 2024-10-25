@@ -1,5 +1,5 @@
 Nome: Modifica account
-Attori: User
+Attori: User, Admin
 
 Descrizione: L'utente desidera modificare i dati del suo account (ad esempio nome, email, password...)
 Precondizioni: L'utente deve essere registrato e autenticato.
@@ -13,7 +13,7 @@ Scenario Base:
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Nome: Modifica account
-Attori: Driver
+Attori: Driver, Admin
 
 Descrizione: Il  driver desidera modificare i dati del suo account (ad esempio nome, email, password...)
 Precondizioni: Il  driver deve essere registrato e autenticato.

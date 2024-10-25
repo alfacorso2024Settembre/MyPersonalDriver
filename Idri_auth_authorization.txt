@@ -7,7 +7,7 @@ Registra:
 
 	
 	Driver : 
-		Normal : Inserisce email ,crea username, sceglie password , carica documenti necessario invia 				richiesta di registrazione , viente presentato un stato dell registrazione.
+		Normal : Inserisce email ,crea username, sceglie password , carica documenti necessario invia 				richiesta di registrazione , viene presentato un stato della registrazione.
 		
 		Exception: Gia registrato , dati errati.
 
@@ -20,12 +20,15 @@ Login:
 		Normal : User inserisce mail, password e fa l login.
 
 		Exceptions: L email o password non presente nel db -> registra , format dei dati errati , dati errati
-
+		
+		Exceptions: L'utente ha dimenticato la password, il sistema manda una mail per reimpostare la password
 	
 	Driver : 
 		Normal : Driver inserisce mail, password e fa l login.
 
 		Exceptions: L email o password non presente nel db -> registra , format dei dati errati , dati errati
+
+		Exceptions: Il driver ha dimenticato la password, il sistema manda una mail per reimpostare la password
 
 	Admin :
 		Normal : Admin inserisce mail, password e fa l login.

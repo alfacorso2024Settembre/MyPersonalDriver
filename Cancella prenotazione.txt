@@ -2,16 +2,16 @@ Nome: Cancella prenotazione
 Attori: Driver, User
 
 Descrizione:
-Il driver o l'utente cancellano una prenotazione con stato "attiva"
+Il driver o l'utente cancellano una prenotazione con stato "attiva" o "in sospeso"
 
 Scenario base:
-Driver/User: effettua una ricerca sulle prenotazione relative ai loro account con stato "attiva"
+Driver/User: effettua una ricerca sulle prenotazione relative ai loro account con stato "attiva" o "in sospeso"
 Sistema: restituisce i risultati della ricerca
 Driver/User: seleziona una prenotazione e ne richiede la cancellazione
-Sistema: effettua un update dello stato della prenotazione cambiandolo da "attiva" a "chiusa"
+Sistema: effettua un update dello stato della prenotazione cambiandolo da "attiva" o "in sospeso", a "cancellata"
 
 Scenario A*:
-Driver/User: effettua una ricerca sulle prenotazione relative ai loro account con stato "attiva"
+Driver/User: effettua una ricerca sulle prenotazione relative ai loro account con stato "attiva" o "in sospeso"
 Sistema: restituisce i risultati della ricerca
 Driver/User: seleziona una prenotazione e ne richiede la cancellazione
 Sistema: invia un messaggio di errore

@@ -15,7 +15,7 @@ L'utente deve essere autenticato come admin della piattaforma e l'utente da elim
 3) utente: click su elimina utente
 4) sistema: richiesta di conferma di eliminazione profilo
 5) utente: conferma eliminazione
-6) sistema: messaggio di conferma eliminazione
+6) sistema: messaggio di conferma eliminazione e email all'utente eliminato
 
 
 ### Eccezione 3.1
