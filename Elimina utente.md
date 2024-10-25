@@ -17,6 +17,7 @@ L'utente deve essere registrato, quindi la sua registrazione deve essere stata a
 5) utente: conferma eliminazione
 6) sistema: messaggio di conferma eliminazione
 
+
 ### Eccezione 3.1
 Impossibile eliminare il profilo perche gia' eliminato da admin.
 
