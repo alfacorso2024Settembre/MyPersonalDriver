@@ -16,8 +16,6 @@ L'attore deve essere autenticato come admin della piattaforma e l'utente da aggi
 4) sistema: registra il nuovo utente e manda email di conferma registrazione 
 
 ## Scenario alternativo A
-1) utente: sceglie richiesta da visualizzare 
-2) sistema: mostra pagina con dati da verificare
 3) utente: verifica i dati e rifiuta iscrizione del nuovo utente
 4) sistema: manda email di registrazione fallita all'utente
 
