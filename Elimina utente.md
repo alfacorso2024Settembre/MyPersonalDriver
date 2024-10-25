@@ -10,12 +10,15 @@ L'utente desidera eliminare il proprio profilo (e i relativi dati) dalla piattaf
 L'utente deve essere registrato, quindi la sua registrazione deve essere stata accettata, e deve aver effettuato il login all'interno della piattaforma.
 
 ## Scenario base
-1) utente: click sul proprio profilo
+1) utente: va sul proprio profilo
 2) sistema: mostra la pagina delle impostazioni
-3) utente: click su elimina profilo
+3) utente: va su elimina profilo
 4) sistema: richiesta di conferma di eliminazione profilo
 5) utente: conferma eliminazione
 6) sistema: messaggio di conferma eliminazione
+
+### Eccezione 3.1
+Impossibile eliminare il profilo perche gia' eliminato da admin.
 
 ### Eccezione 4.1
 Se utente è un user: impossibile eliminare il profilo con un rimborso in corso.

@@ -18,4 +18,8 @@ L'utente deve essere autenticato come admin della piattaforma e l'utente da elim
 6) sistema: messaggio di conferma eliminazione
 
 
+### Eccezione 3.1
+Impossibile eliminare il profilo perche gia' eliminato dall'utente.
+
+
 
