@@ -22,7 +22,8 @@ L'utente deve essere registrato, quindi la sua registrazione deve essere stata a
 sistema: impossibile eliminare il profilo perche gia' eliminato da admin.
 
 ### Eccezione 4.2
-sistema: (se utente è un user) impossibile eliminare il profilo con un rimborso in corso.
+(se utente è un user)
+sistema: impossibile eliminare il profilo con un rimborso in corso.
 
 ### Eccezione 4.3
 sistema: impossibile eliminare il profilo con una corsa in corso.
