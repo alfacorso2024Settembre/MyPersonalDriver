@@ -262,10 +262,10 @@ L'attore inserisce email e password per effettuare il login.
 | ----- | ------------------------------------------------------------------------------ |
 | 1     | Attore avvia l'applicazione.                                                   |
 | 2     | Attore seleziona l'opzione "Login".                                            |
-| 3     | User inserisce email e passworda.                                              |
+| 3     | Attore inserisce email e passworda.                                            |
 | 4     | Sistema controlla se l'email e la password, rispettano i requisiti.            |
 | 5     | Sistema mostra un messaggio di errore che indica l'errore nel campo specifico. |
-| 6     | User/Driver riparte dal passo 3                                                |
+| 6     | Attore riparte dal passo 3                                                     |
 
 # Use Case: Logout
 
