@@ -5,27 +5,56 @@ Attori:
 User - Driver
 
 Descrizione:
-L'utente effettua il pagamento con le modalità disponibili (*) al termine della corsa, l'importo viene dunque sottratto dal conto dell'utente e verrà versato sul conto del driver(**).
+L'utente effettua il pagamento con le modalità disponibili (*) al termine della corsa, l'importo viene dunque sottratto dal conto dell'utente e verrà versato sul conto del driver.
 
 Precondizioni:
 L'utente deve essere registrato e autenticato.
 Il driver deve essere registrato, autenticato e verificato.
-L'utente e il driver hanno effettuato la corsa correttamente.
+L'utente ha prenotato una corsa.
 
-Scenario base:
--Sistema: definisce l'importo dovuto (*) a corsa terminata
--Utente: effettua il pagamento
--Driver: riceve il pagamento
+Scenario base A:
+Descrizione - si detrae ad inizio corsa un certo importo, ed a fine corsa si va a integrare o a restituire il credito.
+1)Utente: deposita quantità iniziale 
+2)Sistema: conferma prenotazione
+3)Driver: inizia corsa
+4)Driver: termina corsa correttamente
+5)Sistema: definisce l'importo dovuto (**) a corsa terminata
+6)Sistema: controlla che l'importo dovuto è maggiore dell'importo iniziale
+7)Sistema: addebita l'utente del credito dovuto
+8)Utente: integra il pagamento
+9)Sistema: esegue pagamento
+10)Driver: riceve il pagamento
 
-Scenario alternativo:
-Descrizione - come nell'esempio di (**)
--Utente: deposita quantità iniziale
--Driver: termina corsa correttamente
--Sistema: definisce l'importo dovuto (*) a corsa terminata
--Sistema: addebita o rimborsa l'utente
--Utente: riceve o integra il pagamento
--Driver: riceve il pagamento
+Scenario alternativo A.6.1:
+6)Sistema: controlla che l'importo dovuto è minore dell'importo iniziale
+7)Sistema: rimborsa l'utente del credito dovuto
+8)Utente: riceve il rimborso
+9)Sistema: esegue pagamento
+10)Driver: riceve il pagamento
+
+Scenario alternativo A.6.2:
+6)Sistema: controlla che l'importo dovuto è uguale dell'importo iniziale
+7)Sistema: esegue il pagamento
+8)Driver: riceve il pagamento
+
+Eccezione A.1:
+1)Utente: Non riesce a depositare la quantità iniziale
+2)Sistema: Annulla la corsa -> richiama caso d'uso "cancella prenotazione"
+3)Sistema: Manda messaggio all'utente di credito insufficiente
+
+Eccezione A.4:
+4)Driver: non termina correttamente la corsa
+5)Sistema: rimborsa l'utente dell'importo iniziale
+6)Sistema: manda segnalazione della corsa
+
 
 Note:
 (*) da vedere in dettaglio successivamente
-(**) da decidere la modalità con cui gestire la transazione - per esempio è possibile detrarre ad inizio corsa un certo importo, ed a fine corsa si va a integrare o a restituire il credito.
+(**) calcolato per la distanza e il tempo, con aggiunta di tariffa in base alla fascia oraria e al giorno. (da definire nel dettaglio)
+Un esempio di calcolo dell'importo può essere:
+-Tariffa iniziale (Bajada de Bandera): è l'importo minimo che si deve pagare, che si somma automaticamente all'iniziare la corsa.
+-Tariffa incrementale/Scatto (Ficha): è l'incremento che corrisponde a ciascuna frazione di tempo/distanza.
+-Distanza/Metri: al completare la percorrenza indicata (al di sopra di una velocità stabilita o di crociera) si calcola un incremento (scatto).
+-Tempo/Secondi: al trascorrere di questo intervallo di tempo (al di sotto della velocità stabilita o di crociera) si calcola un incremento (scatto).
+La condizione per uno scatto è:
+	metri percorsi/distanza di uno scatto + secondi di attesa/tempo di uno scatto >= 1
