@@ -81,7 +81,7 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 | ----- | ----------------------------------------------------------------------------------------------------- |
 | 1     | User avvia l'applicazione.                                                                            |
 | 2     | User effettua l'accesso.                                                                              |
-| 3     | User clicka "Diventa Driver".                                                                         |
+| 3     | User clicca "Diventa Driver".                                                                         |
 | 3     | User carica i documenti richiesti, come la patente di guida.                                          |
 | 4     | Sistema verifica che l'email sia già registrata come user e aggiorna il ruolo a driver.               |
 | 5     | Sistema invia i documenti caricati per la verifica dell'admin.                                        |
