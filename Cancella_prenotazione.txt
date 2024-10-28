@@ -13,7 +13,7 @@ Scenario base:
 3)User: seleziona una prenotazione e ne richiede la cancellazione
 4)Sistema: controlla quanto tempo manca tra il tempo della cancellazione e il tempo della prenotazione
 5)Sistema: mancano più di 20 minuti, effettuo un update dello stato della prenotazione cambiandolo da "attiva" o "in sospeso", a "cancellata"
-6)Ritorna i soldi inviati al deposito all'account dello user
+6)Caso d'uso rimborso user
 7)Termina caso d'uso
 
 Estensione 1a:
@@ -22,11 +22,11 @@ Estensione 1a:
 3)Driver: seleziona una prenotazione e ne richiede la cancellazione
 4)Sistema: controlla quanto tempo manca tra il tempo della cancellazione e il tempo della prenotazione
 5)Sistema: effettuo un update dello stato della prenotazione cambiandolo da "in sospeso" a "cancellata"
-6)Ritorna i soldi inviati al deposito all'account dello user
+6)Caso d'uso rimborso user
 7)Termina caso d'uso
 
 Estensione 5:
-5)Sistema:mancano 20 o meno minuti, invia i soldi tenuti nel deposito al conto del driver
+5)Sistema:mancano 20 o meno minuti, Caso d'uso rimborso driver
 6)Sistema:cambia lo stato della prenotazione da attiva a cancellata
 7)Termina caso d'uso
 
@@ -49,7 +49,6 @@ Eccezione 4a.5:
 6)Termina caso d'uso
 
 
-Nota: per i rimborsi chiamare i casi d'uso di francesca
-Nota: creare nuovo caso d'uso per cancellazione automatica di prenotazione scadute
+
 
 
