@@ -4,17 +4,52 @@ Attori: Driver, User
 Descrizione:
 Il driver o l'utente cancellano una prenotazione con stato "attiva" o "in sospeso"
 
+Precondizioni:
+-L'utente è registrato nell'applicazione con un account di tipo Driver o User
+
 Scenario base:
-Driver/User: effettua una ricerca sulle prenotazione relative ai loro account con stato "attiva" o "in sospeso"
-Sistema: restituisce i risultati della ricerca
-Driver/User: seleziona una prenotazione e ne richiede la cancellazione
-Sistema: effettua un update dello stato della prenotazione cambiandolo da "attiva" o "in sospeso", a "cancellata"
+1)User: effettua una ricerca sulle prenotazione relative ai loro account con stato "attiva" o "in sospeso"
+2)Sistema: restituisce i risultati della ricerca
+3)User: seleziona una prenotazione e ne richiede la cancellazione
+4)Sistema: controlla quanto tempo manca tra il tempo della cancellazione e il tempo della prenotazione
+5)Sistema: mancano più di 20 minuti, effettuo un update dello stato della prenotazione cambiandolo da "attiva" o "in sospeso", a "cancellata"
+6)Ritorna i soldi inviati al deposito all'account dello user
+7)Termina caso d'uso
 
-Scenario A*:
-Driver/User: effettua una ricerca sulle prenotazione relative ai loro account con stato "attiva" o "in sospeso"
-Sistema: restituisce i risultati della ricerca
-Driver/User: seleziona una prenotazione e ne richiede la cancellazione
-Sistema: invia un messaggio di errore
+Estensione 1a:
+1)Driver: effettua una ricerca sulle prenotazione relative ai loro account con stato "attiva" o "in sospeso"
+2)Sistema: restituisce i risultati della ricerca
+3)Driver: seleziona una prenotazione e ne richiede la cancellazione
+4)Sistema: controlla quanto tempo manca tra il tempo della cancellazione e il tempo della prenotazione
+5)Sistema: effettuo un update dello stato della prenotazione cambiandolo da "in sospeso" a "cancellata"
+6)Ritorna i soldi inviati al deposito all'account dello user
+7)Termina caso d'uso
 
-Note:
-Scenario A: la controparte dell'utente Driver ha cancellato la prenotazione nel tempo tra la ricerca delle prenotazioni e la richiesta di cancellazione
+Estensione 5:
+5)Sistema:mancano 20 o meno minuti, invia i soldi tenuti nel deposito al conto del driver
+6)Sistema:cambia lo stato della prenotazione da attiva a cancellata
+7)Termina caso d'uso
+
+Eccezione 3:
+3)User: seleziona una prenotazione e ne richiede la cancellazione
+4)Sistema: la prenotazione è stata già cancellata, invia un messaggio di errore
+5)Termina caso d'uso
+
+Eccezione 1a.3:
+3)Driver: seleziona una prenotazione e ne richiede la cancellazione
+4)Sistema: la prenotazione è stata già cancellata, invia un messaggio di errore
+5)Termina caso d'uso
+
+Eccezione 5:
+5)Sistema: il tentativo di cancellazione è avvenuto dopo il tempo della prenotazione. La cancellazione fallisce e viene inviato un messaggio di errore
+6)Termina caso d'uso
+
+Eccezione 4a.5:
+5)Sistema: il tentativo di cancellazione è avvenuto dopo il tempo della prenotazione. La cancellazione fallisce e viene inviato un messaggio di errore
+6)Termina caso d'uso
+
+
+Nota: per i rimborsi chiamare i casi d'uso di francesca
+Nota: creare nuovo caso d'uso per cancellazione automatica di prenotazione scadute
+
+
