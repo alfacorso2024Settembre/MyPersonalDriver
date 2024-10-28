@@ -179,6 +179,7 @@ L'attore inserisce email e password per effettuare il login.
 - L'email non è presente nel database.
 - L'email esiste ma la password è errata.
 - L'attore è già loggato.
+- L'email e password hanno un formato errato.
 
 ### Scenario 2.1: Login (Con Successo)
 
@@ -254,6 +255,17 @@ L'attore inserisce email e password per effettuare il login.
 | 5     | L'attore inserisce l'email e invia la richiesta.                                                                     |
 | 6     | Sistema verifica se l'email è associata a un account.                                                                |
 | 7     | Se l'email non è valida, il sistema mostra un messaggio "L'email non è corretta o non è associata a nessun account". |
+
+### Scenario 2.6: Login (Format Dati errati)
+
+| Passo | Descrizione                                                                    |
+| ----- | ------------------------------------------------------------------------------ |
+| 1     | Attore avvia l'applicazione.                                                   |
+| 2     | Attore seleziona l'opzione "Login".                                            |
+| 3     | User inserisce email e passworda.                                              |
+| 4     | Sistema controlla se l'email e la password, rispettano i requisiti.            |
+| 5     | Sistema mostra un messaggio di errore che indica l'errore nel campo specifico. |
+| 6     | User/Driver riparte dal passo 3                                                |
 
 # Use Case: Logout
 
