@@ -105,7 +105,7 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 | 7     | User non apre l'email e non clicca sul link entro il tempo richiesto.                               |
 | 8     | Sistema non registra l'account; l'user riparte dal passo #2.                                        |
 
-### Scenario 1.2: Registrazione Driver (Non approvato)
+### Scenario 1.4: Registrazione Driver (Non approvato)
 
 **Precondizione:** L'utente è già registrato come user e desidera registrarsi come driver.
 
@@ -122,7 +122,7 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 | 6     | Lo stato della registrazione come driver viene impostato su "in attesa di verifica".                          |
 | 7     | Admin verifica i documenti. La verifica falisce viene mostrato un messaggio di errore con I problem specifci. |
 
-### Scenario 1.6: Registrazione User/Driver (Dati errati)
+### Scenario 1.5: Registrazione User/Driver (Dati errati)
 
 **Precondizione:** L'user possiede un indirizzo email,numero di telefono.
 
