@@ -33,6 +33,9 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 ### Requisiti per l numero telefono.
 - Deve essere in un formato valido in base del prefix (es Italia. +39xxxxxxxxxx o 0039xxxxxxxxxx)
 
+### Requisiti per la data di nascita.
+- Utente deve aver almeno 18 anni.
+
 ## Varianti:
 - **Registrazione User:** L'user si registra fornendo email,password,nome,cognome,data di nascita , numero telefono.
 - **Registrazione Driver:** Il driver deve fornire anche la patente e la carta d'identità.
@@ -68,7 +71,7 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 | 1 | User avvia l'applicazione. |
 | 2 | User seleziona l'opzione "Register as User". |
 | 3 | User inserisce email, nome utente e password,n.telefono,data di nascita. |
-| 4 | Sistema controlla se l'email,n.telefono e la password rispettano i requisiti. |
+| 4 | Sistema controlla se l'email,n.telefono e la password rispettano i requisiti,data di nascita. |
 | 5 | Sistema controlla se esiste già un account con quell'email. |
 | 6 | Viene trovato un account esistente; viene mostrato un messaggio di errore. |
 
