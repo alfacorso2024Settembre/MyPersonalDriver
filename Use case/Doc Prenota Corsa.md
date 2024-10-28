@@ -18,8 +18,10 @@ L'utente desidera prenotare un Driver disponibile dalla ricerca precedentemente 
 
 | Step | Attore |Sistema |
 |---|--------|-------|
-| 1 | Il driver accetta la richiesta | Partirà il caso d'uso "Accetta Prenotazione"|
-| 2 | Il sistema fa partire il pagamento | Partirà il caso d'uso "Effettua Deposito"|
+| 1 | L'utente sceglierà la macchina che il driver dovrà guidare | Verificherà se l'utente ha almeno una macchina, altrimenti potrà aggiungerla|
+| 2 | Il sistema verificherà che l'assicurazione sia ancora valida | Partirà il caso d'uso "Verifica Documenti"|
+| 3 | Il driver accetta la richiesta | Partirà il caso d'uso "Accetta Prenotazione"|
+| 4 | Il sistema fa partire il pagamento | Partirà il caso d'uso "Effettua Deposito"|
 
 ## Variante 1:
 
