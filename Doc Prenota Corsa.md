@@ -18,15 +18,15 @@ L'utente desidera prenotare un Driver disponibile dalla ricerca precedentemente 
 
 | Step | Attore |Sistema |
 |---|--------|-------|
-| 1 | Il driver accetta la richiesta | Invia la conferma all'utente|
-| 2 | Il sistema fa partire il pagamento | La prenotazione viene registrata|
+| 1 | Il driver accetta la richiesta | Partirà il caso d'uso "Accetta Prenotazione"|
+| 2 | Il sistema fa partire il pagamento | Partirà il caso d'uso "Effettua Deposito"|
 
 ## Variante 1:
 
 | Step | Attore |Sistema |
 |---|--------|-------|
-| 1 | Il driver rifiuta la richiesta | Invia la conferma all'utente|
-|  | Se desidera l'utente può cercare altri driver disponibili dal cerca Driver | |
+| 1 | Il driver rifiuta la richiesta | Partirà il caso d'uso "Accetta Prenotazione"|
+|  | Se desidera l'utente può cercare altri driver disponibili dal cerca Driver |Partirà il caso d'uso "Cerca Driver"|
 
 ## Eccezione 1.a:
 
