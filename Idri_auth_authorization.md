@@ -201,7 +201,8 @@ L'attore inserisce email e password per effettuare il login.
 | 1     | L'attore richiede il login.                                     |
 | 2     | Sistema chiede email e password.                                |
 | 3     | Sistema verifica le credenziali, ma la password non è corretta. |
-| 4     | Viene mostrato un messaggio "Password errata".                  |
+| 4     | Viene mostrato un messaggio "Password errata! [Dimenticato password?]".                  |
+| 5     | Utente puo reimpostare la password                              |
 
 ### Scenario 2.4: Password Dimenticata
 
