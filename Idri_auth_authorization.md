@@ -22,6 +22,9 @@
 
 Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inserisce email,password,nome,cognome,data di nascita e si registra con successo dopo aver confermato l'email. Se si registra come driver, deve anche caricare la patente di guida per la verifica.
 
+**Nota:** Se e l caso di registrazione driver e gia esiste l email nel db con un ruolo utente
+si cambia l ruolo a driver.
+
 ### Requisiti per la Password:
 
 - Minimo 8 caratteri
