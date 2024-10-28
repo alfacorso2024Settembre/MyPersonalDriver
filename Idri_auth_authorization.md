@@ -119,7 +119,7 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 |-------|-------------|
 | 1 | Driver avvia l'applicazione. |
 | 2 | Driver seleziona "Register as User". |
-| 3 | Driver inserisce email, nome utente, password, patente e carta d'identità. |
+| 3 | Driver inserisce email, nome utente, password, patente . |
 | 4 | Sistema controlla se l'email e la password rispettano i requisiti. |
 | 5 | Sistema controlla se esiste già un account con quell'email. |
 | 6 | Non viene trovato un account associato all'email; viene inviata un'email di conferma. |
