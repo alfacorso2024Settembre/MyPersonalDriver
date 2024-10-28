@@ -19,7 +19,8 @@ L'utente ricerca i Driver disponibili nella sua zona per poter prenotare la cors
 | 1 | L'utente seleziona un orario di prenotazione| Inserisce l'orario nei filtri della ricerca |
 | 2 | L'utente seleziona un luogo di prenotazione (posizione attuale o indirizzo scelto)| Inserisce il luogo nei filtri della ricerca |
 | 3 | Visualizza la ricerca con i i Driver disponibili nella fascia oraria fornita e a 3km dal luogo inserito| Fornisce le informazioni necessarie  |
-| 4 | L'utente seleziona un Driver dai risultati della ricerca e clicca "Prenota" | Partirà il caso d'uso "Prenota corsa" |
+| 4 | L'utente seleziona un Driver | Verranno visualizzati i dettagli del Driver |
+| 5 | L'utente  clicca "Prenota" | Partirà il caso d'uso "Prenota corsa" |
 
 ## Scenario Alternativo:
 
@@ -29,7 +30,7 @@ L'utente ricerca i Driver disponibili nella sua zona per poter prenotare la cors
 |---|--------|-------|
 | 1 | Utente | Ricerca un Driver |
 | 2 | Sistema | Mostrerà una ricerca vuota con messaggio "nessun driver disponibile"|
-| 3 | Utente | Non può prenotare ma può cambiare orario e/o posizione e riprovare ad effettuare la ricerca |
+| 3 | Utente | Ritorna allo step 1 |
 
 ### Note:
 - Da capire se la posizione del driver si baserà sulla geolocalizzazione oppure sul cap inserito o sull'indirizzo fornito
