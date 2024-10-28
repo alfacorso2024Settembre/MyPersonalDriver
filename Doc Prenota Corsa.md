@@ -26,7 +26,7 @@ L'utente desidera prenotare un Driver disponibile dalla ricerca precedentemente 
 | Step | Attore |Sistema |
 |---|--------|-------|
 | 1 | Il driver rifiuta la richiesta | Partirà il caso d'uso "Accetta Prenotazione"|
-|  | Se desidera l'utente può cercare altri driver disponibili dal cerca Driver |Partirà il caso d'uso "Cerca Driver"|
+| 2 | Se desidera l'utente può cercare altri driver disponibili dal cerca Driver |Partirà il caso d'uso "Cerca Driver"|
 
 ## Eccezione 1.a:
 
