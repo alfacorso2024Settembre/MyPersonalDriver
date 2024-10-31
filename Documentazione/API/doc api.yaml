@@ -550,7 +550,7 @@ paths:
                   $ref: ''
         '400':
           description: Invalid tag value
- /accounts/register:
+  /accounts/register:
     post:
       tags:
         - user
