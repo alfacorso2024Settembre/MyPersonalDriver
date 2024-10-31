@@ -78,8 +78,6 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              items:
                 $ref: '#/components/schemas/loginBody'
       responses:
         '200':
@@ -311,4 +309,3 @@ components:
           example: "You are already logged out"
       xml:
         name: '##default'
-    
