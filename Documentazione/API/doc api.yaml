@@ -550,71 +550,154 @@ paths:
                   $ref: ''
         '400':
           description: Invalid tag value
-  /accounts/register:
+ /accounts/register:
     post:
       tags:
-        - Accounts
+        - user
       summary: Create user
       description: This can only be done by new users.
       operationId: createUser
       requestBody:
         description: Created user object
         content:
-          application/json:
+          application/json: 
             schema:
-              $ref: ''
+             $ref: '#/components/schemas/register'
           application/xml:
             schema:
-              $ref: ''
+              $ref: '#/components/schemas/register'
           application/x-www-form-urlencoded:
             schema:
-              $ref: ''
+              $ref: '#/components/schemas/register'
       responses:
-        default:
+        200:
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: ''
+                $ref: '#/components/schemas/ApiResponseRegisterSuccessfull'
             application/xml:
               schema:
-                $ref: ''
+                $ref: '#/components/schemas/ApiResponseRegisterSuccessfull'
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
+        
   /accounts/login:
     post:
       tags:
-        - Accounts
+        - user
       summary: User logs in
-      description: authenticates and creates a session for user
+      description: authenticates and creates a session token for user
       operationId: loginUser
       requestBody:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: ''
+                $ref: '#/components/schemas/loginBody'
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: ''
+                $ref: '#/components/schemas/ApiResponseLoginSuccessfull'          
             application/xml:
               schema:
-                $ref: ''
+                $ref: '#/components/schemas/ApiResponseLoginSuccessfull'
+        
+        '204':
+          description: Failed operation wrong email/password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLoginError'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLoginError'
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
         default:
           description: successful operation
+        
   
   /accounts/logout:
     delete:
       tags:
-        - Accounts
+        - user
       summary: Logs out current logged in user session
       description: ''
       operationId: logoutUser
       parameters: []
       responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLogoutSuccessfull'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLogoutSuccessfull'
+        
+        '204':
+          description: Failed logout Session not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLogoutError'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLogoutError'
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
         default:
           description: successful operation
 
@@ -1016,3 +1099,138 @@ components:
           example: 10
       xml:
         name: deposit
+    loginBody:
+      type: object
+      properties:
+        email:
+          type: string
+          example: example@email.com
+        password:
+          type: string
+          format: string
+          example: Password1!!
+    
+    register:
+      type: object
+      properties:
+        email:
+          type: string
+          example: john@email.com
+        
+        password:
+          type: string
+          example: 'Password1'
+        
+        role:
+          type: string
+          example: 'driver'
+        
+        firstName:
+          type: string
+          example: 'Idri'
+        lastName:
+          type: string
+          example: 'Hoxha'
+        dateOfBirth:
+          type: object
+          example: '20/04/2000'
+        
+    ApiResponseLoginSuccessfull:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "logged in successfully"
+        body:
+          type: string
+          example: {
+            SessionToken: "asfasdgfdgcdvlkl"
+          }
+      xml:
+        name: '##default'
+      
+    ApiResponseLoginError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Retry Login"
+      xml:
+          name: '##default'
+    
+    ApiResponseRegisterSuccessfull:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "registred successfully"
+      xml:
+        name: '##default'
+    
+    ApiResponseRegisterCError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Error on client side"
+      xml:
+        name: '##default'
+    ApiResponseRegisterSError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Error on server side"
+      xml:
+        name: '##default'
+    ApiResponseLogoutSuccessfull:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "You have logged out"
+      xml:
+        name: '##default'
+    ApiResponseLogoutError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "You are already logged out"
+      xml:
+        name: '##default'
