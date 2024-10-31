@@ -109,7 +109,7 @@ paths:
         '422':
           description: Validation exception
 
-  /users/{userId}/rides/{rideId}/reports/add:
+  /users/{userId}/rides/{rideId}/reports:
     post:
       tags:
         - Users
@@ -133,15 +133,15 @@ paths:
             format: int64
       responses:
         '200':
-          description: Successful operation
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Report"
         '400':
-          description: Invalid ID supplied
+          description: Invalid status value
         '404':
           description: ID not found
-        '422':
-          description: Validation exception
-  
-  /rides/{rideId}/reports/{reportId}/modify:
     put:
       tags:
         - Rides
@@ -165,15 +165,17 @@ paths:
             format: int64
       responses:
         '200':
-          description: Successful operation
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Report"
         '400':
-          description: Invalid ID supplied
+          description: Invalid status value
         '404':
           description: ID not found
-        '422':
-          description: Validation exception
   
-  /rides/{rideId}/reports/{reportId}/delete:
+  /rides/{rideId}/reports/{reportId}:
     delete:
       tags:
         - Rides
@@ -197,15 +199,17 @@ paths:
             format: int64
       responses:
         '200':
-          description: Successful operation
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Report"
         '400':
-          description: Invalid ID supplied
+          description: Invalid status value
         '404':
           description: ID not found
-        '422':
-          description: Validation exception
   
-  /users/{userId}/reports/view:
+  /users/{userId}/reports:
     get:
       tags:
         - Users
@@ -223,12 +227,6 @@ paths:
       responses:
         '200':
           description: successful operation
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: ID not found
-        '422':
-          description: Validation exception
 
   /accounts/{userId}/deleteAccount:
     delete:
@@ -1512,3 +1510,72 @@ components:
           example: "You are already logged out"
       xml:
         name: '##default'
+    Ride:
+      type: "object"
+      required:
+      - "customerId"
+      - "status"
+      properties:
+        rideId:
+          type: "integer"
+          format: "int64"
+          example: "1"
+          example: 
+        customerId:
+          type: "integer"
+          format: "int64"
+          example: "24"
+        driverId:
+          type: "integer"
+          format: "int64"
+          example: "33"
+        departure:
+          type: "string"
+          example: "Via Roma, 30"
+        destination:
+          type: "string"
+          example: "Corso Svizzera, 255"
+        totalKm:
+          type: "integer"
+          format: "int64"
+          example: "10"
+        status:
+          type: "string"
+          description: "Ride Status"
+          example: "pending"
+          enum:
+          - "concluded"
+          - "pending"
+          - "cancelled"
+      xml:
+        name: "Ride"
+        
+    Report:
+      type: "object"
+      required:
+        - "rideId"
+        - "userId"
+      properties:
+        reportId:
+          type: "integer"
+          format: "int64"
+          example: "4"
+        userId:
+          type: "integer"
+          format: "int64"
+          example: "24"
+        ride:
+          $ref: "#/definitions/Ride"
+        descriprion:
+          type: "string"
+          example: "C'è stato un errore nel pagamento della corsa"
+        status:
+          type: "string"
+          description: "Report Status"
+          example: "concluded"
+          enum:
+          - "awaiting review"
+          - "concluded"
+          - "cancelled"
+      xml:
+        name: "Report"
