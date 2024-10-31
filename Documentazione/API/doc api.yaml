@@ -18,7 +18,7 @@ paths:
           description:  Modification failed
 
   /users/{id}/modifyProfile:
-    patch:
+    put:
       summary: Modify user profile
       description: Updates the profile details of a specific user by their ID.
       tags:
@@ -44,7 +44,7 @@ paths:
           description: Invalid ID.
 
   /accounts/{id}/modifyAccount:
-    patch:
+    put:
       summary: Modify account details
       description: Updates specific account details by account ID.
       tags:
