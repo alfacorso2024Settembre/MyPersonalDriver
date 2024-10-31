@@ -963,3 +963,37 @@ components:
           example: 1600
       xml:
         name: car
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        username:
+          type: string
+          example: theUser
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: James
+        birthDate:
+          type: string
+          format: date
+          example: 2024-01-01
+        email:
+          type: string
+          format: email
+          example: john@email.com
+        password:
+          type: string
+          example: '12345'
+        phone:
+          type: string
+          example: '12345abc'
+        document:
+          $ref: '#/components/schemas/Documents'
+      xml:
+        name: user
