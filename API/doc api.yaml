@@ -161,20 +161,20 @@ paths:
     post:
       tags:
         - Users
-      summary: Inserisci una nuova segnalazione
-      description: Inserisci una nuova segnalazione relativa ad una determinata corsa
+      summary: Add a new report
+      description: Insert a new report relating to a specific ride
       operationId: addReport
       parameters:
         - name: userId
           in: path
-          description: UserId che vuole inviare la segnalazione
+          description: UserId who wants to send a report
           required: true
           schema:
             type: integer
             format: int64
         - name: rideId
           in: path
-          description: rideId della corsa relativa alla segnalazione
+          description: rideId of the ride related to the report
           required: true
           schema:
             type: integer
@@ -193,20 +193,20 @@ paths:
     put:
       tags:
         - Rides
-      summary: Modifica segnalazione
-      description: Modifica una segnalazione esistente relativa ad una determinata corsa
+      summary: Modify report
+      description: Modify an existing report report relating to a specific ride
       operationId: updateReport
       parameters:
         - name: rideId
           in: path
-          description: rideId relativo alla segnalazione
+          description: rideId of the ride related to the report
           required: true
           schema:
             type: integer
             format: int64
         - name: reportId
           in: path
-          description: reportId relativo alla segnalazione
+          description: reportId related to the report
           required: true
           schema:
             type: integer
@@ -225,20 +225,20 @@ paths:
     delete:
       tags:
         - Rides
-      summary: Elimina segnalazione
-      description: Elimina una segnalazione esistente relativa ad una determinata corsa
+      summary: Delete segnalazione
+      description: Delete an existing report report relating to a specific ride
       operationId: deleteReport
       parameters:
         - name: rideId
           in: path
-          description: rideId relativo alla segnalazione
+          description: rideId of the ride related to the report
           required: true
           schema:
             type: integer
             format: int64
         - name: reportId
           in: path
-          description: reportId relativo alla segnalazione
+          description: reportId related to the report
           required: true
           schema:
             type: integer
@@ -257,13 +257,13 @@ paths:
     get:
       tags:
         - Users
-      summary: Visualizza le segnalazioni presenti
-      description: Visualizza le segnalazioni presenti
-      operationId: printReports
+      summary: View existing reports
+      description: View existing reports
+      operationId: viewReports
       parameters:
         - name: userId
           in: path
-          description: UserId che ha inviato le segnalazioni
+          description: userId who sent the reports
           required: true
           schema:
             type: integer
