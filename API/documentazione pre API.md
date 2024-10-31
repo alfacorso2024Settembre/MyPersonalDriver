@@ -25,7 +25,7 @@
 - accounts/{id}/deleteAccount
 ### Users
 - users/{id}/uploadDocuments
-- users/{id}/modifyProfile
+- users/{id}/modifyProfile 
 - users/{id}/reservations/reserveRide 
 - users/searchDrivers
 - users/{id}/rides/{id}/reports/add
@@ -36,7 +36,7 @@
 - users/{id}/Cars/add
 - users/{id}/Cars/view
 - users/{id}/Cars/{id}/delete
-- users/{id}/reservations/acceptRide
+- users/{id}/reservations/acceptRide 
 ### Reservations
 - reservations/add
 - reservations/{id}/cancel
@@ -53,6 +53,6 @@
 - admins/acceptDocuments
 - admins/acceptAccountChanges
 - admins/suspendAccount
-- admins/acceptRefund
+- admins/acceptRefund (da fare)
 
 
