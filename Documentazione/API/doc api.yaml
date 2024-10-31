@@ -230,7 +230,7 @@ paths:
         '422':
           description: Validation exception
 
-  /accounts/{userId}/deleteAccount:
+  /accounts/{userId}:
     delete:
       tags:
         - Accounts

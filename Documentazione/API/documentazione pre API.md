@@ -13,6 +13,7 @@
 - Rides/Reports
 - Rides/Positions
 - Admins
+- Documents
 
 ## Metodi
 ### Accounts
@@ -54,5 +55,10 @@
 - admins/acceptAccountChanges
 - admins/suspendAccount
 - admins/acceptRefund (da fare)
-
+### Documents
+- users/{userId}/documents
+- users/{userId}/documents/changeDocumentDesc
+- users/{userId}/documents/changeDocumentState
+- users/{userId}/documents/changeValidity
+- users/{userId}/documents/uploadDocument
 
