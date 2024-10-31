@@ -7,13 +7,13 @@ info:
 paths:
   /admins/acceptAccountChanges:
     put:
-      summary: Accettazione modifiche degli account
-      description: Admin accetta le modifiche degli account degli user
+      summary: Accept account changes
+      description: The admin accepts the changes of the accounts of the users
       tags:
         - Admins
       responses:
         '200':
-          description: Modifica effettuata con successo
+          description: Modification completed successfully.
           content:
             application/json:
               schema:
@@ -22,12 +22,12 @@ paths:
               schema:
                 $ref: ''
         '400':
-          description: errore
+          description:  Modification failed
 
   /users/{id}/modifyProfile:
     patch:
-      summary: Modifica profilo dello user
-      description: L'account dello user viene modificato in base al suo ID, che è univoco
+      summary: Modify user profile
+      description: Updates the profile details of a specific user by their ID.
       tags:
         - Users
       parameters:
@@ -36,7 +36,7 @@ paths:
           required: true
           schema:
             type: integer
-          description: ID del profilo dello user che deve essere modificato
+          description: ID of the user whose profile is to be modified.
       requestBody:
         required: true
         content:
@@ -51,7 +51,7 @@ paths:
               $ref: ''
       responses:
         '200':
-          description: Modifica effettuata con successo
+          description: Profile updated successfully
           content:
             application/json:
               schema:
@@ -60,12 +60,12 @@ paths:
               schema:
                 $ref: ''
         '400':
-          description: Id fornito non valido
+          description: Invalid ID.
 
   /accounts/{id}/modifyAccount:
     patch:
-      summary: Modifica dell'account
-      description: Modifica dell'account specifico in base all'Id
+      summary: Modify account details
+      description: Updates specific account details by account ID.
       tags:
         - Accounts
       parameters:
@@ -74,7 +74,7 @@ paths:
           required: true
           schema:
             type: integer
-          description: ID dell'account che deve essere modificato.
+          description: ID of the account to be modified.
       requestBody:
         required: true
         content:
@@ -89,7 +89,7 @@ paths:
               $ref: ''
       responses:
         '200':
-          description: Modifica effettuata con successo
+          description: Account updated successfully
           content:
             application/json:
               schema:
@@ -98,7 +98,7 @@ paths:
               schema:
                 $ref: ''
         '400':
-          description: Id fornito non valido
+          description: Invalid ID.
   
   
   /users/{id}/reservations/AccettaPrenotazione:
