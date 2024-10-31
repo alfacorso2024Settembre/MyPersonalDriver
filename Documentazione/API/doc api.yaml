@@ -983,6 +983,273 @@ paths:
           description: Invalid input
         '422':
           description: Validation exception
+  /users/{userId}/documents/viewDocument:
+    get:
+      tags:
+        - documents
+      summary: View a user document
+      description: The administrator views a specific user's document
+      operationId: viewUser
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: userId
+          in: path
+          description: User id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Documents'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Documents'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Account not found
+        '422':
+          description: Validation exception
+        '500':
+          description: Internal server error
+  /users/{userId}/documents/changeDocumentDesc:
+    put:
+      tags:
+        - documents
+      summary: Change description
+      description: Change document description
+      operationId: changeDocumentDesc
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: userId
+          in: path
+          description: User id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          appplication/json:
+            schema:
+              type: object
+              properties:
+                newDescription:
+                  type: string
+                  description: new description for the document
+              required:
+                - newDescription
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Documents'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Documents'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Account not found
+        '422':
+          description: Validation exception
+        '500':
+          description: Internal server error
+  /users/{userId}/documents/changeDocumentState:
+    patch:
+      tags:
+        - documents
+      summary: Change document state
+      description: Change the status of the document to valid and denied
+      operationId: changeDocumentState
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: userId
+          in: path
+          description: User id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          appplication/json:
+            schema:
+              type: object
+              properties:
+                newState:
+                  type: string
+                  description: new state for the document
+              required:
+                - newState
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Documents'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Documents'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Account not found
+        '422':
+          description: Validation exception
+        '500':
+          description: Internal server error
+  /users/{userId}/documents/changeValidity:
+    patch:
+      tags:
+        - documents
+      summary: Change document validity
+      description: Change document validity
+      operationId: changeValidity
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: userId
+          in: path
+          description: User id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          appplication/json:
+            schema:
+              type: object
+              properties:
+                newValidity:
+                  type: boolean
+                  description: new validity for the document
+              required:
+                - newValidity
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Documents'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Documents'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Account not found
+        '422':
+          description: Validation exception
+        '500':
+          description: Internal server error
+  /users/{userId}/documents/uploadDocument:
+    post:
+      tags:
+        - documents
+      summary: Upload new document
+      description: Upload a new document to be validated
+      operationId: uploadDocument
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: userId
+          in: path
+          description: User id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                newDocument:
+                  type: string
+                  format: binary
+                  description: "The document file to be uploaded"
+                documentDetails:
+                  $ref: '#/components/schemas/Documents'
+              required:
+                - newDocument
+                - documentDetails
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Documents'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Documents'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Account not found
+        '422':
+          description: Validation exception
+        '500':
+          description: Internal server error
           
 components:
   schemas:
@@ -1099,6 +1366,7 @@ components:
           example: 10
       xml:
         name: deposit
+<<<<<<< HEAD
     loginBody:
       type: object
       properties:
@@ -1234,3 +1502,32 @@ components:
           example: "You are already logged out"
       xml:
         name: '##default'
+=======
+    Documents:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        docType:
+          type: string
+        description:
+          type: string
+        insertionDate:
+          type: string
+          format: date-time
+        expirationtDate:
+          type: string
+          format: date-time
+        state:
+          type: string
+          description: Order Status
+          example: approved
+          enum:
+            - approved
+            - denied
+        isValid:
+          type: boolean
+      xml:
+        name: order
+>>>>>>> 06a8f6d85d23c9af8a549ec69832c6b8a88d6133
