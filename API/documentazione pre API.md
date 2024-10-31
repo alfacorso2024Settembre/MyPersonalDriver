@@ -51,6 +51,7 @@
 ### Admin
 - admins/deleteUser
 - admins/acceptDocuments
+- admins/acceptAccountChanges
 - admins/suspendAccount
 - admins/acceptRefund
 
