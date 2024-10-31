@@ -673,9 +673,9 @@ paths:
       
       tags:
         - Users
-      summary: Aggiunge pagamento alla corsa
+      summary: Add payment
       
-      description: Aggiunge pagamento alla corsa
+      description: User pays for the ride
       
       operationId: addUserRidePayment
       
@@ -728,8 +728,8 @@ paths:
           description: user ID
       tags:
         - Users
-      summary: Visualizza pagamenti
-      description: Visualizza pagamenti
+      summary: View payments
+      description: View all payments of a user
       operationId: viewPayments
       
       responses:
@@ -753,8 +753,8 @@ paths:
     get:
       tags:
         - Users
-      summary: ricevi pagamento
-      description: ricevi pagamento
+      summary: Receive payment
+      description: User receives payment, e.g. Driver receives his payment after the ride
       operationId: receivePayment
       parameters:
         - in: path
@@ -791,8 +791,8 @@ paths:
     get:
       tags:
         - Rides
-      summary: View payments of rides
-      description: View all payments
+      summary: View all payments
+      description: View all payments of each user
       operationId: ViewRidesPayments
       responses:
         '200':
@@ -812,8 +812,8 @@ paths:
     post:
       tags:
         - Rides
-      summary: adds payment for the ride
-      description: pays for the ride
+      summary: Adds a payment for the ride
+      description: A payment is added for the ride
       operationId: addRidePayment
       parameters:
         - in: path
@@ -841,8 +841,8 @@ paths:
     post:
       tags:
         - Reservations
-      summary: adds initial deposit
-      description: adds initial deposit to reservation
+      summary: Adds initial deposit
+      description: Initial deposit is taken for the reservation
       operationId: addInitialDeposit
       parameters:
         - in: path
@@ -887,8 +887,8 @@ paths:
             type: integer
             minimum: 1
           description: ride ID
-      summary: Aggiungi review
-      description: Aggiungi review
+      summary: Adds a review
+      description: User reviews the ride
       operationId: addReview
       
       requestBody:
@@ -912,8 +912,8 @@ paths:
     get:
       tags:
         - Users
-      summary: Vedi review di un utente
-      description: Vedi review di un utente
+      summary: View all reviews of a user
+      description: Displays all reviews given by a certain user
       operationId: viewReview
       parameters:
         - in: path

@@ -26,22 +26,22 @@ paths:
           schema:
             type: integer
             minimum: 1
-          description: ride ID    
+          description: ride ID
       
       tags:
-        - users
-      summary: Aggiunge pagamento alla corsa
+        - Users
+      summary: Add payment
       
-      description: Aggiunge pagamento alla corsa
+      description: User pays for the ride
       
       operationId: addUserRidePayment
       
       requestBody:
-      
+        
         description: Add payment to a ride from user
         
         content:
-        
+          
           application/json:
             schema:
               $ref: ''
@@ -49,30 +49,30 @@ paths:
             schema:
               $ref: ''
         required: true
-        
-      responses:
       
+      responses:
+        
         '200':
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: ''          
+                $ref: ''
             application/xml:
               schema:
                 $ref: ''
-                
+        
         '400':
           description: Invalid ID supplied
-          
+        
         '404':
           description: X not found
-          
+        
         '422':
           description: Validation exception
-          
-            
-            
+  
+  
+  
   /users/{id_user}/rides/payments/view:
     get:
       parameters:
@@ -84,9 +84,9 @@ paths:
             minimum: 1
           description: user ID
       tags:
-        - users
-      summary: Visualizza pagamenti
-      description: Visualizza pagamenti
+        - Users
+      summary: View payments
+      description: View all payments of a user
       operationId: viewPayments
       
       responses:
@@ -97,7 +97,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ''          
+                  $ref: ''
             application/xml:
               schema:
                 type: array
@@ -105,13 +105,13 @@ paths:
                   $ref: ''
         '400':
           description: Invalid status value
-            
+  
   /users/{id_user}/rides/{id_ride}/payments/receive:
     get:
       tags:
-        - users
-      summary: ricevi pagamento
-      description: ricevi pagamento
+        - Users
+      summary: Receive payment
+      description: User receives payment, e.g. Driver receives his payment after the ride
       operationId: receivePayment
       parameters:
         - in: path
@@ -120,14 +120,14 @@ paths:
           schema:
             type: integer
             minimum: 1
-          description: user ID 
+          description: user ID
         - in: path
           name: id_ride
           required: true
           schema:
             type: integer
             minimum: 1
-          description: ride ID    
+          description: ride ID
       responses:
         '200':
           description: successful operation
@@ -136,7 +136,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ''     
+                  $ref: ''
             application/xml:
               schema:
                 type: array
@@ -147,9 +147,9 @@ paths:
   /rides/payments/view:
     get:
       tags:
-        - rides
-      summary: View payments of rides
-      description: View all payments
+        - Rides
+      summary: View all payments
+      description: View all payments of each user
       operationId: ViewRidesPayments
       responses:
         '200':
@@ -157,7 +157,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ''          
+                $ref: ''
             application/xml:
               schema:
                 $ref: ''
@@ -168,9 +168,9 @@ paths:
   /rides/{id_ride}/payments/add:
     post:
       tags:
-        - rides
-      summary: adds payment for the ride 
-      description: pays for the ride
+        - Rides
+      summary: Adds a payment for the ride
+      description: A payment is added for the ride
       operationId: addRidePayment
       parameters:
         - in: path
@@ -179,9 +179,9 @@ paths:
           schema:
             type: integer
             minimum: 1
-          description: reservation ID 
-            
-      requestBody: 
+          description: reservation ID
+      
+      requestBody:
         content:
           application/json:
             schema:
@@ -193,13 +193,13 @@ paths:
             application/json:
               schema:
                 $ref: ''
-                
+  
   /reservations/{id_reservation}/addDeposit:
     post:
       tags:
-        - reservation
-      summary: adds initial deposit 
-      description: adds initial deposit to reservation
+        - Reservations
+      summary: Adds initial deposit
+      description: Initial deposit is taken for the reservation
       operationId: addInitialDeposit
       parameters:
         - in: path
@@ -208,9 +208,9 @@ paths:
           schema:
             type: integer
             minimum: 1
-          description: reservation ID 
-            
-      requestBody: 
+          description: reservation ID
+      
+      requestBody:
         content:
           application/json:
             schema:
@@ -222,13 +222,13 @@ paths:
             application/json:
               schema:
                 $ref: ''
-                
-                
+  
+  
   /users/{id_user}/rides/{id_ride}/reviews/add:
     post:
       tags:
-        - users
-        
+        - Users
+      
       parameters:
         - in: path
           name: id_user
@@ -236,24 +236,24 @@ paths:
           schema:
             type: integer
             minimum: 1
-          description: user ID 
+          description: user ID
         - in: path
           name: id_ride
           required: true
           schema:
             type: integer
             minimum: 1
-          description: ride ID   
-      summary: Aggiungi review
-      description: Aggiungi review
+          description: ride ID
+      summary: Adds a review
+      description: User reviews the ride
       operationId: addReview
       
-      requestBody: 
+      requestBody:
         content:
           application/json:
             schema:
               $ref: ''
-              
+      
       
       responses:
         '200':
@@ -268,9 +268,9 @@ paths:
   /users/{id_user}/rides/reviews/view:
     get:
       tags:
-        - users
-      summary: Vedi review di un utente
-      description: Vedi review di un utente
+        - Users
+      summary: View all reviews of a user
+      description: Displays all reviews given by a certain user
       operationId: viewReview
       parameters:
         - in: path
@@ -279,7 +279,7 @@ paths:
           schema:
             type: integer
             minimum: 1
-          description: user ID 
+          description: user ID
       responses:
         '200':
           description: successful operation
@@ -291,4 +291,3 @@ paths:
           description: Invalid input
         '422':
           description: Validation exception
-          
