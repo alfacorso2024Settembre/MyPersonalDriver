@@ -30,8 +30,6 @@ paths:
           schema:
             type: integer
           description: ID of the user whose profile is to be modified.
-      requestBody:
-        required: true
       responses:
         '200':
           description: Profile updated successfully
@@ -58,8 +56,6 @@ paths:
           schema:
             type: integer
           description: ID of the account to be modified.
-      requestBody:
-        required: true
       responses:
         '200':
           description: Account updated successfully
