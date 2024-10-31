@@ -291,3 +291,56 @@ paths:
           description: Invalid input
         '422':
           description: Validation exception
+components:
+  schemas:
+    Payment: 
+      type: object
+      properties: 
+        id_transaction:
+          type: integer
+          format: int64
+          example: 151
+        User:
+          $ref: "#/components/schemas/User"
+        Ride:
+          $ref: "#/components/schemas/Ride"
+        completed:
+          type: boolean
+          example: true
+        causale:
+          type: string
+          example: "causale 1"
+        amount:
+          type: integer
+          format: int64
+          example: 16
+        date:
+          type: string
+          format: date
+          example: 2024-11-12
+    Review:
+      type: object
+      properties:
+        id_review:
+          type: integer
+          format: int64
+          example: 1332
+        User:
+           $ref: "#/components/schemas/User"
+        value:
+          type: number
+          example: 4
+        notes:
+          type: string
+          example: "buon guidatore"
+    Deposit:
+      type: object
+      properties:
+        id_deposit:
+          type: integer
+          format: int64
+          example: 2311
+        value:
+          type: integer
+          format: int64
+          example: 10
