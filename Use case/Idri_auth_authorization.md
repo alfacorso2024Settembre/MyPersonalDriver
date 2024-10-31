@@ -10,7 +10,6 @@
 ## Precondizioni:
 
 - User possiede un indirizzo email e un numero di telefono.
-- Driver possiede un indirizzo email,numero di telefono e documenti validi.
 - L'email e la password,numero di telefono,data di nascita devono rispettare i requisiti di formato.
 - Utente/Driver devono avere almeno 18 anni.(data corrente - data di nascita)
 
@@ -20,7 +19,7 @@
 
 ## Scenario Nominale:
 
-Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inserisce email,password,nome,cognome,data di nascita e si registra con successo dopo aver confermato l'email. Se si registra come driver, deve anche caricare la patente di guida per la verifica.
+Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inserisce email,password,nome,cognome,data di nascita e si registra con successo dopo aver confermato l'email.
 
 **Nota**: Se durante la registrazione come driver l'email esiste già nel database con il ruolo di user, il ruolo viene aggiornato a driver.
 
@@ -46,7 +45,7 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 ## Varianti:
 
 - **Registrazione User:** L'user si registra fornendo email,password,nome,cognome,data di nascita , numero telefono.
-- **Registrazione Driver:** Il driver deve esere registrato come user puoi deve fornire anche la patente.
+- **Registrazione Driver:** Il driver deve esere registrato come user nel caso del successo con i documenti il ruolo viene cambiato da 'user' a 'driver'
 
 ## Eccezioni:
 
@@ -196,13 +195,13 @@ L'attore inserisce email e password per effettuare il login.
 
 **Postcondizione:** Viene mostrato un messaggio di errore.
 
-| Passo | Descrizione                                                     |
-| ----- | --------------------------------------------------------------- |
-| 1     | L'attore richiede il login.                                     |
-| 2     | Sistema chiede email e password.                                |
-| 3     | Sistema verifica le credenziali, ma la password non è corretta. |
-| 4     | Viene mostrato un messaggio "Password errata! Dimenticato password?".                  |
-| 5     | Utente puo reimpostare la password                              |
+| Passo | Descrizione                                                           |
+| ----- | --------------------------------------------------------------------- |
+| 1     | L'attore richiede il login.                                           |
+| 2     | Sistema chiede email e password.                                      |
+| 3     | Sistema verifica le credenziali, ma la password non è corretta.       |
+| 4     | Viene mostrato un messaggio "Password errata! Dimenticato password?". |
+| 5     | Utente puo reimpostare la password                                    |
 
 ### Scenario 2.4: Password Dimenticata
 
