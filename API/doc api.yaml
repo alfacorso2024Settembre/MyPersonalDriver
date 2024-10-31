@@ -101,25 +101,25 @@ paths:
           description: Invalid ID.
   
   
-  /users/{id}/reservations/AccettaPrenotazione:
+  /users/{idUser}/reservations/{idReservation}/AcceptReservation:
     put:
       tags:
         - Users
-      summary: Accetta prenotazione
-      description: Driver accetta una richiesta di prenotazione da parte di uno user
-      operationId: acceptRide
+      summary: Accept reservation
+      description: Driver accepts booking request from user
+      operationId: acceptReservation
       parameters:
         - in: path
-          name: id
+          name: idUser
           required: true
           schema:
             type: integer
-          description: Id dell'utente che accetta la prenotazione
-        - in: query
-          name: idPrenotazione
+          description: Id of the user that accepts the booking request
+        - in: path
+          name: idReservation
           schema:
             type: integer
-            description: id della prenotazione da accettare
+            description: id pf the reservation to accept
       responses:
         '204':
           description: Successful operations
@@ -130,25 +130,25 @@ paths:
         '422':
           description: Validation exception
 
-  /users/{id}/reservations/CancellaPrenotazione:
+  /users/{idUser}/reservations/{idReservation}/DeleteReservation:
     patch:
       tags:
         - Users
-      summary: Cancella prenotazione
-      description: Id dell'utente che cancella la prenotazione
-      operationId: addPet
+      summary: Delete reservation
+      description: A regular user or a driver deletes a reservation
+      operationId: deleteReservation
       parameters:
         - in: path
-          name: id
+          name: idUser
           required: true
           schema:
             type: integer
-          description: Id dell'utente che cancella la prenotazione
-        - in: query
-          name: idPrenotazione
+          description: Id of the user that deleted the reservation
+        - in: path
+          name: idReservation
           schema:
             type: integer
-            description: id della prenotazione da cancellare
+            description: id of the prenotation to delete
       responses:
         '204':
           description: Successful operation
