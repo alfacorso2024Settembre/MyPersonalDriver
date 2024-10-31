@@ -1,0 +1,293 @@
+openapi: 3.0.3
+info: 
+  title: Swagger Petstore - OpenAPI 3.0
+  description: descrizione
+  version: "1.0"
+  
+servers:
+  - url: https://petstore3.swagger.io/api/v3
+  
+    
+paths:
+  /users/{id_user}/rides/{id_ride}/payments/add:
+    
+    post:
+      parameters:
+        - in: path
+          name: id_user
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+        - in: path
+          name: id_ride
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: ride ID
+      
+      tags:
+        - Users
+      summary: Add payment
+      
+      description: User pays for the ride
+      
+      operationId: addUserRidePayment
+      
+      requestBody:
+        
+        description: Add payment to a ride from user
+        
+        content:
+          
+          application/json:
+            schema:
+              $ref: ''
+          application/xml:
+            schema:
+              $ref: ''
+        required: true
+      
+      responses:
+        
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+            application/xml:
+              schema:
+                $ref: ''
+        
+        '400':
+          description: Invalid ID supplied
+        
+        '404':
+          description: X not found
+        
+        '422':
+          description: Validation exception
+  
+  
+  
+  /users/{id_user}/rides/payments/view:
+    get:
+      parameters:
+        - in: path
+          name: id_user
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+      tags:
+        - Users
+      summary: View payments
+      description: View all payments of a user
+      operationId: viewPayments
+      
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+        '400':
+          description: Invalid status value
+  
+  /users/{id_user}/rides/{id_ride}/payments/receive:
+    get:
+      tags:
+        - Users
+      summary: Receive payment
+      description: User receives payment, e.g. Driver receives his payment after the ride
+      operationId: receivePayment
+      parameters:
+        - in: path
+          name: id_user
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+        - in: path
+          name: id_ride
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: ride ID
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+        '400':
+          description: Invalid tag value
+  /rides/payments/view:
+    get:
+      tags:
+        - Rides
+      summary: View all payments
+      description: View all payments of each user
+      operationId: ViewRidesPayments
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+            application/xml:
+              schema:
+                $ref: ''
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Payment not found
+  /rides/{id_ride}/payments/add:
+    post:
+      tags:
+        - Rides
+      summary: Adds a payment for the ride
+      description: A payment is added for the ride
+      operationId: addRidePayment
+      parameters:
+        - in: path
+          name: id_ride
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: reservation ID
+      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+  
+  /reservations/{id_reservation}/addDeposit:
+    post:
+      tags:
+        - Reservations
+      summary: Adds initial deposit
+      description: Initial deposit is taken for the reservation
+      operationId: addInitialDeposit
+      parameters:
+        - in: path
+          name: id_reservation
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: reservation ID
+      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+  
+  
+  /users/{id_user}/rides/{id_ride}/reviews/add:
+    post:
+      tags:
+        - Users
+      
+      parameters:
+        - in: path
+          name: id_user
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+        - in: path
+          name: id_ride
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: ride ID
+      summary: Adds a review
+      description: User reviews the ride
+      operationId: addReview
+      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ''
+      
+      
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+  /users/{id_user}/rides/reviews/view:
+    get:
+      tags:
+        - Users
+      summary: View all reviews of a user
+      description: Displays all reviews given by a certain user
+      operationId: viewReview
+      parameters:
+        - in: path
+          name: id_user
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
