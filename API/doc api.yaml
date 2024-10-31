@@ -1,0 +1,936 @@
+openapi: 3.0.3
+info:
+  title: MyPersonalDriver
+  description: Applicazione MyPersonalDriver
+  version: 1.0.11
+
+paths:
+  /admins/acceptAccountChanges:
+    put:
+      summary: Accettazione modifiche degli account
+      description: Admin accetta le modifiche degli account degli user
+      tags:
+        - Admins
+      responses:
+        '200':
+          description: Modifica effettuata con successo
+          content:
+            application/json:
+              schema:
+                $ref: ''
+            application/xml:
+              schema:
+                $ref: ''
+        '400':
+          description: errore
+
+  /users/{id}/modifyProfile:
+    patch:
+      summary: Modifica profilo dello user
+      description: L'account dello user viene modificato in base al suo ID, che è univoco
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID del profilo dello user che deve essere modificato
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ''
+          application/xml:
+            schema:
+              $ref: ''
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: ''
+      responses:
+        '200':
+          description: Modifica effettuata con successo
+          content:
+            application/json:
+              schema:
+                $ref: ''
+            application/xml:
+              schema:
+                $ref: ''
+        '400':
+          description: Id fornito non valido
+
+  /accounts/{id}/modifyAccount:
+    patch:
+      summary: Modifica dell'account
+      description: Modifica dell'account specifico in base all'Id
+      tags:
+        - Accounts
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID dell'account che deve essere modificato.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ''
+          application/xml:
+            schema:
+              $ref: ''
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: ''
+      responses:
+        '200':
+          description: Modifica effettuata con successo
+          content:
+            application/json:
+              schema:
+                $ref: ''
+            application/xml:
+              schema:
+                $ref: ''
+        '400':
+          description: Id fornito non valido
+  
+  
+  /users/{id}/reservations/AccettaPrenotazione:
+    put:
+      tags:
+        - Users
+      summary: Accetta prenotazione
+      description: Driver accetta una richiesta di prenotazione da parte di uno user
+      operationId: acceptRide
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: Id dell'utente che accetta la prenotazione
+        - in: query
+          name: idPrenotazione
+          schema:
+            type: integer
+            description: id della prenotazione da accettare
+      responses:
+        '204':
+          description: Successful operations
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+        '422':
+          description: Validation exception
+
+  /users/{id}/reservations/CancellaPrenotazione:
+    patch:
+      tags:
+        - Users
+      summary: Cancella prenotazione
+      description: Id dell'utente che cancella la prenotazione
+      operationId: addPet
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: Id dell'utente che cancella la prenotazione
+        - in: query
+          name: idPrenotazione
+          schema:
+            type: integer
+            description: id della prenotazione da cancellare
+      responses:
+        '204':
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+
+  /users/{userId}/rides/{rideId}/reports/add:
+    post:
+      tags:
+        - Users
+      summary: Inserisci una nuova segnalazione
+      description: Inserisci una nuova segnalazione relativa ad una determinata corsa
+      operationId: addReport
+      parameters:
+        - name: userId
+          in: path
+          description: UserId che vuole inviare la segnalazione
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: rideId
+          in: path
+          description: rideId della corsa relativa alla segnalazione
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: ID not found
+        '422':
+          description: Validation exception
+  
+  /rides/{rideId}/reports/{reportId}/modify:
+    put:
+      tags:
+        - Rides
+      summary: Modifica segnalazione
+      description: Modifica una segnalazione esistente relativa ad una determinata corsa
+      operationId: updateReport
+      parameters:
+        - name: rideId
+          in: path
+          description: rideId relativo alla segnalazione
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: reportId
+          in: path
+          description: reportId relativo alla segnalazione
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: ID not found
+        '422':
+          description: Validation exception
+  
+  /rides/{rideId}/reports/{reportId}/delete:
+    delete:
+      tags:
+        - Rides
+      summary: Elimina segnalazione
+      description: Elimina una segnalazione esistente relativa ad una determinata corsa
+      operationId: deleteReport
+      parameters:
+        - name: rideId
+          in: path
+          description: rideId relativo alla segnalazione
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: reportId
+          in: path
+          description: reportId relativo alla segnalazione
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: ID not found
+        '422':
+          description: Validation exception
+  
+  /users/{userId}/reports/view:
+    get:
+      tags:
+        - Users
+      summary: Visualizza le segnalazioni presenti
+      description: Visualizza le segnalazioni presenti
+      operationId: printReports
+      parameters:
+        - name: userId
+          in: path
+          description: UserId che ha inviato le segnalazioni
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: ID not found
+        '422':
+          description: Validation exception
+
+  /accounts/{userId}/deleteAccount:
+    delete:
+      tags:
+        - Accounts
+      summary: Delete a user
+      description: User delete his own profile
+      operationId: deleteUser
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: userId
+          in: path
+          description: User id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Account not found
+        '422':
+          description: Validation exception
+  /admins/deleteUser/{userId}:
+    delete:
+      tags:
+        - Admins
+      summary: Delete account
+      description: Delete a user following a serious report
+      operationId: deleteAccount
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: userId
+          in: path
+          description: User id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+  /admins/acceptDocuments/{userId}:
+    patch:
+      tags:
+        - Admins
+      summary: Accept user documents
+      description: Accepts documents that the user inserts for the first time or following a modification
+      operationId: acceptDocuments
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: userId
+          in: path
+          description: User id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ''
+          application/xml:
+            schema:
+              $ref: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+        '400':
+          description: Invalid status value
+  /admins/suspendAccount/{userId}:
+    patch:
+      tags:
+        - Admins
+      summary: Suspends an accounts
+      description: Suspends accounts due to lack of documents or following an unpaid fine
+      operationId: suspendAccount
+      parameters:
+        - name: api_key
+          in: header
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: userId
+          in: path
+          description: User id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ''
+          application/xml:
+            schema:
+              $ref: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+        '400':
+          description: Invalid tag value
+  /Users/{UserId}/searchDrivers:
+    get:
+      tags:
+        - Users
+      summary: Get all the free driver
+      description: Get all the free driver By distance and availability
+      operationId: searchDrivers
+      parameters:
+        - name: UserId
+          in: path
+          description: Id values that need to be considered for filter
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+            application/xml:
+              schema:
+                $ref: ''
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+        '422':
+          description: Validation exception
+  
+  /users/{userId}/Cars/add:
+    post:
+      tags:
+        - Users
+      summary: Add user's car
+      description: The user can add a own car
+      operationId: addCar
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+            application/xml:
+              schema:
+                $ref: ''
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Order not found
+  /users/{userId}/Cars/view:
+    get:
+      tags:
+        - Users
+      summary: View cars
+      description: View all the car of the user filter by userId
+      operationId: viewCars
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+            application/xml:
+              schema:
+                $ref: ''
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Order not found
+  /users/{userId}/Cars/{carId}/delete:
+    delete:
+      tags:
+        - Users
+      summary: Delete car
+      description: Delete a car of the user filtered by idUser ad iDcar
+      operationId: deleteCar
+      parameters:
+        - name: userId
+          in: path
+          description: ID of order that needs to be fetched
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: carId
+          in: path
+          description: ID of the car
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+            application/xml:
+              schema:
+                $ref: ''
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Order not found
+  /reservations/add:
+    post:
+      tags:
+        - Reservations
+      summary: add a reservations
+      description: The user will send a ride reservation request
+      operationId: addReservation
+      parameters:
+        - name: userId
+          in: query
+          description: Tags to filter by
+          required: true
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+        '400':
+          description: Invalid tag value
+  /accounts/register:
+    post:
+      tags:
+        - Accounts
+      summary: Create user
+      description: This can only be done by new users.
+      operationId: createUser
+      requestBody:
+        description: Created user object
+        content:
+          application/json:
+            schema:
+              $ref: ''
+          application/xml:
+            schema:
+              $ref: ''
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: ''
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+            application/xml:
+              schema:
+                $ref: ''
+  /accounts/login:
+    post:
+      tags:
+        - Accounts
+      summary: User logs in
+      description: authenticates and creates a session for user
+      operationId: loginUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ''
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+            application/xml:
+              schema:
+                $ref: ''
+        default:
+          description: successful operation
+  
+  /accounts/logout:
+    delete:
+      tags:
+        - Accounts
+      summary: Logs out current logged in user session
+      description: ''
+      operationId: logoutUser
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+
+  /users/{id_user}/rides/{id_ride}/payments/add:
+    
+    post:
+      parameters:
+        - in: path
+          name: id_user
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+        - in: path
+          name: id_ride
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: ride ID
+      
+      tags:
+        - Users
+      summary: Aggiunge pagamento alla corsa
+      
+      description: Aggiunge pagamento alla corsa
+      
+      operationId: addUserRidePayment
+      
+      requestBody:
+        
+        description: Add payment to a ride from user
+        
+        content:
+          
+          application/json:
+            schema:
+              $ref: ''
+          application/xml:
+            schema:
+              $ref: ''
+        required: true
+      
+      responses:
+        
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+            application/xml:
+              schema:
+                $ref: ''
+        
+        '400':
+          description: Invalid ID supplied
+        
+        '404':
+          description: X not found
+        
+        '422':
+          description: Validation exception
+  
+  
+  
+  /users/{id_user}/rides/payments/view:
+    get:
+      parameters:
+        - in: path
+          name: id_user
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+      tags:
+        - Users
+      summary: Visualizza pagamenti
+      description: Visualizza pagamenti
+      operationId: viewPayments
+      
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+        '400':
+          description: Invalid status value
+  
+  /users/{id_user}/rides/{id_ride}/payments/receive:
+    get:
+      tags:
+        - Users
+      summary: ricevi pagamento
+      description: ricevi pagamento
+      operationId: receivePayment
+      parameters:
+        - in: path
+          name: id_user
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+        - in: path
+          name: id_ride
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: ride ID
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+        '400':
+          description: Invalid tag value
+  /rides/payments/view:
+    get:
+      tags:
+        - Rides
+      summary: View payments of rides
+      description: View all payments
+      operationId: ViewRidesPayments
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+            application/xml:
+              schema:
+                $ref: ''
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Payment not found
+  /rides/{id_ride}/payments/add:
+    post:
+      tags:
+        - Rides
+      summary: adds payment for the ride
+      description: pays for the ride
+      operationId: addRidePayment
+      parameters:
+        - in: path
+          name: id_ride
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: reservation ID
+      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+  
+  /reservations/{id_reservation}/addDeposit:
+    post:
+      tags:
+        - Reservations
+      summary: adds initial deposit
+      description: adds initial deposit to reservation
+      operationId: addInitialDeposit
+      parameters:
+        - in: path
+          name: id_reservation
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: reservation ID
+      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ''
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+  
+  
+  /users/{id_user}/rides/{id_ride}/reviews/add:
+    post:
+      tags:
+        - Users
+      
+      parameters:
+        - in: path
+          name: id_user
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+        - in: path
+          name: id_ride
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: ride ID
+      summary: Aggiungi review
+      description: Aggiungi review
+      operationId: addReview
+      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ''
+      
+      
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+  /users/{id_user}/rides/reviews/view:
+    get:
+      tags:
+        - Users
+      summary: Vedi review di un utente
+      description: Vedi review di un utente
+      operationId: viewReview
+      parameters:
+        - in: path
+          name: id_user
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ''
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
