@@ -22,6 +22,8 @@
 
 Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inserisce email,password,nome,cognome,data di nascita e si registra con successo dopo aver confermato l'email. Se si registra come driver, deve anche caricare la patente di guida per la verifica.
 
+**Nota**: Se durante la registrazione come driver l'email esiste già nel database con il ruolo di user, il ruolo viene aggiornato a driver.
+
 ### Requisiti per la Password:
 
 - Minimo 8 caratteri
@@ -44,7 +46,7 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 ## Varianti:
 
 - **Registrazione User:** L'user si registra fornendo email,password,nome,cognome,data di nascita , numero telefono.
-- **Registrazione Driver:** Il driver deve fornire anche la patente e la carta d'identità.
+- **Registrazione Driver:** Il driver deve esere registrato come user puoi deve fornire anche la patente.
 
 ## Eccezioni:
 
@@ -69,20 +71,22 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 | 7     | User apre l'email ricevuta e clicca sul link di conferma.                                           |
 | 8     | Sistema registra l'account dell'user.                                                               |
 
-### Scenario 1.2: Registrazione User (Email Già Registrata)
+### Scenario 1.2: Registrazione Driver (Dopo Registrazione come User)
 
-**Precondizione:** L'user possiede un indirizzo email già registrato nell'applicazione.
+**Precondizione:** L'utente è già registrato come user e desidera registrarsi come driver.
 
-**Postcondizione:** Viene mostrato un messaggio di errore.
+**Postcondizione:** La richiesta di registrazione come driver viene inviata all'admin per la verifica; il driver riceve lo stato "in attesa di verifica".
 
-| Passo | Descrizione                                                                                   |
-| ----- | --------------------------------------------------------------------------------------------- |
-| 1     | User avvia l'applicazione.                                                                    |
-| 2     | User seleziona l'opzione "Register as User".                                                  |
-| 3     | User inserisce email, nome utente e password,n.telefono,data di nascita.                      |
-| 4     | Sistema controlla se l'email,n.telefono e la password rispettano i requisiti,data di nascita. |
-| 5     | Sistema controlla se esiste già un account con quell'email.                                   |
-| 6     | Viene trovato un account esistente; viene mostrato un messaggio di errore.                    |
+| Passo | Descrizione                                                                                           |
+| ----- | ----------------------------------------------------------------------------------------------------- |
+| 1     | User avvia l'applicazione.                                                                            |
+| 2     | User effettua l'accesso.                                                                              |
+| 3     | User clicca "Diventa Driver".                                                                         |
+| 3     | User carica i documenti richiesti, come la patente di guida.                                          |
+| 4     | Sistema verifica che l'email sia già registrata come user e aggiorna il ruolo a driver.               |
+| 5     | Sistema invia i documenti caricati per la verifica dell'admin.                                        |
+| 6     | Lo stato della registrazione come driver viene impostato su "in attesa di verifica".                  |
+| 7     | Admin verifica i documenti. La verifica è positiva, il sistema conferma la registrazione come driver. |
 
 ### Scenario 1.3: Registrazione User (Email Non Confermata)
 
@@ -101,45 +105,24 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 | 7     | User non apre l'email e non clicca sul link entro il tempo richiesto.                               |
 | 8     | Sistema non registra l'account; l'user riparte dal passo #2.                                        |
 
-### Scenario 1.4: Registrazione Driver (Con Successo con Verifica dell'Admin)
+### Scenario 1.4: Registrazione Driver (Non approvato)
 
-**Precondizione:** Driver possiede email, patente e carta d'identità. L'admin è disponibile per la verifica.
+**Precondizione:** L'utente è già registrato come user e desidera registrarsi come driver.
 
-**Postcondizione:** La richiesta di registrazione viene inviata all'admin per la verifica, e il driver riceve uno stato "in attesa di verifica".
+**Postcondizione:** La richiesta di registrazione come driver viene inviata all'admin per la verifica; il driver riceve lo stato "in attesa di verifica".
 
-| Passo | Descrizione                                                                                         |
-| ----- | --------------------------------------------------------------------------------------------------- |
-| 1     | Driver avvia l'applicazione.                                                                        |
-| 2     | Driver seleziona "Register as Driver".                                                              |
-| 3     | Driver inserisce email, nome, password, patente .                                                   |
-| 4     | Sistema controlla se email e password rispettano i requisiti.                                       |
-| 5     | Sistema controlla se esiste già un account con quell'email.                                         |
-| 6     | Non viene trovato un account associato all'email; viene inviata un'email di conferma.               |
-| 7     | Driver clicca sul link di conferma.                                                                 |
-| 8     | Sistema invia la richiesta di registrazione, insieme ai documenti, all'admin.                       |
-| 9     | Driver viene informato che la registrazione è in attesa di verifica.                                |
-| 10    | Admin verifica i documenti. Se la verifica è positiva, il sistema registra il driver e lo notifica. |
-| 11    | Se la verifica fallisce, viene mostrato un messaggio di errore.                                     |
+| Passo | Descrizione                                                                                                   |
+| ----- | ------------------------------------------------------------------------------------------------------------- |
+| 1     | User avvia l'applicazione.                                                                                    |
+| 2     | User effettua l'accesso.                                                                                      |
+| 3     | User clicka "Diventa Driver".                                                                                 |
+| 3     | User carica i documenti richiesti, come la patente di guida.                                                  |
+| 4     | Sistema verifica che l'email sia già registrata come user e aggiorna il ruolo a driver.                       |
+| 5     | Sistema invia i documenti caricati per la verifica dell'admin.                                                |
+| 6     | Lo stato della registrazione come driver viene impostato su "in attesa di verifica".                          |
+| 7     | Admin verifica i documenti. La verifica falisce viene mostrato un messaggio di errore con I problem specifci. |
 
-### Scenario 1.5: Registrazione Driver (Documenti Non Verificati)
-
-**Precondizione:** Driver possiede email, patente e carta d'identità.
-
-**Postcondizione:** La registrazione viene rifiutata per mancata verifica dei documenti.
-
-| Passo | Descrizione                                                                                                        |
-| ----- | ------------------------------------------------------------------------------------------------------------------ |
-| 1     | Driver avvia l'applicazione.                                                                                       |
-| 2     | Driver seleziona "Register as User".                                                                               |
-| 3     | Driver inserisce email, nome utente, password, patente .                                                           |
-| 4     | Sistema controlla se l'email e la password rispettano i requisiti.                                                 |
-| 5     | Sistema controlla se esiste già un account con quell'email.                                                        |
-| 6     | Non viene trovato un account associato all'email; viene inviata un'email di conferma.                              |
-| 7     | Driver clicca sul link di conferma.                                                                                |
-| 8     | Status : Verification pending.                                                                                     |
-| 9     | Admin verifica i documenti. Se la verifica fallisce, viene mostrato un messaggio di errore con I problem specifci. |
-
-### Scenario 1.6: Registrazione User/Driver (Dati errati)
+### Scenario 1.5: Registrazione User/Driver (Dati errati)
 
 **Precondizione:** L'user possiede un indirizzo email,numero di telefono.
 
@@ -147,12 +130,12 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 
 | Passo | Descrizione                                                                                   |
 | ----- | --------------------------------------------------------------------------------------------- |
-| 1     | User/Driver avvia l'applicazione.                                                             |
-| 2     | User/Driver seleziona l'opzione "Register as User o Register as Driver".                      |
+| 1     | User avvia l'applicazione.                                                                    |
+| 2     | User seleziona l'opzione "Register ".                                                         |
 | 3     | User inserisce email, nome utente e password,n.telefono,data di nascita.                      |
 | 4     | Sistema controlla se l'email e la password,n.telefono,data di nascita rispettano i requisiti. |
 | 5     | Sistema mostra un messaggio di errore che indica l'errore nel campo specifico.                |
-| 6     | User/Driver riparte dal passo 3.                                                              |
+| 6     | User riparte dal passo 3.                                                                     |
 
 # Use Case: Login
 
@@ -218,7 +201,8 @@ L'attore inserisce email e password per effettuare il login.
 | 1     | L'attore richiede il login.                                     |
 | 2     | Sistema chiede email e password.                                |
 | 3     | Sistema verifica le credenziali, ma la password non è corretta. |
-| 4     | Viene mostrato un messaggio "Password errata".                  |
+| 4     | Viene mostrato un messaggio "Password errata! Dimenticato password?".                  |
+| 5     | Utente puo reimpostare la password                              |
 
 ### Scenario 2.4: Password Dimenticata
 
@@ -246,15 +230,15 @@ L'attore inserisce email e password per effettuare il login.
 
 **Postcondizione:** Viene mostrato un messaggio di errore.
 
-| Passo | Descrizione                                                                                                          |
-| ----- | -------------------------------------------------------------------------------------------------------------------- |
-| 1     | L'attore richiede il login.                                                                                          |
-| 2     | Sistema chiede email e password.                                                                                     |
-| 3     | L'attore seleziona l'opzione "Password dimenticata?".                                                                |
-| 4     | Sistema richiede l'email associata all'account.                                                                      |
-| 5     | L'attore inserisce l'email e invia la richiesta.                                                                     |
-| 6     | Sistema verifica se l'email è associata a un account.                                                                |
-| 7     | Se l'email non è valida, il sistema mostra un messaggio "L'email non è corretta o non è associata a nessun account". |
+| Passo | Descrizione                                                                                                       |
+| ----- | ----------------------------------------------------------------------------------------------------------------- |
+| 1     | L'attore richiede il login.                                                                                       |
+| 2     | Sistema chiede email e password.                                                                                  |
+| 3     | L'attore seleziona l'opzione "Password dimenticata?".                                                             |
+| 4     | Sistema richiede l'email associata all'account.                                                                   |
+| 5     | L'attore inserisce l'email e invia la richiesta.                                                                  |
+| 6     | Sistema verifica se l'email è associata a un account.                                                             |
+| 7     | L'email non è valida, il sistema mostra un messaggio "L'email non è corretta o non è associata a nessun account". |
 
 ### Scenario 2.6: Login (Format Dati errati)
 
