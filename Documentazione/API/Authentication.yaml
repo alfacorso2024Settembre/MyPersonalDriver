@@ -39,21 +39,40 @@ paths:
             schema:
               $ref: '#/components/schemas/register'
       responses:
-        default:
+        200:
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: '#/components/schemas/ApiResponseRegisterSuccessfull'
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: '#/components/schemas/ApiResponseRegisterSuccessfull'
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
+        
   /accounts/login:
     post:
       tags:
         - user
       summary: User logs in
-      description: authenticates and creates a session for user
+      description: authenticates and creates a session token for user
       operationId: loginUser
       requestBody:
         content:
@@ -68,12 +87,41 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponse'          
+                $ref: '#/components/schemas/ApiResponseLoginSuccessfull'          
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: '#/components/schemas/ApiResponseLoginSuccessfull'
+        
+        '204':
+          description: Failed operation wrong email/password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLoginError'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLoginError'
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
         default:
           description: successful operation
+        
   
   /accounts/logout:
     delete:
@@ -84,6 +132,43 @@ paths:
       operationId: logoutUser
       parameters: []
       responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLogoutSuccessfull'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLogoutSuccessfull'
+        
+        '204':
+          description: Failed logout Session not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLogoutError'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLogoutError'
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
         default:
           description: successful operation
  
@@ -127,9 +212,7 @@ components:
           type: object
           example: '20/04/2000'
         
-      xml:
-        name: register
-    ApiResponse:
+    ApiResponseLoginSuccessfull:
       type: object
       properties:
         code:
@@ -139,10 +222,93 @@ components:
           type: string
         message:
           type: string
+          example: "logged in successfully"
+        body:
+          type: string
+          example: {
+            SessionToken: "asfasdgfdgcdvlkl"
+          }
       xml:
         name: '##default'
-  
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
+      
+    ApiResponseLoginError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Retry Login"
+      xml:
+          name: '##default'
+    
+    ApiResponseRegisterSuccessfull:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "registred successfully"
+      xml:
+        name: '##default'
+    
+    ApiResponseRegisterCError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Error on client side"
+      xml:
+        name: '##default'
+    ApiResponseRegisterSError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Error on server side"
+      xml:
+        name: '##default'
+    ApiResponseLogoutSuccessfull:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "You have logged out"
+      xml:
+        name: '##default'
+    ApiResponseLogoutError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "You are already logged out"
+      xml:
+        name: '##default'
+    
