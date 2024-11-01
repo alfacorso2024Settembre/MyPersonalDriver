@@ -557,6 +557,16 @@ paths:
             schema:
               $ref: "#/components/schemas/register"
       responses:
+        300:
+          description: waiting for email confirmation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseRegisterAwaitingConfirmation"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/ApiResponseRegisterAwaitingConfirmation"
+
         200:
           description: successful operation
           content:
@@ -684,6 +694,67 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/ApiResponseRegisterSError"
+        default:
+          description: successful operation
+  /authentication/resetPassword:
+    post:
+      tags:
+        - Authentication
+      summary: User forgot or wants to reset password.
+      description: Resets users password.
+      operationId: resetPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/resetPasswordBody"
+      responses:
+        "200":
+          description: Password reset successfull.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordSuccessfull"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordSuccessfull"
+        "100":
+          description: Password format incorrect
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordFormatIncorrect"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordFormatIncorrect"
+
+        "204":
+          description: Failed operation email not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordEmailNotFound"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordEmailNotFound"
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordError"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordError"
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordError"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordError"
         default:
           description: successful operation
 
@@ -1401,6 +1472,17 @@ components:
           type: object
           example: "20/04/2000"
 
+    resetPasswordBody:
+      type: object
+      properties:
+        email:
+          type: string
+          example: example@email.com
+        password:
+          type: string
+          format: string
+          example: Password1!!
+
     ApiResponseLoginSuccessfull:
       type: object
       properties:
@@ -1429,6 +1511,20 @@ components:
         message:
           type: string
           example: "Retry Login"
+      xml:
+        name: "##default"
+
+    ApiResponseRegisterAwaitingConfirmation:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Verify email by clicking on the link of the confirmation email sent to you."
       xml:
         name: "##default"
 
@@ -1498,6 +1594,62 @@ components:
           example: "You are already logged out"
       xml:
         name: "##default"
+    ApiResponseResetPasswordSuccessfull:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Password changed successfully"
+      xml:
+        name: "##default"
+
+    ApiResponseResetPasswordError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Something went wrong.. Retry later"
+      xml:
+        name: "##default"
+
+    ApiResponseResetPasswordFormatIncorrect:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Retry Password. Remember: Minimo 8 caratteri Almeno 1 lettera maiuscola Almeno 1 numero Almeno 1 carattere speciale"
+      xml:
+        name: "##default"
+
+    ApiResponseResetPasswordEmailNotFound:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "There is no account assosiated with this email."
+      xml:
+        name: "##default"
+
     Ride:
       type: "object"
       required:
