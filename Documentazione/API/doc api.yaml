@@ -663,7 +663,7 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/ApiResponseLoginError"
-        400:
+        "400":
           description: client error operation
           content:
             application/json:
@@ -672,7 +672,7 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/ApiResponseRegisterCError"
-        500:
+        "500":
           description: server error operation
           content:
             application/json:
@@ -712,7 +712,7 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/ApiResponseLogoutError"
-        400:
+        "400":
           description: client error operation
           content:
             application/json:
@@ -721,7 +721,7 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/ApiResponseRegisterCError"
-        500:
+        "500":
           description: server error operation
           content:
             application/json:
@@ -773,7 +773,7 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/ApiResponseResetPasswordEmailNotFound"
-        400:
+        "400":
           description: client error operation
           content:
             application/json:
@@ -782,7 +782,7 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/ApiResponseResetPasswordError"
-        500:
+        "500":
           description: server error operation
           content:
             application/json:
@@ -864,7 +864,9 @@ paths:
                 items:
                   $ref: "#/components/schemas/Payment"
         "400":
-          description: Invalid tag value
+          description: Bad syntax
+        "500":
+          description: Internal server error
     post:
       parameters:
         - in: path
