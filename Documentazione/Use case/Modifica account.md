@@ -8,7 +8,6 @@ User registrato
 
 Admin
 
-<<<<<<< HEAD
 ## Descrizione:  
 L’utente accede alla piattaforma My Personal Driver e modifica il proprio account aggiornando 
 le informazioni personali. 
@@ -18,7 +17,7 @@ le informazioni personali.
 L’utente accede alla piattaforma My Personal Driver e modifica il proprio account aggiornando
 le informazioni personali e i dettagli relativi al veicolo. A seguito di modifiche, è richiesto di caricare
 nuovamente i documenti necessari, i quali saranno verificati manualmente dall'admin.
->>>>>>> 769d54bf13eda3241b9ea07868c793c132af9fe7
+
 
 ## Precondizioni:
 
@@ -46,7 +45,7 @@ L'utente deve essere registrato e autenticato.
 |   7   | Sistema              | ERRORE: i dati inseriti non sono nel formato corretto |
 |       | _Ritorna al passo 3_ |                                                       |
 
-<<<<<<< HEAD
+
 =======
 ## Estensione 4.1 - Modifica carta d'identità
 
@@ -150,7 +149,7 @@ L'utente deve essere registrato e autenticato.
 |  12   | Sistema              | ERRORE: formato della foto non supportato |
 |       | _Ritorna al passo 8_ |                                           |
 
->>>>>>> 769d54bf13eda3241b9ea07868c793c132af9fe7
+
 ## Estensione 4.4 - Modifica foto profilo
 
 | Passo | Attore                  | Azione                                                     |
