@@ -14,11 +14,6 @@ L'attore deve essere autenticato come admin della piattaforma.
 ## Post-condizioni
 Il documento dell'utente viene accettato e può accedere ai servizi.
 
-<!-- 
-    COSE CAMBIATE: 
-    aggiunta delle varie alternative in base al documento
--->
-
 ## Scenario principale
 | Passo | Attore                  | Azione                                                             | 
 |:-----:|:------------------------|:-------------------------------------------------------------------| 
