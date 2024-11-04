@@ -46,7 +46,7 @@ L'utente deve essere registrato e autenticato.
 |       | _Ritorna al passo 3_ |                                                       |
 
 
-=======
+
 ## Estensione 4.1 - Modifica carta d'identità
 
 | Passo | Attore                  | Azione                                                                                       |
