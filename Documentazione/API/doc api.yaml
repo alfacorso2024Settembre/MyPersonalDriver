@@ -12,10 +12,10 @@ paths:
       tags:
         - Admins
       responses:
-        '200':
+        "200":
           description: Modification completed successfully.
-        '400':
-          description:  Modification failed
+        "400":
+          description: Modification failed
 
   /users/{id}/modifyProfile:
     put:
@@ -31,16 +31,16 @@ paths:
             type: integer
           description: ID of the user whose profile is to be modified.
       responses:
-        '200':
+        "200":
           description: Profile updated successfully
           content:
             application/json:
               schema:
-                $ref: ''
+                $ref: ""
             application/xml:
               schema:
-                $ref: ''
-        '400':
+                $ref: ""
+        "400":
           description: Invalid ID.
 
   /accounts/{id}/modifyAccount:
@@ -57,12 +57,11 @@ paths:
             type: integer
           description: ID of the account to be modified.
       responses:
-        '200':
+        "200":
           description: Account updated successfully
-        '400':
+        "400":
           description: Invalid ID.
-  
-  
+
   /users/{idUser}/reservations/{idReservation}/ChangeReservationStatus:
     patch:
       tags:
@@ -87,7 +86,7 @@ paths:
         required: true
         content:
           application/json:
-            schema: 
+            schema:
               type: object
               properties:
                 newStatus:
@@ -98,15 +97,15 @@ paths:
                     - cancellata
                   description: Nuovo stato della prenotazione
               required:
-                - newStatus     
+                - newStatus
       responses:
-        '204':
+        "204":
           description: Successful operations
-        '400':
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: User not found
-        '422':
+        "422":
           description: Validation exception
 
   /users/{userId}/rides/{rideId}/reports:
@@ -132,15 +131,15 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: "successful operation"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Report"
-        '400':
+        "400":
           description: Invalid status value
-        '404':
+        "404":
           description: ID not found
     put:
       tags:
@@ -164,17 +163,17 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: "successful operation"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Report"
-        '400':
+        "400":
           description: Invalid status value
-        '404':
+        "404":
           description: ID not found
-  
+
   /rides/{rideId}/reports/{reportId}:
     delete:
       tags:
@@ -198,17 +197,17 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: "successful operation"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Report"
-        '400':
+        "400":
           description: Invalid status value
-        '404':
+        "404":
           description: ID not found
-  
+
   /users/{userId}/reports:
     get:
       tags:
@@ -225,7 +224,7 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: successful operation
 
   /accounts/{userId}:
@@ -238,7 +237,7 @@ paths:
       parameters:
         - name: api_key
           in: header
-          description: ''
+          description: ""
           required: false
           schema:
             type: string
@@ -250,13 +249,13 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: Successful operation
-        '400':
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: Account not found
-        '422':
+        "422":
           description: Validation exception
   /admins/deleteUser/{userId}:
     delete:
@@ -268,7 +267,7 @@ paths:
       parameters:
         - name: api_key
           in: header
-          description: ''
+          description: ""
           required: false
           schema:
             type: string
@@ -280,11 +279,11 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: Successful operation
-        '400':
+        "400":
           description: Invalid input
-        '422':
+        "422":
           description: Validation exception
   /admins/acceptDocuments/{userId}:
     patch:
@@ -296,7 +295,7 @@ paths:
       parameters:
         - name: api_key
           in: header
-          description: ''
+          description: ""
           required: false
           schema:
             type: string
@@ -311,25 +310,25 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ''
+              $ref: ""
           application/xml:
             schema:
-              $ref: ''
+              $ref: ""
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: ''
+                  $ref: ""
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: ''
-        '400':
+                  $ref: ""
+        "400":
           description: Invalid status value
   /admins/suspendAccount/{userId}:
     patch:
@@ -341,7 +340,7 @@ paths:
       parameters:
         - name: api_key
           in: header
-          description: ''
+          description: ""
           required: false
           schema:
             type: string
@@ -356,25 +355,25 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ''
+              $ref: ""
           application/xml:
             schema:
-              $ref: ''
+              $ref: ""
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: ''
+                  $ref: ""
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: ''
-        '400':
+                  $ref: ""
+        "400":
           description: Invalid tag value
   /Users/{UserId}/searchDrivers:
     get:
@@ -391,22 +390,22 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
+        "200":
           description: Driver list visualize correctly
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
             application/xml:
               schema:
-                $ref: '#/components/schemas/User'
-        '400':
+                $ref: "#/components/schemas/User"
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: User not found, access denied
-        '422':
+        "422":
           description: Exception occured
-  
+
   /users/{userId}/Cars/add:
     post:
       tags:
@@ -423,20 +422,20 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: Car added correctly
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Car'
+                $ref: "#/components/schemas/Car"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Car'
-        '400':
+                $ref: "#/components/schemas/Car"
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: User not found, access denied
-        '422':
+        "422":
           description: Exception occured
   /users/{userId}/Cars/view:
     get:
@@ -454,20 +453,20 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: The cars are viewed correctly
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Car'
+                $ref: "#/components/schemas/Car"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Car'
-        '400':
+                $ref: "#/components/schemas/Car"
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: User not found, access denied
-        '422':
+        "422":
           description: Exception occured
   /users/{userId}/Cars/{carId}/delete:
     delete:
@@ -492,18 +491,18 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: Car delete complete
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Car'
+                $ref: "#/components/schemas/Car"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Car'
-        '400':
+                $ref: "#/components/schemas/Car"
+        "400":
           description: Invalid ID supplied, car wasn't cancelled
-        '404':
+        "404":
           description: Car not found
   /reservations/add:
     post:
@@ -523,73 +522,83 @@ paths:
             items:
               type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: ''
+                  $ref: ""
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: ''
-        '400':
+                  $ref: ""
+        "400":
           description: Invalid tag value
-  /accounts/register:
+  /authentication/register:
     post:
       tags:
-        - user
+        - Authentication
       summary: Create user
       description: This can only be done by new users.
       operationId: createUser
       requestBody:
         description: Created user object
         content:
-          application/json: 
+          application/json:
             schema:
-             $ref: '#/components/schemas/register'
+              $ref: "#/components/schemas/register"
           application/xml:
             schema:
-              $ref: '#/components/schemas/register'
+              $ref: "#/components/schemas/register"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/register'
+              $ref: "#/components/schemas/register"
       responses:
+        300:
+          description: waiting for email confirmation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseRegisterAwaitingConfirmation"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/ApiResponseRegisterAwaitingConfirmation"
+
         200:
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterSuccessfull'
+                $ref: "#/components/schemas/ApiResponseRegisterSuccessfull"
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterSuccessfull'
+                $ref: "#/components/schemas/ApiResponseRegisterSuccessfull"
         400:
           description: client error operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterCError'
+                $ref: "#/components/schemas/ApiResponseRegisterCError"
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterCError'
+                $ref: "#/components/schemas/ApiResponseRegisterCError"
         500:
           description: server error operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterSError'
+                $ref: "#/components/schemas/ApiResponseRegisterSError"
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterSError'
-        
-  /accounts/login:
+                $ref: "#/components/schemas/ApiResponseRegisterSError"
+
+  /authentication/login:
     post:
       tags:
-        - user
+        - Authentication
       summary: User logs in
       description: authenticates and creates a session token for user
       operationId: loginUser
@@ -597,100 +606,159 @@ paths:
         content:
           application/json:
             schema:
-                $ref: '#/components/schemas/loginBody'
+              $ref: "#/components/schemas/loginBody"
       responses:
-        '200':
+        "200":
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseLoginSuccessfull'          
+                $ref: "#/components/schemas/ApiResponseLoginSuccessfull"
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseLoginSuccessfull'
-        
-        '204':
+                $ref: "#/components/schemas/ApiResponseLoginSuccessfull"
+
+        "204":
           description: Failed operation wrong email/password
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseLoginError'          
+                $ref: "#/components/schemas/ApiResponseLoginError"
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseLoginError'
+                $ref: "#/components/schemas/ApiResponseLoginError"
         400:
           description: client error operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterCError'
+                $ref: "#/components/schemas/ApiResponseRegisterCError"
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterCError'
+                $ref: "#/components/schemas/ApiResponseRegisterCError"
         500:
           description: server error operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterSError'
+                $ref: "#/components/schemas/ApiResponseRegisterSError"
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterSError'
+                $ref: "#/components/schemas/ApiResponseRegisterSError"
         default:
           description: successful operation
-        
-  
-  /accounts/logout:
+
+  /authentication/logout:
     delete:
       tags:
-        - user
+        - Authentication
       summary: Logs out current logged in user session
-      description: ''
+      description: ""
       operationId: logoutUser
       parameters: []
       responses:
-        '200':
+        "200":
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseLogoutSuccessfull'          
+                $ref: "#/components/schemas/ApiResponseLogoutSuccessfull"
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseLogoutSuccessfull'
-        
-        '204':
+                $ref: "#/components/schemas/ApiResponseLogoutSuccessfull"
+
+        "204":
           description: Failed logout Session not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseLogoutError'          
+                $ref: "#/components/schemas/ApiResponseLogoutError"
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseLogoutError'
+                $ref: "#/components/schemas/ApiResponseLogoutError"
         400:
           description: client error operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterCError'
+                $ref: "#/components/schemas/ApiResponseRegisterCError"
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterCError'
+                $ref: "#/components/schemas/ApiResponseRegisterCError"
         500:
           description: server error operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterSError'
+                $ref: "#/components/schemas/ApiResponseRegisterSError"
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterSError'
+                $ref: "#/components/schemas/ApiResponseRegisterSError"
+        default:
+          description: successful operation
+  /authentication/resetPassword:
+    post:
+      tags:
+        - Authentication
+      summary: User forgot or wants to reset password.
+      description: Resets users password.
+      operationId: resetPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/resetPasswordBody"
+      responses:
+        "200":
+          description: Password reset successfull.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordSuccessfull"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordSuccessfull"
+        "100":
+          description: Password format incorrect
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordFormatIncorrect"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordFormatIncorrect"
+
+        "204":
+          description: Failed operation email not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordEmailNotFound"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordEmailNotFound"
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordError"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordError"
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordError"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/ApiResponseResetPasswordError"
         default:
           description: successful operation
 
   /users/{id_user}/rides/{id_ride}/payments/add:
-    
     post:
       parameters:
         - in: path
@@ -707,52 +775,47 @@ paths:
             type: integer
             minimum: 1
           description: ride ID
-      
+
       tags:
         - Users
       summary: Add payment
-      
+
       description: User pays for the ride
-      
+
       operationId: addUserRidePayment
-      
+
       requestBody:
-        
         description: Add payment to a ride from user
-        
+
         content:
-          
           application/json:
             schema:
-              $ref: '#/components/Payment'
+              $ref: "#/components/Payment"
           application/xml:
             schema:
-              $ref: '#/components/Payment'
+              $ref: "#/components/Payment"
         required: true
-      
+
       responses:
-        
-        '200':
+        "200":
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/Payment'
+                $ref: "#/components/Payment"
             application/xml:
               schema:
-                $ref: '#/components/Payment'
-        
-        '400':
+                $ref: "#/components/Payment"
+
+        "400":
           description: Invalid ID supplied
-        
-        '404':
+
+        "404":
           description: X not found
-        
-        '422':
+
+        "422":
           description: Validation exception
-  
-  
-  
+
   /users/{id_user}/rides/payments/view:
     get:
       parameters:
@@ -768,24 +831,24 @@ paths:
       summary: View payments
       description: View all payments of a user
       operationId: viewPayments
-      
+
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/Payment'
+                  $ref: "#/components/Payment"
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/Payment'
-        '400':
+                  $ref: "#/components/Payment"
+        "400":
           description: Invalid status value
-  
+
   /users/{id_user}/rides/{id_ride}/payments/receive:
     get:
       tags:
@@ -809,20 +872,20 @@ paths:
             minimum: 1
           description: ride ID
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/Payment'
+                  $ref: "#/components/Payment"
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/Payment'
-        '400':
+                  $ref: "#/components/Payment"
+        "400":
           description: Invalid tag value
   /rides/payments/view:
     get:
@@ -832,18 +895,18 @@ paths:
       description: View all payments of each user
       operationId: ViewRidesPayments
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/Payment'
+                $ref: "#/components/Payment"
             application/xml:
               schema:
-                $ref: '#/components/Payment'
-        '400':
+                $ref: "#/components/Payment"
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: Payment not found
   /rides/{id_ride}/payments/add:
     post:
@@ -860,20 +923,20 @@ paths:
             type: integer
             minimum: 1
           description: reservation ID
-      
+
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/Payment'
+              $ref: "#/components/Payment"
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/Payment'
-  
+                $ref: "#/components/Payment"
+
   /reservations/{id_reservation}/addDeposit:
     post:
       tags:
@@ -889,26 +952,25 @@ paths:
             type: integer
             minimum: 1
           description: reservation ID
-      
+
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/Deposit'
+              $ref: "#/components/Deposit"
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/Deposit'
-  
-  
+                $ref: "#/components/Deposit"
+
   /users/{id_user}/rides/{id_ride}/reviews/add:
     post:
       tags:
         - Users
-      
+
       parameters:
         - in: path
           name: id_user
@@ -927,16 +989,15 @@ paths:
       summary: Adds a review
       description: User reviews the ride
       operationId: addReview
-      
+
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/Review'
-      
-      
+              $ref: "#/components/Review"
+
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
@@ -961,15 +1022,15 @@ paths:
             minimum: 1
           description: user ID
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/Review'
-        '400':
+                $ref: "#/components/Review"
+        "400":
           description: Invalid input
-        '422':
+        "422":
           description: Validation exception
   /users/{userId}/documents/viewDocument:
     get:
@@ -981,7 +1042,7 @@ paths:
       parameters:
         - name: api_key
           in: header
-          description: ''
+          description: ""
           required: false
           schema:
             type: string
@@ -993,26 +1054,26 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Documents'
+                  $ref: "#/components/schemas/Documents"
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Documents'
-        '400':
+                  $ref: "#/components/schemas/Documents"
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: Account not found
-        '422':
+        "422":
           description: Validation exception
-        '500':
+        "500":
           description: Internal server error
   /users/{userId}/documents/changeDocumentDesc:
     put:
@@ -1024,7 +1085,7 @@ paths:
       parameters:
         - name: api_key
           in: header
-          description: ''
+          description: ""
           required: false
           schema:
             type: string
@@ -1048,26 +1109,26 @@ paths:
               required:
                 - newDescription
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Documents'
+                  $ref: "#/components/schemas/Documents"
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Documents'
-        '400':
+                  $ref: "#/components/schemas/Documents"
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: Account not found
-        '422':
+        "422":
           description: Validation exception
-        '500':
+        "500":
           description: Internal server error
   /users/{userId}/documents/changeDocumentState:
     patch:
@@ -1079,7 +1140,7 @@ paths:
       parameters:
         - name: api_key
           in: header
-          description: ''
+          description: ""
           required: false
           schema:
             type: string
@@ -1103,26 +1164,26 @@ paths:
               required:
                 - newState
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Documents'
+                  $ref: "#/components/schemas/Documents"
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Documents'
-        '400':
+                  $ref: "#/components/schemas/Documents"
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: Account not found
-        '422':
+        "422":
           description: Validation exception
-        '500':
+        "500":
           description: Internal server error
   /users/{userId}/documents/changeValidity:
     patch:
@@ -1134,7 +1195,7 @@ paths:
       parameters:
         - name: api_key
           in: header
-          description: ''
+          description: ""
           required: false
           schema:
             type: string
@@ -1158,26 +1219,26 @@ paths:
               required:
                 - newValidity
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Documents'
+                  $ref: "#/components/schemas/Documents"
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Documents'
-        '400':
+                  $ref: "#/components/schemas/Documents"
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: Account not found
-        '422':
+        "422":
           description: Validation exception
-        '500':
+        "500":
           description: Internal server error
   /users/{userId}/documents/uploadDocument:
     post:
@@ -1189,7 +1250,7 @@ paths:
       parameters:
         - name: api_key
           in: header
-          description: ''
+          description: ""
           required: false
           schema:
             type: string
@@ -1212,33 +1273,33 @@ paths:
                   format: binary
                   description: "The document file to be uploaded"
                 documentDetails:
-                  $ref: '#/components/schemas/Documents'
+                  $ref: "#/components/schemas/Documents"
               required:
                 - newDocument
                 - documentDetails
       responses:
-        '200':
+        "200":
           description: successful operation
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Documents'
+                  $ref: "#/components/schemas/Documents"
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Documents'
-        '400':
+                  $ref: "#/components/schemas/Documents"
+        "400":
           description: Invalid ID supplied
-        '404':
+        "404":
           description: Account not found
-        '422':
+        "422":
           description: Validation exception
-        '500':
+        "500":
           description: Internal server error
-          
+
 components:
   schemas:
     Car:
@@ -1289,17 +1350,17 @@ components:
           example: john@email.com
         password:
           type: string
-          example: '12345'
+          example: "12345"
         phone:
           type: string
-          example: '12345abc'
+          example: "12345abc"
         document:
-          $ref: '#/components/schemas/Documents'
+          $ref: "#/components/schemas/Documents"
       xml:
         name: user
-    Payment: 
+    Payment:
       type: object
-      properties: 
+      properties:
         id_transaction:
           type: integer
           format: int64
@@ -1332,7 +1393,7 @@ components:
           format: int64
           example: 1332
         User:
-           $ref: "#/components/schemas/User"
+          $ref: "#/components/schemas/User"
         value:
           type: number
           example: 4
@@ -1374,7 +1435,7 @@ components:
           example: accettata
           enum:
             - accettata
-            - rifiutata    
+            - rifiutata
     loginBody:
       type: object
       properties:
@@ -1385,32 +1446,43 @@ components:
           type: string
           format: string
           example: Password1!!
-    
+
     register:
       type: object
       properties:
         email:
           type: string
           example: john@email.com
-        
+
         password:
           type: string
-          example: 'Password1'
-        
+          example: "Password1"
+
         role:
           type: string
-          example: 'driver'
-        
+          example: "driver"
+
         firstName:
           type: string
-          example: 'Idri'
+          example: "Idri"
         lastName:
           type: string
-          example: 'Hoxha'
+          example: "Hoxha"
         dateOfBirth:
           type: object
-          example: '20/04/2000'
-        
+          example: "20/04/2000"
+
+    resetPasswordBody:
+      type: object
+      properties:
+        email:
+          type: string
+          example: example@email.com
+        password:
+          type: string
+          format: string
+          example: Password1!!
+
     ApiResponseLoginSuccessfull:
       type: object
       properties:
@@ -1424,12 +1496,10 @@ components:
           example: "logged in successfully"
         body:
           type: string
-          example: {
-            SessionToken: "asfasdgfdgcdvlkl"
-          }
+          example: { SessionToken: "asfasdgfdgcdvlkl" }
       xml:
-        name: '##default'
-      
+        name: "##default"
+
     ApiResponseLoginError:
       type: object
       properties:
@@ -1442,8 +1512,22 @@ components:
           type: string
           example: "Retry Login"
       xml:
-          name: '##default'
-    
+        name: "##default"
+
+    ApiResponseRegisterAwaitingConfirmation:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Verify email by clicking on the link of the confirmation email sent to you."
+      xml:
+        name: "##default"
+
     ApiResponseRegisterSuccessfull:
       type: object
       properties:
@@ -1456,8 +1540,8 @@ components:
           type: string
           example: "registred successfully"
       xml:
-        name: '##default'
-    
+        name: "##default"
+
     ApiResponseRegisterCError:
       type: object
       properties:
@@ -1470,7 +1554,7 @@ components:
           type: string
           example: "Error on client side"
       xml:
-        name: '##default'
+        name: "##default"
     ApiResponseRegisterSError:
       type: object
       properties:
@@ -1483,7 +1567,7 @@ components:
           type: string
           example: "Error on server side"
       xml:
-        name: '##default'
+        name: "##default"
     ApiResponseLogoutSuccessfull:
       type: object
       properties:
@@ -1496,7 +1580,7 @@ components:
           type: string
           example: "You have logged out"
       xml:
-        name: '##default'
+        name: "##default"
     ApiResponseLogoutError:
       type: object
       properties:
@@ -1509,18 +1593,74 @@ components:
           type: string
           example: "You are already logged out"
       xml:
-        name: '##default'
+        name: "##default"
+    ApiResponseResetPasswordSuccessfull:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Password changed successfully"
+      xml:
+        name: "##default"
+
+    ApiResponseResetPasswordError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Something went wrong.. Retry later"
+      xml:
+        name: "##default"
+
+    ApiResponseResetPasswordFormatIncorrect:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "Retry Password. Remember: Minimo 8 caratteri Almeno 1 lettera maiuscola Almeno 1 numero Almeno 1 carattere speciale"
+      xml:
+        name: "##default"
+
+    ApiResponseResetPasswordEmailNotFound:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+          example: "There is no account assosiated with this email."
+      xml:
+        name: "##default"
+
     Ride:
       type: "object"
       required:
-      - "customerId"
-      - "status"
+        - "customerId"
+        - "status"
       properties:
         rideId:
           type: "integer"
           format: "int64"
           example: "1"
-          example: 
+
         customerId:
           type: "integer"
           format: "int64"
@@ -1544,12 +1684,12 @@ components:
           description: "Ride Status"
           example: "pending"
           enum:
-          - "concluded"
-          - "pending"
-          - "cancelled"
+            - "concluded"
+            - "pending"
+            - "cancelled"
       xml:
         name: "Ride"
-        
+
     Report:
       type: "object"
       required:
@@ -1574,8 +1714,8 @@ components:
           description: "Report Status"
           example: "concluded"
           enum:
-          - "awaiting review"
-          - "concluded"
-          - "cancelled"
+            - "awaiting review"
+            - "concluded"
+            - "cancelled"
       xml:
         name: "Report"
