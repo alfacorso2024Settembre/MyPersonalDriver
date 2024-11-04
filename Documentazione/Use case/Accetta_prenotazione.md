@@ -1,11 +1,12 @@
-## Accetta Prenotazione
-Attori: Driver
+# Accetta Prenotazione
+## Attori 
+Driver
 
 ## Descrizione:
 Il driver accetta o rifiuta la richiesta di prenotazione inviata da un utente regolare
 
 ## Precondizioni:
--L'utente è registrato nell'applicazione con un account di tipo Driver
+L'utente è registrato nell'applicazione con un account di tipo Driver
 
 ## Scenario Base:
 | Passo | Attore                  | Azione                                                                                                                               |
