@@ -21,8 +21,9 @@ L'utente viene eliminato dalla piattaforma.
 3) utente: vai su "elimina profilo"
 4) sistema: richiesta di conferma di eliminazione profilo
 5) utente: conferma eliminazione
-6) sistema: messaggio di conferma eliminazione
-7) sistema: email all'utente eliminato
+6) sistema: cambio stato dell'account a "cancellato"
+7) sistema: elimina lo user collegato all'account dal database
+8) sistema: email all'utente eliminato
 *Termina il caso d'uso*
 
 ### Eccezione 4.a
