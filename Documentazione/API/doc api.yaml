@@ -6,62 +6,12 @@ info:
 
 paths:
   /users/{idUser}/documents/{idDocument}:
-    put:
-      tags:
-        - Users
-      summary: Change description of document
-      description: Change document description
-      operationId: changeDocumentDesc
-      parameters:
-        - name: api_key
-          in: header
-          description: ""
-          required: false
-          schema:
-            type: string
-        - name: idUser
-          in: path
-          description: User id to update
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - in: path
-          name: idDocument
-          description: Document id to update
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        required: true
-        content:
-          appplication/json:
-            schema:
-              type: object
-              properties:
-                newDescription:
-                  type: string
-                  description: new description for the document
-              required:
-                - newDescription
-      responses:
-        "200":
-          description: successful operation
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Account not found
-        "422":
-          description: Validation exception
-        "500":
-          description: Internal server error
     patch:
       tags:
         - Users
-      summary: Change document state
-      description: Change the status of the document to valid and denied
-      operationId: changeDocumentState
+      summary: Change document state or description
+      description: Change the status of the document to valid or denied or its description
+      operationId: changeDocument
       parameters:
         - name: api_key
           in: header
@@ -93,22 +43,12 @@ paths:
                 newState:
                   type: string
                   description: new state for the document
-              required:
-                - newState
+                newDescription:
+                  type: string
+                  description: new description for the document
       responses:
         "200":
           description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Document"
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Document"
         "400":
           description: Invalid ID supplied
         "404":
@@ -509,7 +449,7 @@ paths:
       tags:
         - Users
       summary: Delete car
-      description: Delete a car of the user filtered by idUser ad iDcar
+      description: Delete a car of the user filtered by idUser ad plate
       operationId: deleteCar
       parameters:
         - name: idUser
@@ -536,7 +476,6 @@ paths:
     post:
       tags:
         - Reservations
-      summary: add a reservations
       description: The user will send a ride reservation request
       operationId: addReservation
       parameters:
@@ -1059,7 +998,7 @@ paths:
         - Reservations
       summary: Adds initial deposit
       description: Initial deposit is taken for the reservation
-      operationId: addInitialDeposit
+      operationId: addDeposit
       parameters:
         - in: path
           name: idReservation
