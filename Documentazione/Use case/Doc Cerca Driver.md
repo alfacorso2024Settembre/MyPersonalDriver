@@ -14,23 +14,26 @@ L'utente ricerca i Driver disponibili nella sua zona per poter prenotare la cors
 
 ## Scenario Base:
 
-| Step | Attore |Sistema |
-|---|--------|-------|
-| 1 | L'utente seleziona un orario di prenotazione| Inserisce l'orario nei filtri della ricerca |
-| 2 | L'utente seleziona un luogo di prenotazione (posizione attuale o indirizzo scelto)| Inserisce il luogo nei filtri della ricerca |
-| 3 | Visualizza la ricerca con i i Driver disponibili nella fascia oraria fornita e a 3km dal luogo inserito| Fornisce le informazioni necessarie  |
-| 4 | L'utente seleziona un Driver | Verranno visualizzati i dettagli del Driver |
-| 5 | L'utente  clicca "Prenota" | Partirà il caso d'uso "Prenota corsa" |
+| Step                  | Attore  | Azione                                                                                                       |
+|-----------------------|---------|--------------------------------------------------------------------------------------------------------------|
+| 1                     | Utente  | Seleziona un orario di prenotazione                                                                          |
+| 2                     | Sistema | Inserisce l'orario nei filtri della ricerca                                                                  |
+| 3                     | Utente  | Seleziona un luogo di prenotazione (posizione attuale o indirizzo scelto)                                    |
+| 4                     | Sistema | Inserisce il luogo nei filtri della ricerca                                                                  |
+| 5                     | Sistema | Visualizza la ricerca con i Driver disponibili nella fascia oraria fornita, a 3km massimo dal luogo inserito |
+| 6                     | Utente  | Seleziona un Driver                                                                                          |
+| 7                     | Sistema | Visualizza i dettagli del Driver                                                                             |
+| 8                     | Utente  | Clicca su "Prenota"                                                                                          |
+| 9                     | Sistema | Fa partire il caso d'uso "Prenota corsa"                                                                     |
+| Termina il caso d'uso |
 
-## Scenario Alternativo:
 
-- se nessun driver è disponibile
+## Eccezione 5a
 
-| step | attore |Descrizione |
-|---|--------|-------|
-| 1 | Utente | Ricerca un Driver |
-| 2 | Sistema | Mostrerà una ricerca vuota con messaggio "nessun driver disponibile"|
-| 3 | Utente | Ritorna allo step 1 |
+| Step                  | Attore  | Azione                                                                 |
+|-----------------------|---------|------------------------------------------------------------------------|
+| 5a.1                  | Sistema | Mostrerà una ricerca vuota con messaggio "nessun driver disponibile"   |
+| Termina il caso d'uso |
 
 ### Note:
 - Da capire se la posizione del driver si baserà sulla geolocalizzazione oppure sul cap inserito o sull'indirizzo fornito
