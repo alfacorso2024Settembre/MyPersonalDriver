@@ -19,9 +19,9 @@
 
 ## Scenario Nominale:
 
-Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inserisce email,password,nome,cognome,data di nascita e si registra con successo dopo aver confermato l'email.
+Un nuovo user, inserisce email,password,nome,cognome,data di nascita e si registra con successo dopo aver confermato l'email.
 
-**Nota**: Se durante la registrazione come driver l'email esiste già nel database con il ruolo di user, il ruolo viene aggiornato a driver.
+**Nota**: Successivamente può registrarsi come Driver inserendo i dati della patente. Il ruolo all'interno del database viene aggiornato a driver.
 
 ### Requisiti per la Password:
 
@@ -45,7 +45,7 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 ## Varianti:
 
 - **Registrazione User:** L'user si registra fornendo email,password,nome,cognome,data di nascita , numero telefono.
-- **Registrazione Driver:** Il driver deve esere registrato come user nel caso del successo con i documenti il ruolo viene cambiato da 'user' a 'driver'
+- **Registrazione Driver:** Il driver deve esere registrato come user, in caso di accettazione dei documenti, il ruolo viene cambiato da 'user' a 'driver'
 
 ## Eccezioni:
 
@@ -122,6 +122,36 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 | 7     | Admin verifica i documenti. La verifica falisce viene mostrato un messaggio di errore con I problem specifci. |
 
 ### Scenario 1.5: Registrazione User/Driver (Dati errati)
+
+**Precondizione:** L'user possiede un indirizzo email,numero di telefono.
+
+**Postcondizione:** La registrazione dell'account è incompleta.
+
+| Passo | Descrizione                                                                                   |
+| ----- | --------------------------------------------------------------------------------------------- |
+| 1     | User avvia l'applicazione.                                                                    |
+| 2     | User seleziona l'opzione "Register ".                                                         |
+| 3     | User inserisce email, nome utente e password,n.telefono,data di nascita.                      |
+| 4     | Sistema controlla se l'email e la password,n.telefono,data di nascita rispettano i requisiti. |
+| 5     | Sistema mostra un messaggio di errore che indica l'errore nel campo specifico.                |
+| 6     | User riparte dal passo 3.                                                                     |
+
+### Scenario 1.6: Registrazione User/Driver (Mail già esistente)
+
+**Precondizione:** L'user possiede un indirizzo email,numero di telefono.
+
+**Postcondizione:** La registrazione dell'account è incompleta.
+
+| Passo | Descrizione                                                                                   |
+| ----- | --------------------------------------------------------------------------------------------- |
+| 1     | User avvia l'applicazione.                                                                    |
+| 2     | User seleziona l'opzione "Register ".                                                         |
+| 3     | User inserisce email, nome utente e password,n.telefono,data di nascita.                      |
+| 4     | Sistema controlla se l'email e la password,n.telefono,data di nascita rispettano i requisiti. |
+| 5     | Sistema mostra un messaggio di errore che indica l'errore nel campo specifico.                |
+| 6     | User riparte dal passo 3.                                                                     |
+
+### Scenario 1.7: Registrazione User/Driver (Mail in blackList)
 
 **Precondizione:** L'user possiede un indirizzo email,numero di telefono.
 
