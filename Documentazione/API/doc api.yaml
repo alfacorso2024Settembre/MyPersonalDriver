@@ -5,19 +5,140 @@ info:
   version: 1.0.11
 
 paths:
-  /admins/acceptAccountChanges:
+  /users/{idUser}/documents/{idDocument}:
     put:
-      summary: Accept account changes
-      description: The admin accepts the changes of the accounts of the users
       tags:
-        - Admins
+        - Users
+      summary: Change description of document
+      description: Change document description
+      operationId: changeDocumentDesc
+      parameters:
+        - name: api_key
+          in: header
+          description: ""
+          required: false
+          schema:
+            type: string
+        - name: idUser
+          in: path
+          description: User id to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: path
+          name: idDocument
+          description: Document id to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          appplication/json:
+            schema:
+              type: object
+              properties:
+                newDescription:
+                  type: string
+                  description: new description for the document
+              required:
+                - newDescription
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Account not found
+        "422":
+          description: Validation exception
+        "500":
+          description: Internal server error
+    patch:
+      tags:
+        - Users
+      summary: Change document state
+      description: Change the status of the document to valid and denied
+      operationId: changeDocumentState
+      parameters:
+        - name: api_key
+          in: header
+          description: ""
+          required: false
+          schema:
+            type: string
+        - name: idUser
+          in: path
+          description: Id of the user to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: path
+          name: idDocument
+          description: Id of the document to patch
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          appplication/json:
+            schema:
+              type: object
+              properties:
+                newState:
+                  type: string
+                  description: new state for the document
+              required:
+                - newState
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Document"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Document"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Account not found
+        "422":
+          description: Validation exception
+        "500":
+          description: Internal server error
+  /users/{idUser}/accept:
+    put:
+      summary: Accept user profile changes
+      description: The admin accepts the changes of the profile of the users
+      tags:
+        - Users
+      operationId: acceptChanges
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: integer
+          description: ID of the user whose changes are to be accepted.
       responses:
         "200":
           description: Modification completed successfully.
         "400":
           description: Modification failed
+    
 
-  /users/{id}/modifyProfile:
+  /users/{idUser}:
     put:
       summary: Modify user profile
       description: Updates the profile details of a specific user by their ID.
@@ -25,49 +146,29 @@ paths:
         - Users
       parameters:
         - in: path
-          name: id
+          name: idUser
           required: true
           schema:
             type: integer
           description: ID of the user whose profile is to be modified.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
       responses:
         "200":
           description: Profile updated successfully
-          content:
-            application/json:
-              schema:
-                $ref: ""
-            application/xml:
-              schema:
-                $ref: ""
         "400":
           description: Invalid ID.
 
-  /accounts/{id}/modifyAccount:
-    put:
-      summary: Modify account details
-      description: Updates specific account details by account ID.
-      tags:
-        - Accounts
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: integer
-          description: ID of the account to be modified.
-      responses:
-        "200":
-          description: Account updated successfully
-        "400":
-          description: Invalid ID.
-
-  /users/{idUser}/reservations/{idReservation}/ChangeReservationStatus:
+  /users/{idUser}/reservations/{idReservation}:
     patch:
       tags:
         - Users
-      summary: Accept reservation
-      description: Driver accepts booking request from user
+      summary: Accept or reject reservation
+      description: Driver accepts or rejects booking request from user
       operationId: acceptReservation
       parameters:
         - in: path
@@ -75,13 +176,13 @@ paths:
           required: true
           schema:
             type: integer
-          description: Id of the user that accepts the booking request
+          description: Id of the user that accepts or rejects the booking request
         - in: path
           name: idReservation
           required: true
           schema:
             type: integer
-            description: id of the reservation to accept
+            description: id of the reservation to accept or reject
       requestBody:
         required: true
         content:
@@ -108,90 +209,99 @@ paths:
         "422":
           description: Validation exception
 
-  /users/{userId}/rides/{rideId}/reports:
+  /users/{idUser}/rides/{idRide}/reports:
     post:
       tags:
         - Users
       summary: Add a new report
-      description: Insert a new report relating to a specific ride
+      description: Insert a new report related to a specific ride
       operationId: addReport
       parameters:
-        - name: userId
+        - name: idUser
           in: path
           description: UserId who wants to send a report
           required: true
           schema:
             type: integer
             format: int64
-        - name: rideId
+        - name: idRide
           in: path
           description: rideId of the ride related to the report
           required: true
           schema:
             type: integer
             format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Report"
       responses:
         "200":
           description: "successful operation"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Report"
         "400":
           description: Invalid status value
         "404":
           description: ID not found
+  /users/{idUser}/rides/{idRide}/reports/{idReport}:
     put:
       tags:
         - Rides
       summary: Modify report
-      description: Modify an existing report report relating to a specific ride
+      description: Modify an existing report related to a specific ride
       operationId: updateReport
       parameters:
-        - name: rideId
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: integer
+          description: Id of the user that wants to modify a report
+        - name: idRide
           in: path
-          description: rideId of the ride related to the report
+          description: Id of the ride related to the report
           required: true
           schema:
             type: integer
             format: int64
-        - name: reportId
+        - name: idReport
           in: path
-          description: reportId related to the report
+          description: Id of the report
           required: true
           schema:
             type: integer
             format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Report"
       responses:
         "200":
           description: "successful operation"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Report"
         "400":
           description: Invalid status value
         "404":
           description: ID not found
 
-  /rides/{rideId}/reports/{reportId}:
+  /rides/{idRide}/reports/{idReport}:
     delete:
       tags:
         - Rides
-      summary: Delete segnalazione
-      description: Delete an existing report report relating to a specific ride
+      summary: Delete report
+      description: Delete an existing report related to a specific ride
       operationId: deleteReport
       parameters:
-        - name: rideId
+        - name: idRide
           in: path
-          description: rideId of the ride related to the report
+          description: Id of the ride related to the report
           required: true
           schema:
             type: integer
             format: int64
-        - name: reportId
+        - name: idReport
           in: path
-          description: reportId related to the report
+          description: Id to the report
           required: true
           schema:
             type: integer
@@ -199,16 +309,12 @@ paths:
       responses:
         "200":
           description: "successful operation"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Report"
         "400":
           description: Invalid status value
         "404":
           description: ID not found
 
-  /users/{userId}/reports:
+  /users/{idUser}/rides/reports:
     get:
       tags:
         - Users
@@ -216,9 +322,9 @@ paths:
       description: View existing reports
       operationId: viewReports
       parameters:
-        - name: userId
+        - name: idUser
           in: path
-          description: userId who sent the reports
+          description: Id of the user that sent the reports
           required: true
           schema:
             type: integer
@@ -226,69 +332,11 @@ paths:
       responses:
         "200":
           description: successful operation
-
-  /accounts/{userId}:
-    delete:
-      tags:
-        - Accounts
-      summary: Delete a user
-      description: User delete his own profile
-      operationId: deleteUser
-      parameters:
-        - name: api_key
-          in: header
-          description: ""
-          required: false
-          schema:
-            type: string
-        - name: userId
-          in: path
-          description: User id to delete
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: Successful operation
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Account not found
-        "422":
-          description: Validation exception
-  /admins/deleteUser/{userId}:
-    delete:
-      tags:
-        - Admins
-      summary: Delete account
-      description: Delete a user following a serious report
-      operationId: deleteAccount
-      parameters:
-        - name: api_key
-          in: header
-          description: ""
-          required: false
-          schema:
-            type: string
-        - name: userId
-          in: path
-          description: User id to delete
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: Successful operation
-        "400":
-          description: Invalid input
-        "422":
-          description: Validation exception
-  /admins/acceptDocuments/{userId}:
+    
+  /users/{idUser}/documents/{idDocument}/acceptChanges: #da controllare
     patch:
       tags:
-        - Admins
+        - Users
       summary: Accept user documents
       description: Accepts documents that the user inserts for the first time or following a modification
       operationId: acceptDocuments
@@ -299,9 +347,16 @@ paths:
           required: false
           schema:
             type: string
-        - name: userId
+        - name: idUser
           in: path
-          description: User id to delete
+          description: User id that changed the documents
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: idDocument
+          in: path
+          description: Document id that was modified
           required: true
           schema:
             type: integer
@@ -310,30 +365,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ""
+              $ref: "#/components/schemas/Document"
           application/xml:
             schema:
-              $ref: ""
+              $ref: "#/components/schemas/Document"
       responses:
         "200":
           description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ""
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: ""
         "400":
           description: Invalid status value
-  /admins/suspendAccount/{userId}:
+          
+  /users/{idUser}/suspend: #da controllare
     patch:
       tags:
-        - Admins
+        - Users
       summary: Suspends an accounts
       description: Suspends accounts due to lack of documents or following an unpaid fine
       operationId: suspendAccount
@@ -344,9 +389,9 @@ paths:
           required: false
           schema:
             type: string
-        - name: userId
+        - name: idUser
           in: path
-          description: User id to delete
+          description: User id to suspend
           required: true
           schema:
             type: integer
@@ -355,27 +400,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ""
+              $ref: "#/components/schemas/User"
           application/xml:
             schema:
-              $ref: ""
+              $ref: "#/components/schemas/User" #da controllare
       responses:
         "200":
           description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ""
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: ""
         "400":
           description: Invalid tag value
-  /Users/{UserId}/searchDrivers:
+  /users/{idUser}/searchDrivers: #da controllare
     get:
       tags:
         - Users
@@ -383,7 +417,7 @@ paths:
       description: Get all the free driver By distance and availability
       operationId: searchDrivers
       parameters:
-        - name: UserId
+        - name: idUser
           in: path
           description: Id values that need to be considered for filter
           required: true
@@ -406,7 +440,7 @@ paths:
         "422":
           description: Exception occured
 
-  /users/{userId}/Cars/add:
+  /users/{idUser}/Cars:
     post:
       tags:
         - Users
@@ -414,30 +448,31 @@ paths:
       description: The user can add a own car
       operationId: addCar
       parameters:
-        - name: userId
+        - name: idUser
           in: path
           description: ID of the user
           required: true
           schema:
             type: integer
             format: int64
-      responses:
-        "200":
-          description: Car added correctly
-          content:
+      requestBody:
+        content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Car"
             application/xml:
               schema:
                 $ref: "#/components/schemas/Car"
+      responses:
+        "200":
+          description: Car added correctly
+          
         "400":
           description: Invalid ID supplied
         "404":
           description: User not found, access denied
         "422":
           description: Exception occured
-  /users/{userId}/Cars/view:
     get:
       tags:
         - Users
@@ -445,7 +480,7 @@ paths:
       description: View all the car of the user filter by userId
       operationId: viewCars
       parameters:
-        - name: userId
+        - name: idUser
           in: path
           description: ID of the user
           required: true
@@ -468,7 +503,8 @@ paths:
           description: User not found, access denied
         "422":
           description: Exception occured
-  /users/{userId}/Cars/{carId}/delete:
+
+  /users/{idUser}/Cars/{plate}:
     delete:
       tags:
         - Users
@@ -476,35 +512,27 @@ paths:
       description: Delete a car of the user filtered by idUser ad iDcar
       operationId: deleteCar
       parameters:
-        - name: userId
+        - name: idUser
           in: path
           description: ID of the owner of the car
           required: true
           schema:
             type: integer
             format: int64
-        - name: carId
+        - name: plate
           in: path
           description: ID of the car
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200":
           description: Car delete complete
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Car"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Car"
         "400":
           description: Invalid ID supplied, car wasn't cancelled
         "404":
           description: Car not found
-  /reservations/add:
+  /reservations:
     post:
       tags:
         - Reservations
@@ -521,27 +549,21 @@ paths:
             type: array
             items:
               type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Reservation"
       responses:
         "200":
           description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ""
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: ""
         "400":
           description: Invalid tag value
-  /authentication/register:
+  /accounts: #register
     post:
       tags:
-        - Authentication
-      summary: Create user
+        - Accounts
+      summary: Create new user
       description: This can only be done by new users.
       operationId: createUser
       requestBody:
@@ -549,13 +571,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/register"
+              $ref: "#/components/schemas/Account"
           application/xml:
             schema:
-              $ref: "#/components/schemas/register"
+              $ref: "#/components/schemas/Account"
           application/x-www-form-urlencoded:
             schema:
-              $ref: "#/components/schemas/register"
+              $ref: "#/components/schemas/Account"
       responses:
         300:
           description: waiting for email confirmation
@@ -594,7 +616,82 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/ApiResponseRegisterSError"
+    put:
+      summary: Modify account details
+      description: Updates specific account details by account ID.
+      tags:
+        - Accounts
 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Account"
+      responses:
+        "200":
+          description: Account updated successfully
+        "400":
+          description: Invalid ID.
+
+  /accounts/{idAccount}/ban:
+     delete:
+      tags:
+        - Accounts
+      summary: Ban account
+      description: Delete a user following a serious report
+      operationId: banAccount
+      parameters:
+        - name: api_key
+          in: header
+          description: ""
+          required: false
+          schema:
+            type: string
+        - name: idAccount
+          in: path
+          description: User id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid input
+        "422":
+          description: Validation exception
+  /accounts/{idAccount}:
+    delete:
+      tags:
+        - Accounts
+      summary: Delete an account
+      description: User delete his own account
+      operationId: deleteAccount
+      parameters:
+        - name: api_key
+          in: header
+          description: ""
+          required: false
+          schema:
+            type: string
+        - in: path
+          name: idAccount
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: id of the account to be deleted
+      responses:
+        "200":
+          description: Successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Account not found
+        "422":
+          description: Validation exception
   /authentication/login:
     post:
       tags:
@@ -649,7 +746,7 @@ paths:
           description: successful operation
 
   /authentication/logout:
-    delete:
+    patch:
       tags:
         - Authentication
       summary: Logs out current logged in user session
@@ -696,10 +793,10 @@ paths:
                 $ref: "#/components/schemas/ApiResponseRegisterSError"
         default:
           description: successful operation
-  /authentication/resetPassword:
+  /accounts/resetpassword: # da controllare
     post:
       tags:
-        - Authentication
+        - Accounts
       summary: User forgot or wants to reset password.
       description: Resets users password.
       operationId: resetPassword
@@ -758,18 +855,88 @@ paths:
         default:
           description: successful operation
 
-  /users/{id_user}/rides/{id_ride}/payments/add:
-    post:
+  /users/{idUser}/rides/payments:
+    get:
       parameters:
         - in: path
-          name: id_user
+          name: idUser
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+      tags:
+        - Users
+      summary: View payments
+      description: View all payments of a user
+      operationId: viewPayments
+
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Payment"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Payment"
+        "400":
+          description: Invalid status value
+
+  /users/{idUser}/rides/{idRide}/payments:
+    get:
+      tags:
+        - Users
+      summary: Receive payment
+      description: User receives payment, e.g. Driver receives his payment after the ride
+      operationId: receivePayment
+      parameters:
+        - in: path
+          name: idUser
           required: true
           schema:
             type: integer
             minimum: 1
           description: user ID
         - in: path
-          name: id_ride
+          name: idRide
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: ride ID
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Payment"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Payment"
+        "400":
+          description: Invalid tag value
+    post:
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+        - in: path
+          name: idRide
           required: true
           schema:
             type: integer
@@ -790,10 +957,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/Payment"
+              $ref: "#/components/schemas/Payment"
           application/xml:
             schema:
-              $ref: "#/components/Payment"
+              $ref: "#/components/schemas/Payment"
         required: true
 
       responses:
@@ -802,92 +969,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/Payment"
+                $ref: "#/components/schemas/Payment"
             application/xml:
               schema:
-                $ref: "#/components/Payment"
+                $ref: "#/components/schemas/Payment"
 
         "400":
           description: Invalid ID supplied
-
-        "404":
-          description: X not found
-
-        "422":
-          description: Validation exception
-
-  /users/{id_user}/rides/payments/view:
-    get:
-      parameters:
-        - in: path
-          name: id_user
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-          description: user ID
-      tags:
-        - Users
-      summary: View payments
-      description: View all payments of a user
-      operationId: viewPayments
-
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/Payment"
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/Payment"
-        "400":
-          description: Invalid status value
-
-  /users/{id_user}/rides/{id_ride}/payments/receive:
-    get:
-      tags:
-        - Users
-      summary: Receive payment
-      description: User receives payment, e.g. Driver receives his payment after the ride
-      operationId: receivePayment
-      parameters:
-        - in: path
-          name: id_user
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-          description: user ID
-        - in: path
-          name: id_ride
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-          description: ride ID
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/Payment"
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/Payment"
-        "400":
-          description: Invalid tag value
-  /rides/payments/view:
+        "500":
+          description: Internal server error
+  /rides/payments:
     get:
       tags:
         - Rides
@@ -900,15 +991,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/Payment"
+                $ref: "#/components/schemas/Payment"
             application/xml:
               schema:
-                $ref: "#/components/Payment"
+                $ref: "#/components/schemas/Payment"
         "400":
           description: Invalid ID supplied
         "404":
           description: Payment not found
-  /rides/{id_ride}/payments/add:
+  /rides/{idRide}/payments:
     post:
       tags:
         - Rides
@@ -917,7 +1008,7 @@ paths:
       operationId: addRidePayment
       parameters:
         - in: path
-          name: id_ride
+          name: idRide
           required: true
           schema:
             type: integer
@@ -928,16 +1019,41 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/Payment"
+              $ref: "#/components/schemas/Payment"
       responses:
         "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: "#/components/Payment"
+                $ref: "#/components/schemas/Payment"
 
-  /reservations/{id_reservation}/addDeposit:
+  /reservations/{idReservation}/deposits:
+    get:
+      tags:
+        - Reservations
+      summary: Receive the deposit
+      description: The deposit's amount is taken 
+      operationId: receiveDeposit
+      parameters:
+        - in: path
+          name: idReservation
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: reservation ID
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Deposit"
+        "400":
+          description: invalid input
+        "500":
+          description: internal server error
     post:
       tags:
         - Reservations
@@ -946,7 +1062,7 @@ paths:
       operationId: addInitialDeposit
       parameters:
         - in: path
-          name: id_reservation
+          name: idReservation
           required: true
           schema:
             type: integer
@@ -957,30 +1073,30 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/Deposit"
+              $ref: "#/components/schemas/Deposit"
       responses:
         "200":
           description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/Deposit"
+        "400":
+          description: invalid input
+        "500":
+          description: internal server error
 
-  /users/{id_user}/rides/{id_ride}/reviews/add:
+  /users/{idUser}/rides/{idRide}/reviews:
     post:
       tags:
         - Users
 
       parameters:
         - in: path
-          name: id_user
+          name: idUser
           required: true
           schema:
             type: integer
             minimum: 1
           description: user ID
         - in: path
-          name: id_ride
+          name: idRide
           required: true
           schema:
             type: integer
@@ -994,7 +1110,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/Review"
+              $ref: "#/components/schemas/Review"
 
       responses:
         "200":
@@ -1006,7 +1122,7 @@ paths:
                 additionalProperties:
                   type: integer
                   format: int32
-  /users/{id_user}/rides/reviews/view:
+  /users/{idUser}/rides/reviews:
     get:
       tags:
         - Users
@@ -1015,7 +1131,7 @@ paths:
       operationId: viewReview
       parameters:
         - in: path
-          name: id_user
+          name: idUser
           required: true
           schema:
             type: integer
@@ -1027,15 +1143,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/Review"
+                $ref: "#/components/schemas/Review"
         "400":
           description: Invalid input
         "422":
           description: Validation exception
-  /users/{userId}/documents/viewDocument:
+
+  /users/{idUser}/documents:
     get:
       tags:
-        - documents
+        - Users
       summary: View a user document
       description: The administrator views a specific user's document
       operationId: viewUser
@@ -1046,7 +1163,7 @@ paths:
           required: false
           schema:
             type: string
-        - name: userId
+        - name: idUser
           in: path
           description: User id to delete
           required: true
@@ -1061,12 +1178,12 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Documents"
+                  $ref: "#/components/schemas/Document"
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Documents"
+                  $ref: "#/components/schemas/Document"
         "400":
           description: Invalid ID supplied
         "404":
@@ -1075,175 +1192,10 @@ paths:
           description: Validation exception
         "500":
           description: Internal server error
-  /users/{userId}/documents/changeDocumentDesc:
-    put:
-      tags:
-        - documents
-      summary: Change description
-      description: Change document description
-      operationId: changeDocumentDesc
-      parameters:
-        - name: api_key
-          in: header
-          description: ""
-          required: false
-          schema:
-            type: string
-        - name: userId
-          in: path
-          description: User id to delete
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        required: true
-        content:
-          appplication/json:
-            schema:
-              type: object
-              properties:
-                newDescription:
-                  type: string
-                  description: new description for the document
-              required:
-                - newDescription
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Documents"
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Documents"
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Account not found
-        "422":
-          description: Validation exception
-        "500":
-          description: Internal server error
-  /users/{userId}/documents/changeDocumentState:
-    patch:
-      tags:
-        - documents
-      summary: Change document state
-      description: Change the status of the document to valid and denied
-      operationId: changeDocumentState
-      parameters:
-        - name: api_key
-          in: header
-          description: ""
-          required: false
-          schema:
-            type: string
-        - name: userId
-          in: path
-          description: User id to delete
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        required: true
-        content:
-          appplication/json:
-            schema:
-              type: object
-              properties:
-                newState:
-                  type: string
-                  description: new state for the document
-              required:
-                - newState
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Documents"
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Documents"
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Account not found
-        "422":
-          description: Validation exception
-        "500":
-          description: Internal server error
-  /users/{userId}/documents/changeValidity:
-    patch:
-      tags:
-        - documents
-      summary: Change document validity
-      description: Change document validity
-      operationId: changeValidity
-      parameters:
-        - name: api_key
-          in: header
-          description: ""
-          required: false
-          schema:
-            type: string
-        - name: userId
-          in: path
-          description: User id to delete
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        required: true
-        content:
-          appplication/json:
-            schema:
-              type: object
-              properties:
-                newValidity:
-                  type: boolean
-                  description: new validity for the document
-              required:
-                - newValidity
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Documents"
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Documents"
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Account not found
-        "422":
-          description: Validation exception
-        "500":
-          description: Internal server error
-  /users/{userId}/documents/uploadDocument:
+    
     post:
       tags:
-        - documents
+        - Users
       summary: Upload new document
       description: Upload a new document to be validated
       operationId: uploadDocument
@@ -1254,7 +1206,7 @@ paths:
           required: false
           schema:
             type: string
-        - name: userId
+        - name: idUser
           in: path
           description: User id to delete
           required: true
@@ -1273,24 +1225,13 @@ paths:
                   format: binary
                   description: "The document file to be uploaded"
                 documentDetails:
-                  $ref: "#/components/schemas/Documents"
+                  $ref: "#/components/schemas/Document"
               required:
                 - newDocument
                 - documentDetails
       responses:
         "200":
           description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Documents"
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Documents"
         "400":
           description: Invalid ID supplied
         "404":
@@ -1299,16 +1240,31 @@ paths:
           description: Validation exception
         "500":
           description: Internal server error
+    
+
 
 components:
   schemas:
+    Document:
+      type: object
+      properties:
+        idDocument:
+          type: integer
+          format: int64
+        isValid:
+          type: boolean
+        expiryDate:
+          type: integer
+          format: date
+        photo:
+          type: object
+        User:
+          $ref: "#/components/schemas/User"
+      xml:
+        name: document
     Car:
       type: object
       properties:
-        carId:
-          type: integer
-          format: int64
-          example: 10
         plate:
           type: string
           description: car license plate
@@ -1327,7 +1283,7 @@ components:
     User:
       type: object
       properties:
-        id:
+        idUser:
           type: integer
           format: int64
           example: 10
@@ -1355,13 +1311,19 @@ components:
           type: string
           example: "12345abc"
         document:
-          $ref: "#/components/schemas/Documents"
+          $ref: "#/components/schemas/Document"
       xml:
         name: user
     Payment:
       type: object
+      required:
+        - "User"
+        - "Ride"
+        - "causale"
+        - "amount"
+        - "date"
       properties:
-        id_transaction:
+        idPayment:
           type: integer
           format: int64
           example: 151
@@ -1388,7 +1350,7 @@ components:
     Review:
       type: object
       properties:
-        id_review:
+        idReview:
           type: integer
           format: int64
           example: 1332
@@ -1405,7 +1367,7 @@ components:
     Deposit:
       type: object
       properties:
-        id_deposit:
+        idDeposit:
           type: integer
           format: int64
           example: 2311
@@ -1418,7 +1380,7 @@ components:
     Reservation:
       type: object
       properties:
-        reservationId:
+        idReservation:
           type: integer
           format: int64
           example: 10
@@ -1447,7 +1409,7 @@ components:
           format: string
           example: Password1!!
 
-    register:
+    Account:
       type: object
       properties:
         email:
@@ -1656,7 +1618,7 @@ components:
         - "customerId"
         - "status"
       properties:
-        rideId:
+        idRide:
           type: "integer"
           format: "int64"
           example: "1"
@@ -1696,7 +1658,7 @@ components:
         - "rideId"
         - "userId"
       properties:
-        reportId:
+        idReport:
           type: "integer"
           format: "int64"
           example: "4"
@@ -1705,7 +1667,7 @@ components:
           format: "int64"
           example: "24"
         ride:
-          $ref: "#/definitions/Ride"
+          $ref: "#/components/schemas/Ride"
         descriprion:
           type: "string"
           example: "C'è stato un errore nel pagamento della corsa"
