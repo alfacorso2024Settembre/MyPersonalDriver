@@ -19,9 +19,9 @@
 
 ## Scenario Nominale:
 
-Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inserisce email,password,nome,cognome,data di nascita e si registra con successo dopo aver confermato l'email.
+Un nuovo user, inserisce email,password,nome,cognome,data di nascita e si registra con successo dopo aver confermato l'email.
 
-**Nota**: Se durante la registrazione come driver l'email esiste già nel database con il ruolo di user, il ruolo viene aggiornato a driver.
+**Nota**: Successivamente può registrarsi come Driver inserendo i dati della patente. Il ruolo all'interno del database viene aggiornato a driver.
 
 ### Requisiti per la Password:
 
@@ -45,7 +45,7 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 ## Varianti:
 
 - **Registrazione User:** L'user si registra fornendo email,password,nome,cognome,data di nascita , numero telefono.
-- **Registrazione Driver:** Il driver deve esere registrato come user nel caso del successo con i documenti il ruolo viene cambiato da 'user' a 'driver'
+- **Registrazione Driver:** Il driver deve esere registrato come user, in caso di accettazione dei documenti, il ruolo viene cambiato da 'user' a 'driver'
 
 ## Eccezioni:
 
@@ -136,162 +136,32 @@ Un nuovo user o driver sceglie "Register as User" o "Register as Driver", inseri
 | 5     | Sistema mostra un messaggio di errore che indica l'errore nel campo specifico.                |
 | 6     | User riparte dal passo 3.                                                                     |
 
-# Use Case: Login
+### Scenario 1.6: Registrazione User/Driver (Mail già esistente)
 
-## Attori:
+**Precondizione:** L'user possiede un indirizzo email,numero di telefono.
 
-- User
-- Driver
-- Admin
+**Postcondizione:** La registrazione dell'account è incompleta.
 
-## Precondizioni:
+| Passo | Descrizione                                                                                   |
+| ----- | --------------------------------------------------------------------------------------------- |
+| 1     | User avvia l'applicazione.                                                                    |
+| 2     | User seleziona l'opzione "Register ".                                                         |
+| 3     | User inserisce email, nome utente e password,n.telefono,data di nascita.                      |
+| 4     | Sistema controlla se l'email e la password,n.telefono,data di nascita rispettano i requisiti. |
+| 5     | Sistema mostra un messaggio di errore che indica l'errore nel campo specifico.                |
+| 6     | User riparte dal passo 3.                                                                     |
 
-L'attore ha già un account.
+### Scenario 1.7: Registrazione User/Driver (Mail in blackList)
 
-## Postcondizioni:
+**Precondizione:** L'user possiede un indirizzo email,numero di telefono.
 
-L'attore è loggato nell'applicazione.
+**Postcondizione:** La registrazione dell'account è incompleta.
 
-## Scenario Nominale:
-
-L'attore inserisce email e password per effettuare il login.
-
-## Eccezioni:
-
-- L'email non è presente nel database.
-- L'email esiste ma la password è errata.
-- L'attore è già loggato.
-- L'email e password hanno un formato errato.
-
-### Scenario 2.1: Login (Con Successo)
-
-**Precondizione:** L'attore ha un account.
-
-**Postcondizione:** L'attore è loggato.
-
-| Passo | Descrizione                                           |
-| ----- | ----------------------------------------------------- |
-| 1     | Attore richiede il login.                             |
-| 2     | Sistema chiede email e password.                      |
-| 3     | Sistema verifica che email e password siano corretti. |
-| 4     | L'attore può accedere alle informazioni.              |
-
-### Scenario 2.2: Account Non Registrato
-
-**Precondizione:** L'attore non ha un account.
-
-**Postcondizione:** Viene mostrato un messaggio di errore.
-
-| Passo | Descrizione                                                                              |
-| ----- | ---------------------------------------------------------------------------------------- |
-| 1     | L'attore richiede il login.                                                              |
-| 2     | Sistema chiede email e password.                                                         |
-| 3     | Sistema verifica le credenziali, ma l'email non è associata a nessun account.            |
-| 4     | Viene mostrato un messaggio "L'email non è corretta o non è associata a nessun account". |
-
-### Scenario 2.3: Password Errata
-
-**Precondizione:** L'attore ha un account.
-
-**Postcondizione:** Viene mostrato un messaggio di errore.
-
-| Passo | Descrizione                                                           |
-| ----- | --------------------------------------------------------------------- |
-| 1     | L'attore richiede il login.                                           |
-| 2     | Sistema chiede email e password.                                      |
-| 3     | Sistema verifica le credenziali, ma la password non è corretta.       |
-| 4     | Viene mostrato un messaggio "Password errata! Dimenticato password?". |
-| 5     | Utente puo reimpostare la password                                    |
-
-### Scenario 2.4: Password Dimenticata
-
-**Precondizione:** L'attore ha un account.
-
-**Postcondizione:** L'attore riceve un'email per reimpostare la password.
-
-| Passo | Descrizione                                                                                             |
-| ----- | ------------------------------------------------------------------------------------------------------- |
-| 1     | L'attore richiede il login.                                                                             |
-| 2     | Sistema chiede email e password.                                                                        |
-| 3     | L'attore seleziona l'opzione "Password dimenticata?".                                                   |
-| 4     | Sistema richiede l'email associata all'account.                                                         |
-| 5     | L'attore inserisce l'email e invia la richiesta.                                                        |
-| 6     | Sistema verifica se l'email è associata a un account.                                                   |
-| 7     | Se l'email è valida, il sistema invia un'email con un link per reimpostare la password.                 |
-| 8     | L'attore apre l'email ricevuta e clicca sul link per reimpostare la password.                           |
-| 9     | Sistema chiede di inserire una nuova password.                                                          |
-| 10    | L'attore inserisce la nuova password e conferma.                                                        |
-| 11    | Sistema aggiorna la password e notifica l'attore che la reimpostazione è stata completata con successo. |
-
-### Scenario 2.5: Password Dimenticata (Email Errata)
-
-**Precondizione:** L'attore non ha accesso all'email associata al proprio account.
-
-**Postcondizione:** Viene mostrato un messaggio di errore.
-
-| Passo | Descrizione                                                                                                       |
-| ----- | ----------------------------------------------------------------------------------------------------------------- |
-| 1     | L'attore richiede il login.                                                                                       |
-| 2     | Sistema chiede email e password.                                                                                  |
-| 3     | L'attore seleziona l'opzione "Password dimenticata?".                                                             |
-| 4     | Sistema richiede l'email associata all'account.                                                                   |
-| 5     | L'attore inserisce l'email e invia la richiesta.                                                                  |
-| 6     | Sistema verifica se l'email è associata a un account.                                                             |
-| 7     | L'email non è valida, il sistema mostra un messaggio "L'email non è corretta o non è associata a nessun account". |
-
-### Scenario 2.6: Login (Format Dati errati)
-
-| Passo | Descrizione                                                                    |
-| ----- | ------------------------------------------------------------------------------ |
-| 1     | Attore avvia l'applicazione.                                                   |
-| 2     | Attore seleziona l'opzione "Login".                                            |
-| 3     | Attore inserisce email e passworda.                                            |
-| 4     | Sistema controlla se l'email e la password, rispettano i requisiti.            |
-| 5     | Sistema mostra un messaggio di errore che indica l'errore nel campo specifico. |
-| 6     | Attore riparte dal passo 3                                                     |
-
-# Use Case: Logout
-
-## Attori:
-
-- User
-- Driver
-- Admin
-
-## Precondizioni:
-
-- L'attore è loggato.
-
-## Postcondizioni:
-
-- L'attore è disconnesso dall'applicazione.
-
-## Scenario Nominale:
-
-L'attore seleziona l'opzione "Logout".
-
-### Eccezioni:
-
-- L'attore non è loggato.
-
-### Scenario 3.1: Logout (Con Successo)
-
-**Precondizione:** L'attore è loggato.
-
-**Postcondizione:** L'attore è disconnesso.
-
-| Passo | Descrizione                                                  |
-| ----- | ------------------------------------------------------------ |
-| 1     | L'attore seleziona "Logout".                                 |
-| 2     | Sistema disconnetti l'attore e mostra la schermata di login. |
-
-### Scenario 3.2: Logout (Attore Non Loggato)
-
-**Precondizione:** L'attore non è loggato.
-
-**Postcondizione:** Viene mostrato un messaggio di errore.
-
-| Passo | Descrizione                                    |
-| ----- | ---------------------------------------------- |
-| 1     | L'attore seleziona "Logout".                   |
-| 2     | Sistema mostra un messaggio "Non sei loggato". |
+| Passo | Descrizione                                                                                   |
+| ----- | --------------------------------------------------------------------------------------------- |
+| 1     | User avvia l'applicazione.                                                                    |
+| 2     | User seleziona l'opzione "Register ".                                                         |
+| 3     | User inserisce email, nome utente e password,n.telefono,data di nascita.                      |
+| 4     | Sistema controlla se l'email e la password,n.telefono,data di nascita rispettano i requisiti. |
+| 5     | Sistema mostra un messaggio di errore che indica l'errore nel campo specifico.                |
+| 6     | User riparte dal passo 3.                                                                     |
