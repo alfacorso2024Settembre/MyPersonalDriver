@@ -15,8 +15,8 @@ L'Admin sostiene che il profilo dell'utente vada sospeso a seguito di segnalazio
 |           3           | Sistema | Inoltra una mail all'user che è stato segnalato, precisando che la segnalazione verrà analizzata dall'Admin e verranno prese le giuste precauzioni |
 |           4           | Admin   | Analizza la segnalazione ricevuta.                                                                                                                 |
 |           5           | Sistema | Modifica lo stato dell'account dell'utente a SOSPESO                                                                                               |
-|           6           | Sistema | Invia una mail all'utente a cui è stato sospeso l'account, precisando che l'account potrebbe essere sboccato (a seconda della segnalazione)|        |                                                                                                                                                   |
- Termina il caso d'uso |
+|           6           | Sistema | Invia una mail all'utente a cui è stato sospeso l'account, precisando che l'account potrebbe essere sboccato (a seconda della segnalazione)        |        |                                                                                                                                                   |
+| Termina il caso d'uso |         |                                                                                                                                                    |
 
 ## Eccezione 4.a
  
