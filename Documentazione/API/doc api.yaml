@@ -36,7 +36,7 @@ paths:
       requestBody:
         required: true
         content:
-          appplication/json:
+          application/json:
             schema:
               type: object
               properties:
@@ -76,6 +76,8 @@ paths:
           description: Modification completed successfully.
         "400":
           description: Modification failed
+        "403":
+          description: Not an admin
     
 
   /users/{idUser}:
@@ -117,10 +119,18 @@ paths:
             type: integer
           description: Id of the user that adds a new reservation.
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Reservation"
+              type: object
+              properties:    
+                idDriver:
+                  type: integer
+                  format: int64
+                  example: 111
+                position:
+                  $ref: "#/components/schemas/position"
       responses:
         "200":
           description: Added successfully
@@ -338,6 +348,8 @@ paths:
           description: successful operation
         "400":
           description: Invalid status value
+        "403":
+          description: not allowed
           
   /users/{idUser}/suspend: #da controllare
     patch:
@@ -364,7 +376,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/User"
+              type: object
+              properties:
+                state: 
+                  type: string
+                  example: sospeso
           application/xml:
             schema:
               $ref: "#/components/schemas/User" #da controllare
@@ -373,6 +389,8 @@ paths:
           description: successful operation
         "400":
           description: Invalid tag value
+        "403":
+          description: not allowed
   /users/{idUser}/searchDrivers: #da controllare
     get:
       tags:
@@ -624,6 +642,8 @@ paths:
           description: Successful operation
         "400":
           description: Invalid input
+        "403":
+          description: not allowed
         "422":
           description: Validation exception
   /accounts/{idAccount}:
@@ -1241,8 +1261,9 @@ components:
           format: date
         photo:
           type: object
-        User:
-          $ref: "#/components/schemas/User"
+        idUser:
+          type: integer
+          format: int64
       xml:
         name: document
     Car:
@@ -1283,18 +1304,15 @@ components:
           type: string
           format: date
           example: 2024-01-01
-        email:
-          type: string
-          format: email
-          example: john@email.com
-        password:
-          type: string
-          example: "12345"
         phone:
           type: string
           example: "12345abc"
-        document:
-          $ref: "#/components/schemas/Document"
+        state:
+          type: string
+          example: attivo
+        idDocument:
+          type: integer
+          format: int64
       xml:
         name: user
     Payment:
@@ -1310,10 +1328,12 @@ components:
           type: integer
           format: int64
           example: 151
-        User:
-          $ref: "#/components/schemas/User"
-        Ride:
-          $ref: "#/components/schemas/Ride"
+        idUser:
+          type: integer
+          format: int64
+        idRide:
+          type: integer
+          format: int64
         completed:
           type: boolean
           example: true
@@ -1337,8 +1357,9 @@ components:
           type: integer
           format: int64
           example: 1332
-        User:
-          $ref: "#/components/schemas/User"
+        idUser:
+          type: integer
+          format: int64
         value:
           type: number
           example: 4
@@ -1374,6 +1395,8 @@ components:
         resevationTime:
           type: string
           format: date-time
+        position:
+          $ref: "#/components/schemas/position"
         status:
           type: string
           description: Stato prenotazione
@@ -1381,6 +1404,8 @@ components:
           enum:
             - accettata
             - rifiutata
+            - in sospeso
+         
     loginBody:
       type: object
       properties:
@@ -1594,7 +1619,19 @@ components:
           example: "There is no account assosiated with this email."
       xml:
         name: "##default"
-
+    position:
+      type: object
+      properties:
+        idPosition:
+          type: integer
+          format: int64
+          example: 1341
+        address:
+          type: string
+          example: via rossi 15
+        cap:
+          type: integer
+          example: 10110
     Ride:
       type: "object"
       required:
@@ -1615,11 +1652,9 @@ components:
           format: "int64"
           example: "33"
         departure:
-          type: "string"
-          example: "Via Roma, 30"
+          $ref: "#/components/schemas/position"
         destination:
-          type: "string"
-          example: "Corso Svizzera, 255"
+          $ref: "#/components/schemas/position"
         totalKm:
           type: "integer"
           format: "int64"
@@ -1649,8 +1684,10 @@ components:
           type: "integer"
           format: "int64"
           example: "24"
-        ride:
-          $ref: "#/components/schemas/Ride"
+        idRide:
+          type: integer
+          format: int64
+          example: 23
         descriprion:
           type: "string"
           example: "C'è stato un errore nel pagamento della corsa"
