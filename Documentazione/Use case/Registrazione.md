@@ -142,14 +142,14 @@ Un nuovo user, inserisce email,password,nome,cognome,data di nascita e si regist
 
 **Postcondizione:** La registrazione dell'account è incompleta.
 
-| Passo | Descrizione                                                                                   |
-| ----- | --------------------------------------------------------------------------------------------- |
-| 1     | User avvia l'applicazione.                                                                    |
-| 2     | User seleziona l'opzione "Register ".                                                         |
-| 3     | User inserisce email, nome utente e password,n.telefono,data di nascita.                      |
-| 4     | Sistema controlla se l'email e la password,n.telefono,data di nascita rispettano i requisiti. |
-| 5     | Sistema mostra un messaggio di errore che indica l'errore nel campo specifico.                |
-| 6     | User riparte dal passo 3.                                                                     |
+| Passo | Descrizione                                                                                                                          |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| 1     | User avvia l'applicazione.                                                                                                           |
+| 2     | User seleziona l'opzione "Register ".                                                                                                |
+| 3     | User inserisce email, nome utente e password,n.telefono,data di nascita.                                                             |
+| 4     | Sistema controlla se l'email e la password,n.telefono,data di nascita rispettano i requisiti.                                        |
+| 5     | Sistema mostra un messaggio di errore che indica l'errore sei gia registrato e mostra lo stato di account("banned" , "disattivato"). |
+| 6     | User riparte dal passo 3.                                                                                                            |
 
 ### Scenario 1.7: Registrazione User/Driver (Mail in blackList)
 
