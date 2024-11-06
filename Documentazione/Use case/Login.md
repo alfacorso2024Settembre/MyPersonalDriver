@@ -21,6 +21,7 @@ L'attore inserisce email e password per effettuare il login.
 ## Eccezioni:
 
 - L'email non è presente nel database.
+- L'email e presente nel database ma l'stato dell account e "disattivato o banato"
 - L'email esiste ma la password è errata.
 - L'attore è già loggato.
 - L'email e password hanno un formato errato.
@@ -31,12 +32,12 @@ L'attore inserisce email e password per effettuare il login.
 
 **Postcondizione:** L'attore è loggato.
 
-| Passo | Descrizione                                           |
-| ----- | ----------------------------------------------------- |
-| 1     | Attore richiede il login.                             |
-| 2     | Sistema chiede email e password.                      |
-| 3     | Sistema verifica che email e password siano corretti. |
-| 4     | L'attore può accedere alle informazioni.              |
+| Passo | Descrizione                                                                               |
+| ----- | ----------------------------------------------------------------------------------------- |
+| 1     | Attore richiede il login.                                                                 |
+| 2     | Sistema chiede email e password.                                                          |
+| 3     | Sistema verifica che email e password siano corretti e che l stato di account e "attivo". |
+| 4     | L'attore può accedere alle informazioni.                                                  |
 
 ### Scenario 2.2: Account Non Registrato
 
@@ -112,13 +113,25 @@ L'attore inserisce email e password per effettuare il login.
 | 5     | Sistema mostra un messaggio di errore che indica l'errore nel campo specifico. |
 | 6     | Attore riparte dal passo 3                                                     |
 
-### Scenario 2.6: Login (Account bannato)
+### Scenario 2.6: Login (Account stato disattivato)
 
-| Passo | Descrizione                                                                    |
-| ----- | ------------------------------------------------------------------------------ |
-| 1     | Attore avvia l'applicazione.                                                   |
-| 2     | Attore seleziona l'opzione "Login".                                            |
-| 3     | Attore inserisce email e passworda.                                            |
-| 4     | Sistema controlla se l'email e la password, rispettano i requisiti.            |
-| 5     | Sistema mostra un messaggio di errore che indica l'errore nel campo specifico. |
-| 6     | Attore riparte dal passo 3                                                     |
+| Passo | Descrizione                                                               |
+| ----- | ------------------------------------------------------------------------- |
+| 1     | Attore avvia l'applicazione.                                              |
+| 2     | Attore seleziona l'opzione "Login".                                       |
+| 3     | Attore inserisce email e passworda.                                       |
+| 4     | Sistema controlla se l'email e la password, rispettano i requisiti.       |
+| 5     | Sistema mostra un messaggio di errore che indica l'account e dissativato. |
+| 6     | Sistema chiede l user se vuole attivare                                   |
+| 7     | Attore clicka opzione si                                                  |
+| 8     | Viene inviato un mail di conferma al user per attivare account            |
+
+### Scenario 2.6: Login (Account stato banato)
+
+| Passo | Descrizione                                                           |
+| ----- | --------------------------------------------------------------------- |
+| 1     | Attore avvia l'applicazione.                                          |
+| 2     | Attore seleziona l'opzione "Login".                                   |
+| 3     | Attore inserisce email e passworda.                                   |
+| 4     | Sistema controlla se l'email e la password, rispettano i requisiti.   |
+| 5     | Sistema mostra un messaggio di errore che indica l'account e bannato. |
