@@ -36,7 +36,7 @@ paths:
       requestBody:
         required: true
         content:
-          appplication/json:
+          application/json:
             schema:
               type: object
               properties:
@@ -76,6 +76,8 @@ paths:
           description: Modification completed successfully.
         "400":
           description: Modification failed
+        "403":
+          description: Not an admin
     
 
   /users/{idUser}:
@@ -102,7 +104,58 @@ paths:
           description: Profile updated successfully
         "400":
           description: Invalid ID.
-
+  /users/{idUser}/reservations:
+    post:
+      tags:
+        - Users
+      summary: Add new reservation
+      description: User adds a new reservation
+      operationId: addUserReservation
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: integer
+          description: Id of the user that adds a new reservation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:    
+                idDriver:
+                  type: integer
+                  format: int64
+                  example: 111
+                position:
+                  $ref: "#/components/schemas/position"
+      responses:
+        "200":
+          description: Added successfully
+        "400":
+          description: Invalid ID.
+    
+    get:
+      tags:
+        - Users
+      summary: View existing reservations
+      description: User or driver views the reservations relative to his account
+      operationId: viewReservation
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: integer
+          description: Id of the user that views the reservations
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: Invalid ID.
+                
   /users/{idUser}/reservations/{idReservation}:
     patch:
       tags:
@@ -186,7 +239,7 @@ paths:
   /users/{idUser}/rides/{idRide}/reports/{idReport}:
     put:
       tags:
-        - Rides
+        - Users
       summary: Modify report
       description: Modify an existing report related to a specific ride
       operationId: updateReport
@@ -314,6 +367,8 @@ paths:
           description: successful operation
         "400":
           description: Invalid status value
+        "403":
+          description: not allowed
           
   /users/{idUser}/suspend: #da controllare
     patch:
@@ -340,7 +395,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/User"
+              type: object
+              properties:
+                state: 
+                  type: string
+                  example: sospeso
           application/xml:
             schema:
               $ref: "#/components/schemas/User" #da controllare
@@ -349,6 +408,8 @@ paths:
           description: successful operation
         "400":
           description: Invalid tag value
+        "403":
+          description: not allowed
   /users/{idUser}/searchDrivers: #da controllare
     get:
       tags:
@@ -476,6 +537,7 @@ paths:
     post:
       tags:
         - Reservations
+      summary: Add new reservation
       description: The user will send a ride reservation request
       operationId: addReservation
       parameters:
@@ -572,9 +634,32 @@ paths:
           description: Account updated successfully
         "400":
           description: Invalid ID.
+    get:
+      tags:
+        - Accounts
+      summary: View accounts
+      description: View all the account in the database
+      operationId: getAccount
+    
+      responses:
+        "200":
+          description: The Account are viewed correctly
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Car"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Car"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: User not found, access denied
+        "422":
+          description: Exception occured
 
   /accounts/{idAccount}/ban:
-     delete:
+     patch:
       tags:
         - Accounts
       summary: Ban account
@@ -599,10 +684,12 @@ paths:
           description: Successful operation
         "400":
           description: Invalid input
+        "403":
+          description: not allowed
         "422":
           description: Validation exception
   /accounts/{idAccount}:
-    delete:
+    patch:
       tags:
         - Accounts
       summary: Delete an account
@@ -826,7 +913,7 @@ paths:
                   $ref: "#/components/schemas/Payment"
         "400":
           description: Invalid status value
-
+  
   /users/{idUser}/rides/{idRide}/payments:
     get:
       tags:
@@ -919,6 +1006,23 @@ paths:
           description: Invalid ID supplied
         "500":
           description: Internal server error
+  /rides:
+    post:
+      tags:
+        - Rides
+      summary: Add new ride
+      description: Adds a new ride
+      operationId: addRide
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Ride"
+      responses:
+        "200":
+          description: Added successfully
+        "400":
+          description: Invalid ID.
   /rides/payments:
     get:
       tags:
@@ -1022,7 +1126,39 @@ paths:
           description: invalid input
         "500":
           description: internal server error
-
+  /users/{idUser}/rides/{idRide}/reviews/{idReview}:
+      delete:
+        summary: Delete a review 
+        description: User deletes a review
+        tags:
+          - Users
+        parameters:
+          - in: path
+            name: idUser
+            required: true
+            schema:
+              type: integer
+              minimum: 1
+            description: user ID
+          - in: path
+            name: idRide
+            required: true
+            schema:
+              type: integer
+              minimum: 1
+            description: ride ID
+          - in: path
+            name: idReview
+            required: true
+            schema:
+              type: integer
+              minimum: 1
+            description: review ID
+        responses:
+          "200": 
+            description: successful
+          "404":
+            description: not found
   /users/{idUser}/rides/{idRide}/reviews:
     post:
       tags:
@@ -1181,9 +1317,35 @@ paths:
           description: Validation exception
         "500":
           description: Internal server error
-    
-
-
+  /documents:
+    get:
+      tags:
+        - Documents
+      summary: View all user's documents
+      description: The administrator views all user's document
+      operationId: viewDocuments
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Document"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Document"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Account not found
+        "422":
+          description: Validation exception
+        "500":
+          description: Internal server error
 components:
   schemas:
     Document:
@@ -1199,8 +1361,9 @@ components:
           format: date
         photo:
           type: object
-        User:
-          $ref: "#/components/schemas/User"
+        idUser:
+          type: integer
+          format: int64
       xml:
         name: document
     Car:
@@ -1241,18 +1404,15 @@ components:
           type: string
           format: date
           example: 2024-01-01
-        email:
-          type: string
-          format: email
-          example: john@email.com
-        password:
-          type: string
-          example: "12345"
         phone:
           type: string
           example: "12345abc"
-        document:
-          $ref: "#/components/schemas/Document"
+        state:
+          type: string
+          example: attivo
+        idDocument:
+          type: integer
+          format: int64
       xml:
         name: user
     Payment:
@@ -1268,10 +1428,12 @@ components:
           type: integer
           format: int64
           example: 151
-        User:
-          $ref: "#/components/schemas/User"
-        Ride:
-          $ref: "#/components/schemas/Ride"
+        idUser:
+          type: integer
+          format: int64
+        idRide:
+          type: integer
+          format: int64
         completed:
           type: boolean
           example: true
@@ -1295,8 +1457,9 @@ components:
           type: integer
           format: int64
           example: 1332
-        User:
-          $ref: "#/components/schemas/User"
+        idUser:
+          type: integer
+          format: int64
         value:
           type: number
           example: 4
@@ -1332,6 +1495,8 @@ components:
         resevationTime:
           type: string
           format: date-time
+        position:
+          $ref: "#/components/schemas/position"
         status:
           type: string
           description: Stato prenotazione
@@ -1339,6 +1504,8 @@ components:
           enum:
             - accettata
             - rifiutata
+            - in sospeso
+         
     loginBody:
       type: object
       properties:
@@ -1552,7 +1719,19 @@ components:
           example: "There is no account assosiated with this email."
       xml:
         name: "##default"
-
+    position:
+      type: object
+      properties:
+        idPosition:
+          type: integer
+          format: int64
+          example: 1341
+        address:
+          type: string
+          example: via rossi 15
+        cap:
+          type: integer
+          example: 10110
     Ride:
       type: "object"
       required:
@@ -1573,11 +1752,9 @@ components:
           format: "int64"
           example: "33"
         departure:
-          type: "string"
-          example: "Via Roma, 30"
+          $ref: "#/components/schemas/position"
         destination:
-          type: "string"
-          example: "Corso Svizzera, 255"
+          $ref: "#/components/schemas/position"
         totalKm:
           type: "integer"
           format: "int64"
@@ -1607,8 +1784,10 @@ components:
           type: "integer"
           format: "int64"
           example: "24"
-        ride:
-          $ref: "#/components/schemas/Ride"
+        idRide:
+          type: integer
+          format: int64
+          example: 23
         descriprion:
           type: "string"
           example: "C'è stato un errore nel pagamento della corsa"

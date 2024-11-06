@@ -19,5 +19,5 @@ L’User ha cancellato la prenotazione 20 minuti prima della corsa
 |           3           | Driver  | Accetta la richiesta                                                                                                |
 |           4           | Sistema | Attende l’inizio della Corsa                                                                                        |
 |           5           | User    | disdice la corsa 20 minuti prima della partenza (o meno                                                             |
-|           6           | Sistema | Rimborsa il Driver del 50% della quota del Deposito cauzionale e l’User del 50% della quota del Deposito cauzionale |
- | Termina il caso d'uso |
+|           6           | Sistema | Rimborsa il Driver del 50% della quota del Deposito cauzionale e l’User del 50% della quota del Deposito cauzionale | |
+ Termina il caso d'uso |

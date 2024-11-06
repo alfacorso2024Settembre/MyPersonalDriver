@@ -11,16 +11,15 @@ L’attore deve essere autenticato come User o come Driver
 La segnalazione viene registrata e inoltrata all’Admin, che la analizzerà
 
 ## Scenario principale di successo:
-|         Passo          | Attore      | Azione                                                                                                                                                                                                                                                                    |
-|:----------------------:|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|           1            | User/Driver | Entra nella sezione Segnalazioni dell’app                                                                                                                                                                                                                                 |
-|           2            | Sistema     | Visualizza il menù delle segnalazioni                                                                                                                                                                                                                                     |
-|           3            | User/Driver | Seleziona una delle opzioni disponibili                                                                                                                                                                                                                                   |
-|           4            | Sistema     | Apre la pagina dedicata a quella selezione                                                                                                                                                                                                                                |
+|         Passo          | Attore      | Azione                                     |
+|:----------------------:|:------------|:-------------------------------------------|
+|           1            | User/Driver | Entra nella sezione Segnalazioni dell’app  |
+|           2            | Sistema     | Visualizza il menù delle segnalazioni      |
+|           3            | User/Driver | Seleziona una delle opzioni disponibili    |
+|           4            | Sistema     | Apre la pagina dedicata a quella selezione |
 |  Termina il caso d'uso |
 
 ## Estensione 4a
-
 |         Passo         | Attore      | Azione                                                                                                               |
 |:---------------------:|:------------|:---------------------------------------------------------------------------------------------------------------------|
 |         4a.1          | User/Driver | Selezione l’opzione Segnala per incidente stradale                                                                   |                                                                                    

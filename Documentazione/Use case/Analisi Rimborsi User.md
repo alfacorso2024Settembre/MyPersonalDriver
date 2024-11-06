@@ -18,15 +18,15 @@ L’User ha cancellato la prenotazione 21 minuti o più prima della corsa/Il dri
 |           3           | Driver  | Accetta la richiesta                                    |
 |           4           | Sistema | Attende l’inizio della Corsa                            |
 |           5           | User    | Disdice la corsa 21 minuti prima della partenza (o più) |
-|           6           | Sistema | Rimborsa l’User del 100% del deposito cauzionale        | |
- Termina il caso d'uso |
+|           6           | Sistema | Rimborsa l’User del 100% del deposito cauzionale        | 
+| Termina il caso d'uso |         |                                                         |
 
 ## Estensione 5a
 
-|         Passo         | Attore  | Azione                                                                                                                                                          |
-|:---------------------:|:--------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|         5a.1          | Driver  | Disdice la corsa (no limiti di tempo)                                                                                                                           |                                                                                    |
-|         5a.2          | Sistema | Rimborsa l’User del 100% del deposito cauzionale                                                                                                                |
+|         Passo         | Attore  | Azione                                              |
+|:---------------------:|:--------|:----------------------------------------------------|
+|         5a.1          | Driver  | Disdice la corsa (no limiti di tempo)               |                                                                                    |
+|         5a.2          | Sistema | Rimborsa l’User del 100% del deposito cauzionale    |
 | Termina il caso d'uso |
 
 
