@@ -78,15 +78,15 @@ paths:
           description: Modification failed
         "403":
           description: Not an admin
-    
-  /rides/{idUser}: 
+
+  /rides/{idUser}:
     patch:
-      tags: 
+      tags:
         - Rides
       summary: Change the status of the ride
       description: Change the status of the ride when the user makes the deposit
       operationId: changeStatusRide
-      parameters: 
+      parameters:
         - name: idUser
           in: path
           description: Id of the user to update
@@ -180,7 +180,7 @@ paths:
           application/json:
             schema:
               type: object
-              properties:    
+              properties:
                 idDriver:
                   type: integer
                   format: int64
@@ -211,7 +211,7 @@ paths:
           description: successful operation
         "400":
           description: Invalid ID.
-                
+
   /users/{idUser}/reservations/{idReservation}:
     patch:
       tags:
@@ -381,7 +381,7 @@ paths:
       responses:
         "200":
           description: successful operation
-    
+
   /users/{idUser}/documents/{idDocument}/acceptChanges: #da controllare
     patch:
       tags:
@@ -425,7 +425,7 @@ paths:
           description: Invalid status value
         "403":
           description: not allowed
-          
+
   /users/{idUser}/suspend: #da controllare
     patch:
       tags:
@@ -453,7 +453,7 @@ paths:
             schema:
               type: object
               properties:
-                state: 
+                state:
                   type: string
                   example: sospeso
           application/xml:
@@ -514,16 +514,16 @@ paths:
             format: int64
       requestBody:
         content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Car"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Car"
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Car"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Car"
       responses:
         "200":
           description: Car added correctly
-          
+
         "400":
           description: Invalid ID supplied
         "404":
@@ -696,7 +696,7 @@ paths:
       summary: View accounts
       description: View all the account in the database
       operationId: getAccount
-    
+
       responses:
         "200":
           description: The Account are viewed correctly
@@ -715,7 +715,7 @@ paths:
           description: Exception occured
 
   /accounts/{idAccount}/ban:
-     patch:
+    patch:
       tags:
         - Accounts
       summary: Ban account
@@ -1134,7 +1134,7 @@ paths:
       tags:
         - Reservations
       summary: Receive the deposit
-      description: The deposit's amount is taken 
+      description: The deposit's amount is taken
       operationId: receiveDeposit
       parameters:
         - in: path
@@ -1183,38 +1183,38 @@ paths:
         "500":
           description: internal server error
   /users/{idUser}/rides/{idRide}/reviews/{idReview}:
-      delete:
-        summary: Delete a review 
-        description: User deletes a review
-        tags:
-          - Users
-        parameters:
-          - in: path
-            name: idUser
-            required: true
-            schema:
-              type: integer
-              minimum: 1
-            description: user ID
-          - in: path
-            name: idRide
-            required: true
-            schema:
-              type: integer
-              minimum: 1
-            description: ride ID
-          - in: path
-            name: idReview
-            required: true
-            schema:
-              type: integer
-              minimum: 1
-            description: review ID
-        responses:
-          "200": 
-            description: successful
-          "404":
-            description: not found
+    delete:
+      summary: Delete a review
+      description: User deletes a review
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+        - in: path
+          name: idRide
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: ride ID
+        - in: path
+          name: idReview
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: review ID
+      responses:
+        "200":
+          description: successful
+        "404":
+          description: not found
   /users/{idUser}/rides/{idRide}/reviews:
     post:
       tags:
@@ -1420,6 +1420,14 @@ components:
         idUser:
           type: integer
           format: int64
+        type:
+          type: string
+          description: Stato prenotazione
+          example: accettata
+          enum:
+            - licence
+            - identity card
+            - insurance
       xml:
         name: document
     Car:
@@ -1429,21 +1437,29 @@ components:
           type: string
           description: car license plate
           example: AB123CD
-        isInsured:
+        idInsurance:
           type: boolean
           example: true
-        insuranceExpireDate:
-          type: string
-          format: date-time
         vehicleDisplacement:
           type: integer
           example: 1600
+        gearShift:
+          type: string
+          example: "PLU456PLO"
+        brand:
+          type: string
+        model:
+          type: string
       xml:
         name: car
     User:
       type: object
       properties:
         idUser:
+          type: integer
+          format: int64
+          example: 10
+        idAccount:
           type: integer
           format: int64
           example: 10
@@ -1463,12 +1479,6 @@ components:
         phone:
           type: string
           example: "12345abc"
-        state:
-          type: string
-          example: attivo
-        idDocument:
-          type: integer
-          format: int64
       xml:
         name: user
     Payment:
@@ -1490,12 +1500,12 @@ components:
         idRide:
           type: integer
           format: int64
+        idDriver:
+          type: integer
+          format: int64
         completed:
           type: boolean
           example: true
-        causale:
-          type: string
-          example: "causale 1"
         amount:
           type: integer
           format: int64
@@ -1531,7 +1541,7 @@ components:
           type: integer
           format: int64
           example: 2311
-        value:
+        amount:
           type: integer
           format: int64
           example: 10
@@ -1544,15 +1554,19 @@ components:
           type: integer
           format: int64
           example: 10
-        user:
-          $ref: "#/components/schemas/User"
-        driver:
-          $ref: "#/components/schemas/User"
+        idUser:
+          type: integer
+        idDriver:
+          type: integer
+        idDeparture:
+          type: integer
+        idDeposit:
+          type: integer
+        idDestination:
+          type: integer
         resevationTime:
           type: string
           format: date-time
-        position:
-          $ref: "#/components/schemas/position"
         status:
           type: string
           description: Stato prenotazione
@@ -1561,7 +1575,7 @@ components:
             - accettata
             - rifiutata
             - in sospeso
-         
+
     loginBody:
       type: object
       properties:
@@ -1579,24 +1593,17 @@ components:
         email:
           type: string
           example: john@email.com
-
         password:
           type: string
           example: "Password1"
-
         role:
           type: string
           example: "driver"
-
-        firstName:
+        status:
           type: string
-          example: "Idri"
-        lastName:
-          type: string
-          example: "Hoxha"
-        dateOfBirth:
-          type: object
-          example: "20/04/2000"
+          example: "bannato"
+        idAccount:
+          type: integer
 
     resetPasswordBody:
       type: object
@@ -1775,17 +1782,17 @@ components:
           example: "There is no account assosiated with this email."
       xml:
         name: "##default"
-    position:
+    Position:
       type: object
       properties:
         idPosition:
           type: integer
           format: int64
           example: 1341
-        address:
+        latitude:
           type: string
           example: via rossi 15
-        cap:
+        longitude:
           type: integer
           example: 10110
     Ride:
@@ -1798,19 +1805,18 @@ components:
           type: "integer"
           format: "int64"
           example: "1"
-
-        customerId:
-          type: "integer"
-          format: "int64"
-          example: "24"
-        driverId:
+        idDriver:
           type: "integer"
           format: "int64"
           example: "33"
-        departure:
-          $ref: "#/components/schemas/position"
-        destination:
-          $ref: "#/components/schemas/position"
+        timeDeparture:
+          type: string
+        timeArrival:
+          type: string
+        idDeparture:
+          type: integer
+        idArrival:
+          type: integer
         totalKm:
           type: "integer"
           format: "int64"
@@ -1830,13 +1836,13 @@ components:
       type: "object"
       required:
         - "rideId"
-        - "userId"
+        - "idUser"
       properties:
         idReport:
           type: "integer"
           format: "int64"
           example: "4"
-        userId:
+        idUser:
           type: "integer"
           format: "int64"
           example: "24"
