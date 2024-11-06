@@ -104,6 +104,23 @@ paths:
           description: Profile updated successfully
         "400":
           description: Invalid ID.
+    get:
+      tags:
+        - Users
+      summary: View user's profile
+      description: View a list of all the user's features
+      operationId: getFeatures
+      parameters:
+        - name: idUser
+          in: path
+          description: Id of the user that wants to see hei own profile
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: successful operation
   /users/{idUser}/reservations:
     post:
       tags:
