@@ -1126,7 +1126,39 @@ paths:
           description: invalid input
         "500":
           description: internal server error
-
+  /users/{idUser}/rides/{idRide}/reviews/{idReview}:
+      delete:
+        summary: Delete a review 
+        description: User deletes a review
+        tags:
+          - Users
+        parameters:
+          - in: path
+            name: idUser
+            required: true
+            schema:
+              type: integer
+              minimum: 1
+            description: user ID
+          - in: path
+            name: idRide
+            required: true
+            schema:
+              type: integer
+              minimum: 1
+            description: ride ID
+          - in: path
+            name: idReview
+            required: true
+            schema:
+              type: integer
+              minimum: 1
+            description: review ID
+        responses:
+          "200": 
+            description: successful
+          "404":
+            description: not found
   /users/{idUser}/rides/{idRide}/reviews:
     post:
       tags:
