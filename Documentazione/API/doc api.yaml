@@ -136,7 +136,26 @@ paths:
           description: Added successfully
         "400":
           description: Invalid ID.
-          
+    
+    get:
+      tags:
+        - Users
+      summary: View existing reservations
+      description: User or driver views the reservations relative to his account
+      operationId: viewReservation
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: integer
+          description: Id of the user that views the reservations
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: Invalid ID.
+                
   /users/{idUser}/reservations/{idReservation}:
     patch:
       tags:
