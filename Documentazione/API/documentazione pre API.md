@@ -23,6 +23,7 @@
 
 - accounts/{id}/modifyAccount
 - accounts/{id}/deleteAccount
+- accounts/{id}/suspensionAccount
 
 ### Authentication
 
