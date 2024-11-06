@@ -1317,9 +1317,35 @@ paths:
           description: Validation exception
         "500":
           description: Internal server error
-    
-
-
+  /documents:
+    get:
+      tags:
+        - Documents
+      summary: View all user's documents
+      description: The administrator views all user's document
+      operationId: viewDocuments
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Document"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Document"
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Account not found
+        "422":
+          description: Validation exception
+        "500":
+          description: Internal server error
 components:
   schemas:
     Document:
