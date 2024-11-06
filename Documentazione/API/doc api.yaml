@@ -1526,7 +1526,7 @@ components:
         idUser:
           type: integer
           format: int64
-        value:
+        rating:
           type: number
           example: 4
         notes:
@@ -1564,7 +1564,7 @@ components:
           type: integer
         idDestination:
           type: integer
-        resevationTime:
+        time:
           type: string
           format: date-time
         status:
@@ -1853,6 +1853,16 @@ components:
         descriprion:
           type: "string"
           example: "C'è stato un errore nel pagamento della corsa"
+        type:
+          type: "string"
+          description: "Report Type"
+          example: "accident"
+          enum:
+            - "accident"
+            - "behavior"
+            - "payment"
+            - "fine"
+            - "other"
         status:
           type: "string"
           description: "Report Status"
