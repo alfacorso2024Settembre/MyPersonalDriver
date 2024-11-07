@@ -42,7 +42,7 @@ create table if not exists users(
 	lastname varchar(255) not null,
 	phone varchar(10) not null,
 	birthDate date not null,
-	profilePicture blob not null,
+	profilePicture varchar(255) not null,
 	gender varchar(255) not null,
 	foreign key(idAccount) references accounts(idAccount)
 );
@@ -138,7 +138,7 @@ create table if not exists documents(
 	idDocument int not null auto_increment primary key,
 	isValid boolean not null,
 	expiryDate date not null,
-	photo blob not null,
+	photo varchar(255) not null,
 	idType int not null,
 	idUser int not null,
 	foreign key(idUser) references users(idUser),
@@ -157,5 +157,3 @@ create table if not exists cars(
 	foreign key(idUser) references users(idUser),
 	foreign key(idInsurance) references documents(idDocument)
 );
-
-
