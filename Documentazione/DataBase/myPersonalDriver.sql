@@ -136,6 +136,7 @@ create table if not exists documentType(
 
 create table if not exists documents(
 	idDocument int not null auto_increment primary key,
+	accepted boolean not null,
 	isValid boolean not null,
 	expiryDate date not null,
 	photo varchar(255) not null,
