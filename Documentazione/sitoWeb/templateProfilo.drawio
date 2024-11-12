@@ -50,9 +50,9 @@
             <mxPoint x="10" y="30" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="WmPic4fgFlVuSvD46Pqc-15" value="&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Email: name@gmail.com&lt;/span&gt;&lt;/div&gt;&lt;div&gt;Password: *********&lt;/div&gt;Firstname: ...&lt;div&gt;Lastname: ...&lt;/div&gt;&lt;div&gt;Birthdate: ...&lt;/div&gt;&lt;div&gt;Phone:&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;1234567890&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.anchor;fontSize=12;fontColor=#666666;align=left;resizeWidth=1;spacingLeft=0;" vertex="1" parent="WmPic4fgFlVuSvD46Pqc-12">
+        <mxCell id="WmPic4fgFlVuSvD46Pqc-15" value="&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Email: name@gmail.com&lt;/span&gt;&lt;/div&gt;&lt;div&gt;Password: *********&lt;/div&gt;Firstname: ...&lt;div&gt;Lastname: ...&lt;/div&gt;&lt;div&gt;Birthdate: ...&lt;/div&gt;&lt;div&gt;Phone:&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;1234567890&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;u&gt;Reviews&lt;/u&gt;&lt;/div&gt;&lt;div&gt;&lt;u&gt;Reports&lt;/u&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.anchor;fontSize=12;fontColor=#666666;align=left;resizeWidth=1;spacingLeft=0;" vertex="1" parent="WmPic4fgFlVuSvD46Pqc-12">
           <mxGeometry width="130" height="40" relative="1" as="geometry">
-            <mxPoint x="34" y="145" as="offset" />
+            <mxPoint x="34" y="155" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="WmPic4fgFlVuSvD46Pqc-17" value="" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.anchor;fontSize=12;fontColor=#666666;align=left;resizeWidth=1;spacingLeft=0;" vertex="1" parent="WmPic4fgFlVuSvD46Pqc-12">
