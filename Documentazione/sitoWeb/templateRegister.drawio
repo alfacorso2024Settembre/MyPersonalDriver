@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
   <diagram name="Pagina-1" id="f8DElW83291utPv9S6O0">
-    <mxGraphModel dx="2391" dy="1194" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2575" dy="1286" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -224,7 +224,7 @@
           <mxGeometry x="1410" y="555" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="jbmB4bW6MkgBn3oLdxJq-1" value="Open your email and click on the confirmation link to register." style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.rrect;rSize=0;strokeColor=#666666;fontColor=#666666;fontSize=17;verticalAlign=top;whiteSpace=wrap;fillColor=#ffffff;spacingTop=32;" parent="1" vertex="1">
-          <mxGeometry x="1360" y="90" width="250" height="160" as="geometry" />
+          <mxGeometry x="1370" y="20" width="250" height="160" as="geometry" />
         </mxCell>
         <mxCell id="jbmB4bW6MkgBn3oLdxJq-2" value="Confirm Registration" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.rrect;rSize=0;fontSize=17;fontColor=#666666;strokeColor=#666666;align=left;spacingLeft=8;fillColor=#ffffff;resizeWidth=1;whiteSpace=wrap;" parent="jbmB4bW6MkgBn3oLdxJq-1" vertex="1">
           <mxGeometry width="250" height="30" relative="1" as="geometry" />
@@ -251,8 +251,14 @@
         <mxCell id="jbmB4bW6MkgBn3oLdxJq-9" value="OnClick view password" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1430" y="870" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="u1y4i8SuoaqAy45e2qVj-1" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Use Case 010&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="u1y4i8SuoaqAy45e2qVj-1" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Use Case 010&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="650" y="10" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="k6gbD3T-anXrhZokBozW-1" value="Text" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1550" y="430" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="k6gbD3T-anXrhZokBozW-2" value="OnClick Ok chiama :&amp;nbsp;&lt;br&gt;&lt;br&gt;POST/accounts" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1391.5" y="220" width="182.5" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
