@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.4">
   <diagram name="Pagina-1" id="whGeec0us_iU8IWxTtMR">
-    <mxGraphModel dx="1120" dy="468" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1318" dy="551" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -40,7 +40,7 @@
         <mxCell id="WmPic4fgFlVuSvD46Pqc-12" value="" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.rrect;rSize=0;strokeColor=#999999;fillColor=#ffffff;" vertex="1" parent="WmPic4fgFlVuSvD46Pqc-1">
           <mxGeometry x="280" y="270" width="510" height="370" as="geometry" />
         </mxCell>
-        <mxCell id="WmPic4fgFlVuSvD46Pqc-13" value="Il tuo profilo" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.anchor;fontSize=12;fontColor=#666666;align=left;resizeWidth=1;spacingLeft=0;" vertex="1" parent="WmPic4fgFlVuSvD46Pqc-12">
+        <mxCell id="WmPic4fgFlVuSvD46Pqc-13" value="Your profile" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.anchor;fontSize=12;fontColor=#666666;align=left;resizeWidth=1;spacingLeft=0;" vertex="1" parent="WmPic4fgFlVuSvD46Pqc-12">
           <mxGeometry width="255" height="20" relative="1" as="geometry">
             <mxPoint x="10" y="10" as="offset" />
           </mxGeometry>
@@ -86,7 +86,7 @@
           <mxGeometry x="151" y="260.12" width="65" height="30" as="geometry" />
         </mxCell>
         <mxCell id="WmPic4fgFlVuSvD46Pqc-55" value="&lt;span style=&quot;box-sizing: border-box; background: rgb(97, 175, 254); border-radius: 3px; color: rgb(255, 255, 255); font-family: sans-serif; font-size: 14px; font-weight: 700; min-width: 80px; padding: 6px 0px; text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px; text-wrap-mode: wrap;&quot; class=&quot;opblock-summary-method&quot;&gt;GET&lt;/span&gt;&lt;a style=&quot;font-family: monospace; font-size: 16px; font-weight: 600; background-color: transparent; color: inherit; text-align: start; text-wrap-mode: wrap; box-sizing: border-box; cursor: pointer; text-decoration: inherit; display: inline !important;&quot; class=&quot;nostyle&quot;&gt;&lt;span style=&quot;box-sizing: border-box;&quot;&gt;/users&lt;wbr style=&quot;box-sizing: border-box;&quot;&gt;/{idUser}&lt;/span&gt;&lt;/a&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WmPic4fgFlVuSvD46Pqc-1">
-          <mxGeometry x="720" y="530" width="180" height="30" as="geometry" />
+          <mxGeometry x="780" y="500" width="180" height="30" as="geometry" />
         </mxCell>
         <mxCell id="WmPic4fgFlVuSvD46Pqc-56" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.988;exitY=0.336;exitDx=0;exitDy=0;entryX=0.459;entryY=1.054;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" edge="1" target="WmPic4fgFlVuSvD46Pqc-55" parent="WmPic4fgFlVuSvD46Pqc-1" source="WmPic4fgFlVuSvD46Pqc-19">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -95,7 +95,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="WmPic4fgFlVuSvD46Pqc-57" value="&lt;span style=&quot;box-sizing: border-box; background: rgb(97, 175, 254); border-radius: 3px; color: rgb(255, 255, 255); font-family: sans-serif; font-size: 14px; font-weight: 700; min-width: 80px; padding: 6px 0px; text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px; text-wrap-mode: wrap;&quot; class=&quot;opblock-summary-method&quot;&gt;GET&lt;/span&gt;&lt;a style=&quot;font-family: monospace; font-size: 16px; font-weight: 600; background-color: transparent; color: inherit; text-align: start; text-wrap-mode: wrap; box-sizing: border-box; cursor: pointer; text-decoration: inherit; display: inline !important;&quot; class=&quot;nostyle&quot;&gt;&lt;span style=&quot;box-sizing: border-box;&quot;&gt;/accounts&lt;/span&gt;&lt;/a&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WmPic4fgFlVuSvD46Pqc-1">
-          <mxGeometry x="745" y="610" width="130" height="30" as="geometry" />
+          <mxGeometry x="830" y="570" width="130" height="30" as="geometry" />
         </mxCell>
         <mxCell id="WmPic4fgFlVuSvD46Pqc-58" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.996;exitY=0.264;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" target="WmPic4fgFlVuSvD46Pqc-57" parent="WmPic4fgFlVuSvD46Pqc-1" source="WmPic4fgFlVuSvD46Pqc-19">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -151,6 +151,24 @@
             <mxPoint x="560" y="580" as="targetPoint" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="WmPic4fgFlVuSvD46Pqc-79" value="&lt;span style=&quot;box-sizing: border-box; background: rgb(97, 175, 254); border-radius: 3px; color: rgb(255, 255, 255); font-family: sans-serif; font-size: 14px; font-weight: 700; min-width: 80px; padding: 6px 0px; text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px;&quot; class=&quot;opblock-summary-method&quot;&gt;GET&lt;/span&gt;&lt;a style=&quot;font-family: monospace; font-size: 16px; font-weight: 600; background-color: transparent; color: inherit; text-align: start; box-sizing: border-box; cursor: pointer; text-decoration: inherit; display: inline !important;&quot; class=&quot;nostyle&quot;&gt;&lt;span style=&quot;box-sizing: border-box;&quot;&gt;/users&lt;wbr style=&quot;box-sizing: border-box;&quot;&gt;/{idUser}&lt;wbr style=&quot;box-sizing: border-box;&quot;&gt;/rides&lt;wbr style=&quot;box-sizing: border-box;&quot;&gt;/reviews&lt;/span&gt;&lt;/a&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WmPic4fgFlVuSvD46Pqc-1">
+          <mxGeometry x="160" y="260" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WmPic4fgFlVuSvD46Pqc-81" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="WmPic4fgFlVuSvD46Pqc-1" source="WmPic4fgFlVuSvD46Pqc-61" target="WmPic4fgFlVuSvD46Pqc-79">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="450" as="sourcePoint" />
+            <mxPoint x="530" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WmPic4fgFlVuSvD46Pqc-77" value="&lt;span style=&quot;box-sizing: border-box; background: rgb(97, 175, 254); border-radius: 3px; color: rgb(255, 255, 255); font-family: sans-serif; font-size: 14px; font-weight: 700; min-width: 80px; padding: 6px 0px; text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px;&quot; class=&quot;opblock-summary-method&quot;&gt;GET&lt;/span&gt;&lt;a style=&quot;font-family: monospace; font-size: 16px; font-weight: 600; background-color: transparent; color: inherit; text-align: start; box-sizing: border-box; cursor: pointer; text-decoration: inherit; display: inline !important;&quot; class=&quot;nostyle&quot;&gt;&lt;span style=&quot;box-sizing: border-box;&quot;&gt;/users&lt;wbr style=&quot;box-sizing: border-box;&quot;&gt;/{idUser}&lt;wbr style=&quot;box-sizing: border-box;&quot;&gt;/rides&lt;wbr style=&quot;box-sizing: border-box;&quot;&gt;/reports&lt;/span&gt;&lt;/a&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WmPic4fgFlVuSvD46Pqc-1">
+          <mxGeometry x="15" y="310" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WmPic4fgFlVuSvD46Pqc-82" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="WmPic4fgFlVuSvD46Pqc-1" source="WmPic4fgFlVuSvD46Pqc-68" target="WmPic4fgFlVuSvD46Pqc-77">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="450" as="sourcePoint" />
+            <mxPoint x="530" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="WmPic4fgFlVuSvD46Pqc-33" value="" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;strokeWidth=1;shape=mxgraph.mockup.containers.userMale;strokeColor=#666666;strokeColor2=#008cff;" vertex="1" parent="1">
           <mxGeometry x="1666" y="355" width="100" height="100" as="geometry" />
         </mxCell>
@@ -194,6 +212,24 @@
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1836" y="680" as="sourcePoint" />
             <mxPoint x="1886" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WmPic4fgFlVuSvD46Pqc-78" value="&lt;span style=&quot;box-sizing: border-box; background: rgb(97, 175, 254); border-radius: 3px; color: rgb(255, 255, 255); font-family: sans-serif; font-size: 14px; font-weight: 700; min-width: 80px; padding: 6px 0px; text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px;&quot; class=&quot;opblock-summary-method&quot;&gt;GET&lt;/span&gt;&lt;a style=&quot;font-family: monospace; font-size: 16px; font-weight: 600; background-color: transparent; color: inherit; text-align: start; box-sizing: border-box; cursor: pointer; text-decoration: inherit; display: inline !important;&quot; class=&quot;nostyle&quot;&gt;&lt;span style=&quot;box-sizing: border-box;&quot;&gt;/users&lt;wbr style=&quot;box-sizing: border-box;&quot;&gt;/{idUser}&lt;wbr style=&quot;box-sizing: border-box;&quot;&gt;/Cars&lt;/span&gt;&lt;/a&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="410" y="740" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WmPic4fgFlVuSvD46Pqc-80" value="&lt;span style=&quot;box-sizing: border-box; background: rgb(97, 175, 254); border-radius: 3px; color: rgb(255, 255, 255); font-family: sans-serif; font-size: 14px; font-weight: 700; min-width: 80px; padding: 6px 0px; text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px;&quot; class=&quot;opblock-summary-method&quot;&gt;GET&lt;/span&gt;&lt;a style=&quot;font-family: monospace; font-size: 16px; font-weight: 600; background-color: transparent; color: inherit; text-align: start; box-sizing: border-box; cursor: pointer; text-decoration: inherit; display: inline !important;&quot; class=&quot;nostyle&quot;&gt;&lt;span style=&quot;box-sizing: border-box;&quot;&gt;/users&lt;wbr style=&quot;box-sizing: border-box;&quot;&gt;/{idUser}&lt;wbr style=&quot;box-sizing: border-box;&quot;&gt;/documents&lt;/span&gt;&lt;/a&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="410" y="830" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WmPic4fgFlVuSvD46Pqc-83" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="WmPic4fgFlVuSvD46Pqc-73" target="WmPic4fgFlVuSvD46Pqc-78">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="930" y="700" as="sourcePoint" />
+            <mxPoint x="980" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WmPic4fgFlVuSvD46Pqc-84" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="WmPic4fgFlVuSvD46Pqc-75" target="WmPic4fgFlVuSvD46Pqc-80">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="930" y="700" as="sourcePoint" />
+            <mxPoint x="980" y="650" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
