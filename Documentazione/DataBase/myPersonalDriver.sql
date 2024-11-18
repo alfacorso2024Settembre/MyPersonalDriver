@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS myPersonalDriver;
+DROP DATABASE IF EXISTS mypersonaldriver;
 
-CREATE DATABASE myPersonalDriver;
+CREATE DATABASE mypersonaldriver;
 
-USE myPersonalDriver;
+USE mypersonaldriver;
 
 create table if not exists roles(
 	idRole int not null auto_increment primary key,
