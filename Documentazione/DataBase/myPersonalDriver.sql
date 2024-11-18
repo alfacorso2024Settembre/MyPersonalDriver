@@ -49,10 +49,12 @@ create table if not exists users(
 
 create table if not exists reviews(
 	idReview int not null auto_increment primary key,
-	idUser int not null,
+	idSender int not null,
+    idReceiver int not null,
 	rating int check(rating>0 and rating<6) not null,
 	notes varchar(255),
-	foreign key(idUser) references users(idUser)
+	foreign key(idSender) references users(idUser),
+    foreign key(idReceiver) references users(idUser)
 );
 
 create table if not exists reservationStatus(
