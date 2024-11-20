@@ -36,10 +36,6 @@ INSERT INTO users (idAccount, firstname, lastname, phone, birthDate, profilePict
 (2, 'Jane', 'Smith', '0987654321', '1995-05-05', 'profile2.jpg', 'Female'),
 (3, 'Admin', 'User', '1112223333', '1985-10-10', 'profile3.jpg', 'Other');
 
--- Popola reviews
-INSERT INTO reviews (idSender, idReceiver , rating, notes) VALUES
-(1, 2, 5, 'Excellent service!'),
-(2, 3, 4, 'Very good, but could be better.');
 
 -- Popola reservationStatus
 INSERT INTO reservationStatus (type) VALUES 
@@ -62,6 +58,11 @@ INSERT INTO rideStatus (type) VALUES
 INSERT INTO rides (timeArrival, timeDeparture, idStatus, idReservation, totalKm) VALUES
 ('2024-11-15 12:00:00', '2024-11-15 10:30:00', 2, 1, 100.5),
 ('2024-11-16 16:30:00', '2024-11-16 15:00:00', 1, 2, 150.0);
+
+-- Popola reviews
+INSERT INTO reviews (idRide , rating, notes) VALUES
+(1, 5, 'Excellent service!'),
+(2, 4, 'Very good, but could be better.');
 
 -- Popola payments
 INSERT INTO payments (amount, completed, date, idRide) VALUES
