@@ -23,8 +23,10 @@ Il documento dell'utente viene accettato e può accedere ai servizi.
 |   4   | Sistema                 | mostra pagina con dati da verificare e la foto del documento       |
 |   5   | Admin                   | controlla che i dati del documento corrispondano a quelli inseriti | 
 |   6   | Admin                   | accetta il documento dell' utente                                  |
-|   7   | Sistema                 | aggiorna lo stato del documento in "accettato"                     |
-|   8   | Sistema                 | manda email di conferma all'utente                                 |       
+|   7   | Sistema                 | chiede conferma                                                    |
+|   8   | Admin                   | conferma la scelta                                                 |  
+|   9   | Sistema                 | aggiorna lo stato del documento in "accettato"                     |
+|   10  | Sistema                 | manda email di conferma all'utente                                 |       
 |       |*Termina il caso d'uso*  |                                                                    |
 
 ### Variante 7.1
@@ -34,11 +36,11 @@ Il documento dell'utente viene accettato e può accedere ai servizi.
 |       | *Termina il caso d'uso* |                                             |
 
 ### Eccezione 8.1
-| Passo | Attore                  | Azione                                  | 
-|:-----:|:------------------------|:----------------------------------------| 
-|   8   | Sistema                 | errore nell'invio della mail all'utente |
-|   9   | Sistema                 | notifica l'errore all'admin             |
-|       | *Termina il caso d'uso* |                                         |
+| Passo | Attore                  | Azione                                              | 
+|:-----:|:------------------------|:----------------------------------------            | 
+|   8   | Sistema                 | riscontra un errore nell'invio della mail all'utente|
+|   9   | Sistema                 | notifica l'errore all'admin                         |
+|       | *Termina il caso d'uso* |                                                     |
 
 ## Estensione 5.1
 | Passo | Attore                   | Azione                                               | 
@@ -47,7 +49,10 @@ Il documento dell'utente viene accettato e può accedere ai servizi.
 |   6   | Admin                    | rifiuta il documento                                 |
 |   7   | Sistema                  | richiede il motivo del rifiuto                       |
 |   8   | Admin                    | inserisce il motivo del rifiuto                      |
-|   8   | Sistema                  | manda email all'utente con il motivo del rifiuto     |
+|   9   | Admin                    | invia il motivo                                      |
+|   10  | Sistema                  | chiede conferma dell'invio dell'email all'utente     |
+|   11  | Admin                    | conferma la scelta                                   |  
+|   12  | Sistema                  | manda email all'utente con il motivo del rifiuto     |
 |       | *Termina il caso d'uso*  |                                                      |
 
 ## Estensione 5.2
