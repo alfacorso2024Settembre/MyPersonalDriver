@@ -1,6 +1,6 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.8 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.8">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.17">
   <diagram name="Pagina-1" id="f8DElW83291utPv9S6O0">
-    <mxGraphModel dx="1674" dy="836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1027" dy="957" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -110,13 +110,10 @@
         <mxCell id="TdJrCMo5KUDWPo_WL5wz-42" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Use Case 000&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="620" width="240" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="i455mTM0b3tq1pQRJW_F-1" value="SIGN IN" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.rrect;rSize=5;strokeColor=none;fontColor=#ffffff;fillColor=#66bbff;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="i455mTM0b3tq1pQRJW_F-1" value="SIGN IN" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.forms.rrect;rSize=5;strokeColor=none;fontColor=#ffffff;fillColor=#66bbff;fontSize=16;fontStyle=1;" parent="1" vertex="1">
           <mxGeometry x="1400" y="580" width="80" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="i455mTM0b3tq1pQRJW_F-2" value="Text" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="820" y="610" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="i455mTM0b3tq1pQRJW_F-3" value="On click chiama :&amp;nbsp;&lt;br&gt;POST authentication/login" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="i455mTM0b3tq1pQRJW_F-3" value="On click chiama :&amp;nbsp;&lt;br&gt;POST authentication/login" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1365" y="630" width="180" height="30" as="geometry" />
         </mxCell>
       </root>

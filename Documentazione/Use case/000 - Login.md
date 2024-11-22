@@ -135,3 +135,10 @@ L'attore inserisce email e password per effettuare il login.
 | 3     | Attore inserisce email e passworda.                                   |
 | 4     | Sistema controlla se l'email e la password, rispettano i requisiti.   |
 | 5     | Sistema mostra un messaggio di errore che indica l'account e bannato. |
+
+
+# Components
+
+- NAVBAR: generica del Login, dove sarà visibile solamente il logo dell'app al centro della NAVBAR
+- FOOTER: generico di tutte le pagine, sarà presente un bottone al centro del footer grazie al quale sarà possibile visualizzare i dati dell'applicazione (email, numero di telefono, indirizzo, etc.)
+- LOGIN FORM: Form da cui è possibile accedere alla Homepage, o alla pagina di registrazione, o alla pagina di recupero credenziali, o verrà visualizzato un messaggio di errore nel caso in cui email o password siano sbagliate.
