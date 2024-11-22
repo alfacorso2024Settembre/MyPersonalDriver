@@ -69,7 +69,16 @@ Il documento dell'utente viene accettato e può accedere ai servizi.
 |       | *Vai al passo 6 di Estensione 5.1* |                                               |
 
 
+# Components
 
+- NAVBAR: logo dell'app visibile sulla sinistra, al centro il link che porta alla home e a destra l'immagine di profilo dell'utemte che permette di accedere alla gestione del profilo.
+- FOOTER: generico di tutte le pagine, sarà presente un bottone al centro del footer grazie al quale sarà possibile visualizzare i dati dell'applicazione (email, numero di telefono, indirizzo, etc.).
+- TABELLA DOCUMENTI DA ACCETTARE: tabella che mostra i documenti con stato "da accettare". Se non ci sono documenti da verificare, viene mostrata la scritta "Non sono presenti documenti da verificare.".
+- ELEMENTO TABELLA DOCUMENTI DA ACCETTARE: ogni riga contiene i dati del documento da accettare, con il button "visualizza" che permette di visualizzare tutti i dati del documento e l'immagine caricata.
+- DOCUMENTO: pagina che contiene tutte le info del documento precedentemente selezionato e l'immagine. Sono presenti due buttons ("accetta documento" e "rifiuta documento") che mostrano un pop-up per la conferma della scelta.
+- ELEMENTO FOTO DEL DOCUMENTO: immagine del documento caricata dall'utente.
+- ELEMENTO INFO DEL DOCUMENTO: informazioni del documento inserite dall'utente.
+- RIFIUTA DOCUMETO: form in formato email che prende in input l'email dell'utente a cui appartiene il documento rifiutato e consente di scegliere il motivo del rifiuto e (opzionalmente) descrivere il problema in modo piu' dettagliato. Contiene un button "invia" che genera un pop-up per la conferma dell'invio.
 
 
 
