@@ -41,3 +41,10 @@ L'utente deve essere registrato e autenticato.
 |:-----:|:---------------------|:------------------------------------------------------| 
 |   9   | Sistema              | ERRORE: formato della foto non supportato             |
 |       | *Ritorna al passo 7* |                                                       |
+
+# Components
+
+- NAVBAR: generica di tutte le pagine
+- FOOTER: generico di tutte le pagine, sarà presente un bottone al centro del footer grazie al quale sarà possibile visualizzare i dati dell'applicazione (email, numero di telefono, indirizzo, etc.)
+- TABELLA: generico layout ma che al suo interno conterrà i dati relativi ai veicoli dell'utente
+- POPUP: per l'inserimento / la modifica del veicolo
