@@ -56,3 +56,10 @@ L'utente desidera prenotare un Driver disponibile dalla ricerca precedentemente 
 | 5b.2                  | Sistema | Invia un messaggio di errore all'utente indicandogli che qualcosa è andato storto  |
 | 5b.3                  | Sistema | Partirà il caso d'uso "Cerca Driver"                                               |
 | Termina il caso d'uso |
+
+# Components
+
+- NAVBAR: generica di tutte le pagine
+- FOOTER: generico di tutte le pagine, sarà presente un bottone al centro del footer grazie al quale sarà possibile visualizzare i dati dell'applicazione (email, numero di telefono, indirizzo, etc.)
+- TABELLA: generico layout ma che al suo interno conterrà i dati relativi alle prenotazioni
+- POPUP: con all'interno il componente cerca driver 

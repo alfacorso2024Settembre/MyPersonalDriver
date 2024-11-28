@@ -39,3 +39,9 @@ L'utente ricerca i Driver disponibili nella sua zona per poter prenotare la cors
 - Da capire se la posizione del driver si baserà sulla geolocalizzazione oppure sul cap inserito o sull'indirizzo fornito
 - L'utente può verificare il profilo del driver prima di prenotarlo, vedere recensioni e affidabilità
 - La mappa si aggiornerà ogni volta che l'utente rieffettuerà la ricerca, se il driver non è più disponibile non apparirà nella ricerca
+
+# Components
+
+- NAVBAR: generica di tutte le pagine
+- FOOTER: generico di tutte le pagine, sarà presente un bottone al centro del footer grazie al quale sarà possibile visualizzare i dati dell'applicazione (email, numero di telefono, indirizzo, etc.)
+- TABELLA: generico layout ma che al suo interno conterrà i dati relativi ai driver

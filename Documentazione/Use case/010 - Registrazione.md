@@ -165,3 +165,9 @@ Un nuovo user, inserisce email,password,nome,cognome,data di nascita e si regist
 | 4     | Sistema controlla se l'email e la password,n.telefono,data di nascita rispettano i requisiti. |
 | 5     | Sistema mostra un messaggio di errore che indica l'errore nel campo specifico.                |
 | 6     | User riparte dal passo 3.                                                                     |
+
+# Components
+
+- NAVBAR: Quello elementare con un buttone che ti porta dietro al login
+- FOOTER: generico di tutte le pagine, sarà presente un bottone al centro del footer grazie al quale sarà possibile visualizzare i dati dell'applicazione (email, numero di telefono, indirizzo, etc.)
+- Register FORM: Form da cui è possibile registrare e nel caso di successo accedere alla Login,contiene un input validation che controla l format dell email , password , n telefono, data di nascita e nell caso di successo torna l imagine da un red cross a un green check. nel caso di errore viene un messagio con i errori specifici.

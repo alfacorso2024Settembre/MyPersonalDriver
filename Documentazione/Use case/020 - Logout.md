@@ -29,3 +29,6 @@
 | 1     | L'attore seleziona "Logout".                                 |
 | 2     | Sistema disconnetti l'attore e mostra la schermata di login. |
 
+# Components
+
+-Buttone logout
