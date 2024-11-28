@@ -2,8 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/PD-client-base" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/PDcommon" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/PDdocuments" vcs="Git" />
   </component>
 </project>
