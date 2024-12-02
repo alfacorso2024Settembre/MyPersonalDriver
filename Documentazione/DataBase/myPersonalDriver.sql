@@ -38,15 +38,7 @@ create table if not exists users(
 	gender varchar(255) not null,
 	foreign key(idAccount) references accounts(idAccount)
 );
-create table if not exists reviews(
-	idReview int not null auto_increment primary key,
-	idSender int not null,
-    idReceiver int not null,
-	rating int check(rating>0 and rating<6) not null,
-	notes varchar(255),
-	foreign key(idSender) references users(idUser),
-    foreign key(idReceiver) references users(idUser)
-);
+
 create table if not exists reservationStatus(
 	idStatus int not null auto_increment primary key,
 	type varchar(255)
@@ -80,6 +72,13 @@ create table if not exists rides(
 	totalKm float,
 	foreign key(idReservation) references reservations(idReservation),
 	foreign key(idStatus) references rideStatus(idStatus)
+);
+create table if not exists reviews(
+	idReview int not null auto_increment primary key,
+	idRide int not null,
+	rating int check(rating>0 and rating<6) not null,
+	notes varchar(255),
+	foreign key(idRide) references rides(idRide)
 );
 create table if not exists payments(
 	idPayment int not null auto_increment primary key,
