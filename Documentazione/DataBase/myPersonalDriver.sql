@@ -78,6 +78,7 @@ create table if not exists reviews(
 	idRide int not null,
 	rating int check(rating>0 and rating<6) not null,
 	notes varchar(255),
+    authorIsDriver boolean not null,
 	foreign key(idRide) references rides(idRide)
 );
 create table if not exists payments(
