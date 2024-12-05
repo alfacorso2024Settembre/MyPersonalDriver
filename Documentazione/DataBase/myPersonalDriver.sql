@@ -117,7 +117,7 @@ create table if not exists documentType(
 );
 create table if not exists documents(
 	idDocument int not null auto_increment primary key,
-	accepted boolean not null,
+	status varchar(255) not null,
 	isValid boolean not null,
 	number varchar(255) not null,
 	expiryDate date not null,
