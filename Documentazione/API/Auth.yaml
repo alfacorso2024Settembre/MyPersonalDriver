@@ -16,61 +16,381 @@ servers:
   - url: da definire
 tags:
   
-  - name: user
-    description: Operations about user
+  - name: Account (Auth)
+    description: Operations about Accounts where authentication and authorization information is stored.
 paths:
-  /accounts/register:
+  /accounts:
     post:
       tags:
-        - user
-      summary: Create user
+        - Accounts
+      summary: Create Account
       description: This can only be done by new users.
-      operationId: createUser
+      operationId: createAccount
       requestBody:
-        description: Created user object
+        description: Created account object
         content:
           application/json: 
             schema:
-             $ref: '#/components/schemas/register'
+             $ref: '#/components/schemas/createBody'
           application/xml:
             schema:
-              $ref: '#/components/schemas/register'
+              $ref: '#/components/schemas/createBody'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/register'
+              $ref: '#/components/schemas/createBody'
+      responses:
+        201:
+          description: The request has been fulfilled, and a new resource is created 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/201'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/201'
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/400'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/500'
+    get:
+      tags:
+        - Accounts
+      summary: Retrieve a list of all accounts in the db.
+      description: Retrieve a list of all accounts in the db.(id hidden and will appear 0)
+      operationId: GetAllAccounts
       responses:
         200:
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterSuccessfull'
+                $ref: '#/components/schemas/ListAccountsResponse'
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterSuccessfull'
+                $ref: '#/components/schemas/ListAccountsResponse'
         400:
           description: client error operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterCError'
+                $ref: '#/components/schemas/400'
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterCError'
+                $ref: '#/components/schemas/400'
+                
+         
+          
         500:
           description: server error operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterSError'
+                $ref: '#/components/schemas/500'
             application/xml:
               schema:
-                $ref: '#/components/schemas/ApiResponseRegisterSError'
+                $ref: '#/components/schemas/500'
+                
+  /accounts/{id}:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieve a List of accounts that satisfy the filter in case of role and status.
+              Returns a List with 1 element in case of email.
+      description: filter query accounts
+      operationId: SearchAccountsById
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the account to get
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
         
+        
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/400'
+        
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/404'
+        
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/500'
+        default:
+          description: successful operation
+      
+    
+    put:
+        tags:
+          - Accounts
+        summary: Modify account by id.
+        description: Modify account by id.
+        operationId: ModifyAccounts
+        parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the account to update
+        
+    
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/SuccessfullUpdate'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/SuccessfullUpdate'
+          
+          404:
+            description: Not found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/404'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/404'
+      
+          400:
+            description: client error operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/400'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/400'
+          500:
+            description: server error operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/500'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/500'
+          default:
+            description: successful operation
+    delete:
+        tags:
+          - Accounts
+        summary: Delete account by id.
+        description: Delete account by id.
+        operationId: DeleteAccount
+        parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the account to delete
+    
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/SuccessfullDelete'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/SuccessfullDelete'
+          404:
+            description: Not found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/404'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/404'
+          
+          400:
+            description: client error operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/400'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/400'
+          500:
+            description: server error operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/500'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/500'
+          default:
+            description: successful operation
+    
+        
+  /accounts/search:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieve a List of accounts that satisfy the filter in case of role and status.
+              Returns a List with 1 element in case of email.
+      description: filter query accounts
+      operationId: SearchAccounts
+      parameters: 
+      - in: query
+        name: roleOrStatusOrEmail
+        required: false
+        description: Role filter for accounts (e.g., 'admin', 'user').
+        schema:
+          type: string
+    
+      
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAccountsResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ListAccountsResponse'
+        
+        
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/400'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/500'
+        default:
+          description: successful operation
+  
+  /accounts/email/{email}:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieve account by email.
+      description: Return one account by email . Including ID.
+      operationId: GetAccountByEmail
+      
+      parameters: 
+      - in: path
+        name: email
+        required: true
+        description: The unique identifier for an account.
+        schema:
+          type: string
+      
+      
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountByEmail'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AccountByEmail'
+        
+        404:
+            description: Not found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/404'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/404'
+        
+        
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/400'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/500'
+        default:
+          description: successful operation
+  
+  
   /accounts/login:
     post:
       tags:
-        - user
+        - To be done
       summary: User logs in
       description: authenticates and creates a session token for user
       operationId: loginUser
@@ -121,10 +441,12 @@ paths:
           description: successful operation
         
   
+        
+  
   /accounts/logout:
     delete:
       tags:
-        - user
+        - To be done
       summary: Logs out current logged in user session
       description: ''
       operationId: logoutUser
@@ -174,6 +496,104 @@ components:
 
     
   schemas:
+  
+    createBody:
+      type: object
+      properties:
+        email:
+          type: string
+          example: john@email.com
+        
+        password:
+          type: string
+          example: 'Password1'
+        
+        role:
+          type: string
+          example: 'Driver'
+        
+        status:
+          type: string
+          example: 'Banned'
+    
+    201:
+      type: string
+      example: "Account created with ID: 122"
+      
+    400:
+      type: string
+      example : "ErrorDao: Specific message"
+      
+    404: 
+      type: string
+      example : "ErrorDao: Account not found"
+    
+    500: 
+      type: string
+      example: "Error: Specific message"
+  
+    AccountResponse: 
+      type: object
+      properties: 
+        email:
+          type: string
+          example: example@email.com
+        password:
+          type: string
+          format: string
+          example: Password1!!
+        role:
+          type: string
+          example: 'driver'
+        status:
+          type: string
+          example: 'Banned'
+    
+    ListAccountsResponse: 
+      type: array
+      items:
+        $ref: '#/components/schemas/AccountResponse'
+      example:
+        - email: "driver1@example.com"
+          password: "Password1!!"
+          role: "driver"
+          status: "Active"
+        - email: "driver2@example.com"
+          password: "Password1!!"
+          role: "1"
+          status: "1"
+              
+    AccountByEmail: 
+      type: object
+      properties: 
+        id:
+          type: number
+          example: 122
+      
+        email:
+          type: string
+          example: example@email.com
+        password:
+          type: string
+          format: string
+          example: Password1!!
+        role:
+          type: string
+          example: '1'
+        status:
+          type: string
+          example: '1'
+    
+    SuccessfullUpdate: 
+      type: string
+      example: "Account updated successfully."
+    
+    SuccessfullDelete: 
+      type: string
+      example: "Account deleted successfully"
+    
+    
+  
     loginBody:
       type: object
       properties:
@@ -199,16 +619,10 @@ components:
         role:
           type: string
           example: 'driver'
-        
-        firstName:
-          type: string
-          example: 'Idri'
-        lastName:
-          type: string
-          example: 'Hoxha'
         dateOfBirth:
           type: object
           example: '20/04/2000'
+    
         
     ApiResponseLoginSuccessfull:
       type: object
