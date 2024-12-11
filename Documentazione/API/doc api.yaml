@@ -1226,10 +1226,8 @@ paths:
                   format: int32
         "400":
           description: incorrect json
-          content:
-            application/json:
-              schema:
-                type: object        
+        "500":
+          description: internal server error
               
   /users/{idUser}/rides/review/{idReview}:
     post:
@@ -1273,10 +1271,8 @@ paths:
                   format: int32
         "400":
           description: incorrect json
-          content:
-            application/json:
-              schema:
-                type: object
+        "500":
+          description: internal error
                 
                 
   /users/{idUser}/rides/review:
@@ -1284,7 +1280,7 @@ paths:
       tags:
         - Users
       summary: View all reviews
-      description: Lets an admin see all reviews written by a certain user
+      description: Lets an admin see all reviews
       operationId: readAll
       parameters:
         - in: path
@@ -1301,12 +1297,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Review"
-        "400":
-          description: Invalid input
         "403":
           description: The user doesn't have the access level for this operation
-        "404":
-          description: Not found
+        "500":
+          description: Internal server error
           
   /users/{idUser}/rides/review/readByUser:
     get:
@@ -1332,8 +1326,8 @@ paths:
                 $ref: "#/components/schemas/Review"
         "400":
           description: Invalid input
-        "404":
-          description: Not found
+        "500":
+          description: Internal server error
   
   /users/{idUser}/rides/{idRide}/review/readByUser:
     get:
@@ -1366,8 +1360,8 @@ paths:
                 $ref: "#/components/schemas/Review"
         "400":
           description: Invalid input
-        "404":
-          description: Not found        
+        "500":
+          description: internal server error       
     
 
   /users/{idUser}/documents:
