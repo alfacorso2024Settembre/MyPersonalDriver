@@ -1184,39 +1184,7 @@ paths:
           description: invalid input
         "500":
           description: internal server error
-  /users/{idUser}/rides/{idRide}/reviews/{idReview}:
-    delete:
-      summary: Delete a review
-      description: User deletes a review
-      tags:
-        - Users
-      parameters:
-        - in: path
-          name: idUser
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-          description: user ID
-        - in: path
-          name: idRide
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-          description: ride ID
-        - in: path
-          name: idReview
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-          description: review ID
-      responses:
-        "200":
-          description: successful
-        "404":
-          description: not found
+
   /users/{idUser}/rides/{idRide}/reviews:
     post:
       tags:
@@ -1239,13 +1207,59 @@ paths:
           description: ride ID
       summary: Adds a review
       description: User reviews the ride
-      operationId: addReview
+      operationId: insertReview
 
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Review"
+              $ref: "#/components/schemas/ReviewInsert"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+        "400":
+          description: incorrect json
+          content:
+            application/json:
+              schema:
+                type: object        
+              
+  /users/{idUser}/rides/review/{idReview}:
+    post:
+      tags:
+        - Users
+
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+        - in: path
+          name: idReview
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: review id
+      summary: Modifies a review
+      description: Changes the notes and the rating of a review
+      operationId: updateReview
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReviewInsert"            
 
       responses:
         "200":
@@ -1257,13 +1271,21 @@ paths:
                 additionalProperties:
                   type: integer
                   format: int32
-  /users/{idUser}/rides/reviews:
+        "400":
+          description: incorrect json
+          content:
+            application/json:
+              schema:
+                type: object
+                
+                
+  /users/{idUser}/rides/review:
     get:
       tags:
         - Users
-      summary: View all reviews of a user
-      description: Displays all reviews given by a certain user
-      operationId: viewReview
+      summary: View all reviews
+      description: Lets an admin see all reviews written by a certain user
+      operationId: readAll
       parameters:
         - in: path
           name: idUser
@@ -1281,8 +1303,72 @@ paths:
                 $ref: "#/components/schemas/Review"
         "400":
           description: Invalid input
-        "422":
-          description: Validation exception
+        "403":
+          description: The user doesn't have the access level for this operation
+        "404":
+          description: Not found
+          
+  /users/{idUser}/rides/review/readByUser:
+    get:
+      tags:
+        - Users
+      summary: View all reviews of a user
+      description: Displays all reviews written by a certain user
+      operationId: readByUser
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+        "400":
+          description: Invalid input
+        "404":
+          description: Not found
+  
+  /users/{idUser}/rides/{idRide}/review/readByUser:
+    get:
+      tags:
+        - Users
+      summary: View all reviews of a ride
+      description: Displays all reviews that refer to a ride
+      operationId: readByRide
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: user ID
+        - in: path
+          name: idRide
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: idRide 
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+        "400":
+          description: Invalid input
+        "404":
+          description: Not found        
+    
 
   /users/{idUser}/documents:
     get:
@@ -1406,6 +1492,7 @@ paths:
           description: successful operation
         "500":  
           description: Internal server error
+          
   /documents/{idDocument}:
     get:
       tags:
@@ -1561,21 +1648,42 @@ components:
     Review:
       type: object
       properties:
-        idReview:
+        idRide:
           type: integer
           format: int64
-          example: 1332
-        idUser:
-          type: integer
-          format: int64
+          example: 27
         rating:
           type: number
           example: 4
         notes:
           type: string
           example: "buon guidatore"
+        authorIsDriver:
+          type: boolean
+          example: false
+        author:
+          type: string
+          example: "Jhon doe"
       xml:
         name: review
+    ReviewInsert:
+      type: object
+      properties:
+        idRide:
+          type: integer
+          format: int64
+          example: 27
+        rating:
+          type: number
+          example: 4
+        notes:
+          type: string
+          example: "buon guidatore"
+        authorIsDriver:
+          type: boolean
+          example: false
+      xml:
+        name: reviewInsert    
     Deposit:
       type: object
       properties:
