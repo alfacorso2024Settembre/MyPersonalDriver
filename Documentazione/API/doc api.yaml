@@ -186,7 +186,7 @@ paths:
                   format: int64
                   example: 111
                 position:
-                  $ref: "#/components/schemas/position"
+                  $ref: "#/components/schemas/Position"
       responses:
         "200":
           description: Added successfully
@@ -1389,17 +1389,49 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Document"
-            application/xml:
+        "404":
+          description: Documents not found
+        "500":
+          description: Internal server error
+    post: 
+      tags:
+        - Documents
+      summary: Upload a new document
+      description: User can upload a new document
+      operationId: insertDocument
+      responses:
+        "200":
+          description: successful operation
+        "500":  
+          description: Internal server error
+  /documents/{idDocument}:
+    get:
+      tags:
+      - Documents
+      summary: View the document with idDocument
+      description: The administrator views the document
+      operationId: viewDocument
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
               schema:
-                type: array
                 items:
                   $ref: "#/components/schemas/Document"
-        "400":
-          description: Invalid ID supplied
         "404":
-          description: Account not found
-        "422":
-          description: Validation exception
+          description: idDocument not found
+        "500":  
+          description: Internal server error
+    patch:
+      tags: 
+        - Documents
+      summary: Update a document
+      description: User can update a document
+      operationId: updateDocument
+      responses:
+        "200":  
+          description: successful operation
         "500":
           description: Internal server error
 components:
@@ -1410,6 +1442,15 @@ components:
         idDocument:
           type: integer
           format: int64
+        status: 
+          type: string
+          description: Document's status
+          example: accepted 
+          enum:
+            - new
+            - accepted 
+            - refuse
+            - pending
         isValid:
           type: boolean
         expiryDate:
@@ -1422,8 +1463,7 @@ components:
           format: int64
         type:
           type: string
-          description: Stato prenotazione
-          example: accettata
+          description: Document's type
           enum:
             - licence
             - identity card
