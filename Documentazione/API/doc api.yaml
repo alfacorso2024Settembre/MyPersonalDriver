@@ -160,6 +160,8 @@ paths:
       responses:
         "200":
           description: successful operation
+        "404":
+          description: User id not found
   /users/{idUser}/reservations:
     post:
       tags:
