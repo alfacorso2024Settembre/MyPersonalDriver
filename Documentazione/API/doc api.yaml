@@ -192,8 +192,10 @@ paths:
       responses:
         "200":
           description: Added successfully
-        "400":
+        "404":
           description: Invalid ID.
+        "500":
+          description: Errore nel dao
     
     get:
       tags:
@@ -211,8 +213,10 @@ paths:
       responses:
         "200":
           description: successful operation
-        "400":
+        "404":
           description: Invalid ID.
+        "500":
+          description: Errore nel dao  
 
   /users/{idUser}/reservations/{idReservation}:
     patch:
@@ -247,19 +251,47 @@ paths:
                     - accettata
                     - rifiutata
                     - cancellata
-                  description: Nuovo stato della prenotazione
+                  description: New state of the reservation
               required:
                 - newStatus
       responses:
         "204":
           description: Successful operations
-        "400":
-          description: Invalid ID supplied
         "404":
-          description: User not found
-        "422":
-          description: Validation exception
+          description: Invalid ID supplied
+        "500":
+          description: Errore nel dao
+          
+  /users/{idUser}/reservations/{idReservation}/deleteReservation:
+    delete:
+      tags:
+        - Users
+      summary: Delete a reservation
+      description: Changes the state of a an active or suspended reservaion to deleted on the database
+      operationId: deleteReservation
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: integer
+          description: Id of the user that accepts or rejects the booking request
+        - in: path
+          name: idReservation
+          required: true
+          schema:
+            type: integer
+            description: id of the reservation to delete
+      
+      responses:
+        "204":
+          description: Successful operations
+        "404":
+          description: Invalid ID supplied
+        "500":
+          description: Errore nel dao
 
+  
   /users/{idUser}/rides/{idRide}/reports:
     post:
       tags:
@@ -591,33 +623,7 @@ paths:
           description: Invalid ID supplied, car wasn't cancelled
         "404":
           description: Car not found
-  /reservations:
-    post:
-      tags:
-        - Reservations
-      summary: Add new reservation
-      description: The user will send a ride reservation request
-      operationId: addReservation
-      parameters:
-        - name: userId
-          in: query
-          description: Tags to filter by
-          required: true
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Reservation"
-      responses:
-        "200":
-          description: successful operation
-        "400":
-          description: Invalid tag value
+
   /accounts: #register
     post:
       tags:
