@@ -868,20 +868,12 @@ paths:
           description: invalid input
         "500":
           description: internal server error
-
-  /users/{idUser}/rides/{idRide}/reviews:
+  /rides/{idRide}/reviews:
     post:
       tags:
         - Users
 
       parameters:
-        - in: path
-          name: idUser
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-          description: user ID
         - in: path
           name: idRide
           required: true
@@ -913,19 +905,12 @@ paths:
         "500":
           description: internal server error
               
-  /users/{idUser}/rides/review/{idReview}:
-    post:
+  /review/{idReview}:
+    patch:
       tags:
-        - Users
+        - Reviews
 
       parameters:
-        - in: path
-          name: idUser
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-          description: user ID
         - in: path
           name: idReview
           required: true
@@ -959,21 +944,13 @@ paths:
           description: internal error
                 
                 
-  /users/{idUser}/rides/review:
+  /reviews:
     get:
       tags:
-        - Users
+        - Reviews
       summary: View all reviews
       description: Lets an admin see all reviews
       operationId: readAll
-      parameters:
-        - in: path
-          name: idUser
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-          description: user ID
       responses:
         "200":
           description: successful operation
@@ -986,7 +963,7 @@ paths:
         "500":
           description: Internal server error
           
-  /users/{idUser}/rides/review/readByUser:
+  /users/{idUser}/reviews:
     get:
       tags:
         - Users
@@ -1013,21 +990,14 @@ paths:
         "500":
           description: Internal server error
   
-  /users/{idUser}/rides/{idRide}/review/readByUser:
+  /rides/{idRide}/reviews/readByRide:
     get:
       tags:
-        - Users
+        - Rides
       summary: View all reviews of a ride
       description: Displays all reviews that refer to a ride
       operationId: readByRide
       parameters:
-        - in: path
-          name: idUser
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-          description: user ID
         - in: path
           name: idRide
           required: true
