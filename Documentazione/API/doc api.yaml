@@ -1272,8 +1272,7 @@ paths:
     get:
       tags:
         - Accounts
-      summary: Retrieve a List of accounts that satisfy the filter in case of role and status.
-              Returns a List with 1 element in case of email.
+      summary: Retrieve an account by id.
       description: filter query accounts
       operationId: SearchAccountsById
       parameters:
