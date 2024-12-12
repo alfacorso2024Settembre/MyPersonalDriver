@@ -1404,6 +1404,8 @@ paths:
       responses:
         "200":
           description: successful operation
+        "400":
+          description: bad request - not correct body
         "500":  
           description: Internal server error
   /documents/{idDocument}:
