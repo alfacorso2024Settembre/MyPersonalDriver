@@ -61,14 +61,14 @@ create table if not exists reservations(
 );
 create table if not exists rideStatus(
 	idStatus int not null auto_increment primary key,
-	type varchar(255)
+	type varchar(255) not null
 );
 create table if not exists rides(
 	idRide int not null auto_increment primary key,
-	timeArrival datetime not null,
-	timeDeparture datetime not null,
+	timeArrival datetime null,
+	timeDeparture datetime null,
 	idStatus int not null,
-	idReservation int,
+	idReservation int not null,
 	totalKm float,
 	foreign key(idReservation) references reservations(idReservation),
 	foreign key(idStatus) references rideStatus(idStatus)
