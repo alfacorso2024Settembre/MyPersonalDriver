@@ -905,7 +905,7 @@ paths:
         "500":
           description: internal server error
               
-  /review/{idReview}:
+  /reviews/{idReview}:
     patch:
       tags:
         - Reviews
