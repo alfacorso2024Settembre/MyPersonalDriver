@@ -1125,6 +1125,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Document"
+        "204":
+          description: No documents found
         "404":
           description: Documents not found
         "500":
@@ -1136,10 +1138,12 @@ paths:
       description: User can upload a new document
       operationId: insertDocument
       responses:
-        "200":
-          description: successful operation
+        "201":
+          description: Document entered correctly
         "400":
-          description: bad request - not correct body
+          description: Bad request - document not inserted
+        "422":
+          description: Unprocessable entity - incorrect input
         "500":  
           description: Internal server error
           
@@ -1160,6 +1164,8 @@ paths:
                   $ref: "#/components/schemas/Document"
         "404":
           description: idDocument not found
+        "422":
+          description: Unprocessable entity - wrong id
         "500":  
           description: Internal server error
     patch:
@@ -1170,7 +1176,11 @@ paths:
       operationId: updateDocument
       responses:
         "200":  
-          description: successful operation
+          description: Document updated successfully 
+        "404":
+          description: idDocument not found
+        "422":
+          description: Unprocessable entity - incorrect input 
         "500":
           description: Internal server error
   /accounts:
