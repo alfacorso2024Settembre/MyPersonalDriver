@@ -623,328 +623,6 @@ paths:
           description: Invalid ID supplied, car wasn't cancelled
         "404":
           description: Car not found
-
-  /accounts: #register
-    post:
-      tags:
-        - Accounts
-      summary: Create new user
-      description: This can only be done by new users.
-      operationId: createUser
-      requestBody:
-        description: Created user object
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Account"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Account"
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: "#/components/schemas/Account"
-      responses:
-        300:
-          description: waiting for email confirmation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterAwaitingConfirmation"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterAwaitingConfirmation"
-
-        200:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterSuccessfull"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterSuccessfull"
-        400:
-          description: client error operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterCError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterCError"
-        500:
-          description: server error operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterSError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterSError"
-    put:
-      summary: Modify account details
-      description: Updates specific account details by account ID.
-      tags:
-        - Accounts
-
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Account"
-      responses:
-        "200":
-          description: Account updated successfully
-        "400":
-          description: Invalid ID.
-    get:
-      tags:
-        - Accounts
-      summary: View accounts
-      description: View all the account in the database
-      operationId: getAccount
-
-      responses:
-        "200":
-          description: The Account are viewed correctly
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Car"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Car"
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: User not found, access denied
-        "422":
-          description: Exception occured
-
-  /accounts/{idAccount}/ban:
-    patch:
-      tags:
-        - Accounts
-      summary: Ban account
-      description: Delete a user following a serious report
-      operationId: banAccount
-      parameters:
-        - name: api_key
-          in: header
-          description: ""
-          required: false
-          schema:
-            type: string
-        - name: idAccount
-          in: path
-          description: User id to delete
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: Successful operation
-        "400":
-          description: Invalid input
-        "403":
-          description: not allowed
-        "422":
-          description: Validation exception
-  /accounts/{idAccount}:
-    patch:
-      tags:
-        - Accounts
-      summary: Delete an account
-      description: User delete his own account
-      operationId: deleteAccount
-      parameters:
-        - name: api_key
-          in: header
-          description: ""
-          required: false
-          schema:
-            type: string
-        - in: path
-          name: idAccount
-          required: true
-          schema:
-            type: integer
-            format: int64
-          description: id of the account to be deleted
-      responses:
-        "200":
-          description: Successful operation
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Account not found
-        "422":
-          description: Validation exception
-  /authentication/login:
-    post:
-      tags:
-        - Authentication
-      summary: User logs in
-      description: authenticates and creates a session token for user
-      operationId: loginUser
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/loginBody"
-      responses:
-        "200":
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseLoginSuccessfull"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseLoginSuccessfull"
-
-        "204":
-          description: Failed operation wrong email/password
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseLoginError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseLoginError"
-        "400":
-          description: client error operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterCError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterCError"
-        "500":
-          description: server error operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterSError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterSError"
-        default:
-          description: successful operation
-
-  /authentication/logout:
-    patch:
-      tags:
-        - Authentication
-      summary: Logs out current logged in user session
-      description: ""
-      operationId: logoutUser
-      parameters: []
-      responses:
-        "200":
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseLogoutSuccessfull"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseLogoutSuccessfull"
-
-        "204":
-          description: Failed logout Session not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseLogoutError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseLogoutError"
-        "400":
-          description: client error operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterCError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterCError"
-        "500":
-          description: server error operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterSError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseRegisterSError"
-        default:
-          description: successful operation
-  /accounts/resetpassword: # da controllare
-    post:
-      tags:
-        - Accounts
-      summary: User forgot or wants to reset password.
-      description: Resets users password.
-      operationId: resetPassword
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/resetPasswordBody"
-      responses:
-        "200":
-          description: Password reset successfull.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseResetPasswordSuccessfull"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseResetPasswordSuccessfull"
-        "100":
-          description: Password format incorrect
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseResetPasswordFormatIncorrect"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseResetPasswordFormatIncorrect"
-
-        "204":
-          description: Failed operation email not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseResetPasswordEmailNotFound"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseResetPasswordEmailNotFound"
-        "400":
-          description: client error operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseResetPasswordError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseResetPasswordError"
-        "500":
-          description: server error operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponseResetPasswordError"
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/ApiResponseResetPasswordError"
-        default:
-          description: successful operation
-
   /users/{idUser}/rides/payments:
     get:
       parameters:
@@ -1523,6 +1201,478 @@ paths:
           description: successful operation
         "500":
           description: Internal server error
+  /accounts:
+    post:
+      tags:
+        - Accounts
+      summary: Create Account
+      description: This can only be done by new users.
+      operationId: createAccount
+      requestBody:
+        description: Created account object
+        content:
+          application/json: 
+            schema:
+             $ref: '#/components/schemas/createBody'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/createBody'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/createBody'
+      responses:
+        201:
+          description: The request has been fulfilled, and a new resource is created 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/201'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/201'
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/400'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/500'
+    get:
+      tags:
+        - Accounts
+      summary: Retrieve a list of all accounts in the db.
+      description: Retrieve a list of all accounts in the db.(id hidden and will appear 0)
+      operationId: GetAllAccounts
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAccountsResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ListAccountsResponse'
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/400'
+                
+         
+          
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/500'
+                
+  /accounts/{id}:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieve a List of accounts that satisfy the filter in case of role and status.
+              Returns a List with 1 element in case of email.
+      description: filter query accounts
+      operationId: SearchAccountsById
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the account to get
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+        
+        
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/400'
+        
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/404'
+        
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/500'
+        default:
+          description: successful operation
+      
+    
+    put:
+        tags:
+          - Accounts
+        summary: Modify account by id.
+        description: Modify account by id.
+        operationId: ModifyAccounts
+        parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the account to update
+        
+    
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/SuccessfullUpdate'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/SuccessfullUpdate'
+          
+          404:
+            description: Not found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/404'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/404'
+      
+          400:
+            description: client error operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/400'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/400'
+          500:
+            description: server error operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/500'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/500'
+          default:
+            description: successful operation
+    delete:
+        tags:
+          - Accounts
+        summary: Delete account by id.
+        description: Delete account by id.
+        operationId: DeleteAccount
+        parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the account to delete
+    
+        responses:
+          '200':
+            description: Successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/SuccessfullDelete'          
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/SuccessfullDelete'
+          404:
+            description: Not found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/404'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/404'
+          
+          400:
+            description: client error operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/400'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/400'
+          500:
+            description: server error operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/500'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/500'
+          default:
+            description: successful operation
+    
+        
+  /accounts/search:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieve a List of accounts that satisfy the filter in case of role and status.
+              Returns a List with 1 element in case of email.
+      description: filter query accounts
+      operationId: SearchAccounts
+      parameters: 
+      - in: query
+        name: roleOrStatusOrEmail
+        required: false
+        description: Role filter for accounts (e.g., 'admin', 'user').
+        schema:
+          type: string
+    
+      
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAccountsResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ListAccountsResponse'
+        
+        
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/400'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/500'
+        default:
+          description: successful operation
+  
+  /accounts/email/{email}:
+    get:
+      tags:
+        - Accounts
+      summary: Retrieve account by email.
+      description: Return one account by email . Including ID.
+      operationId: GetAccountByEmail
+      
+      parameters: 
+      - in: path
+        name: email
+        required: true
+        description: The unique identifier for an account.
+        schema:
+          type: string
+      
+      
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountByEmail'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AccountByEmail'
+        
+        404:
+            description: Not found
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/404'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/404'
+        
+        
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/400'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/500'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/500'
+        default:
+          description: successful operation
+  
+  
+  /accounts/login:
+    post:
+      tags:
+        - To be done
+      summary: User logs in
+      description: authenticates and creates a session token for user
+      operationId: loginUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/loginBody'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLoginSuccessfull'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLoginSuccessfull'
+        
+        '204':
+          description: Failed operation wrong email/password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLoginError'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLoginError'
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
+        default:
+          description: successful operation
+        
+  
+        
+  
+  /accounts/logout:
+    delete:
+      tags:
+        - To be done
+      summary: Logs out current logged in user session
+      description: ''
+      operationId: logoutUser
+      parameters: []
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLogoutSuccessfull'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLogoutSuccessfull'
+        
+        '204':
+          description: Failed logout Session not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLogoutError'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseLogoutError'
+        400:
+          description: client error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterCError'
+        500:
+          description: server error operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ApiResponseRegisterSError'
+        default:
+          description: successful operation
 components:
   schemas:
     Document:
@@ -2023,3 +2173,97 @@ components:
             - "cancelled"
       xml:
         name: "Report"
+    createBody:
+      type: object
+      properties:
+        email:
+          type: string
+          example: john@email.com
+        
+        password:
+          type: string
+          example: 'Password1'
+        
+        role:
+          type: string
+          example: 'Driver'
+        
+        status:
+          type: string
+          example: 'Banned'
+    
+    201:
+      type: string
+      example: "Account created with ID: 122"
+      
+    400:
+      type: string
+      example : "ErrorDao: Specific message"
+      
+    404: 
+      type: string
+      example : "ErrorDao: Account not found"
+    
+    500: 
+      type: string
+      example: "Error: Specific message"
+  
+    AccountResponse: 
+      type: object
+      properties: 
+        email:
+          type: string
+          example: example@email.com
+        password:
+          type: string
+          format: string
+          example: Password1!!
+        role:
+          type: string
+          example: 'driver'
+        status:
+          type: string
+          example: 'Banned'
+    
+    ListAccountsResponse: 
+      type: array
+      items:
+        $ref: '#/components/schemas/AccountResponse'
+      example:
+        - email: "driver1@example.com"
+          password: "Password1!!"
+          role: "driver"
+          status: "Active"
+        - email: "driver2@example.com"
+          password: "Password1!!"
+          role: "1"
+          status: "1"
+              
+    AccountByEmail: 
+      type: object
+      properties: 
+        id:
+          type: number
+          example: 122
+      
+        email:
+          type: string
+          example: example@email.com
+        password:
+          type: string
+          format: string
+          example: Password1!!
+        role:
+          type: string
+          example: '1'
+        status:
+          type: string
+          example: '1'
+    
+    SuccessfullUpdate: 
+      type: string
+      example: "Account updated successfully."
+    
+    SuccessfullDelete: 
+      type: string
+      example: "Account deleted successfully"
