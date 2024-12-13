@@ -1116,6 +1116,26 @@ paths:
       summary: View all user's documents
       description: The administrator views all user's document
       operationId: viewDocuments
+      parameters:
+        - name: limit
+          in: query
+          description: number of elements to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: offset
+          in: query
+          description: indicates which element it starts from
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: text
+          in: query
+          description: some filter
+          schema:
+            type: string
       responses:
         "200":
           description: successful operation
@@ -1154,6 +1174,14 @@ paths:
       summary: View the document with idDocument
       description: The administrator views the document
       operationId: viewDocument
+      parameters:
+        - name: limit
+          in: path
+          description: document id to return
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: successful operation
