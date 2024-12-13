@@ -78,46 +78,116 @@ paths:
           description: Modification failed
         "403":
           description: Not an admin
-
-  /rides/{idUser}:
-    patch:
+  /users/{idUser}/rides/{idRide}:
+    get:
+      summary: Search for a user's ride by IDs
       tags:
-        - Rides
-      summary: Change the status of the ride
-      description: Change the status of the ride when the user makes the deposit
-      operationId: changeStatusRide
+      - Users
       parameters:
         - name: idUser
           in: path
-          description: Id of the user to update
           required: true
+          description: ID of the user.
           schema:
             type: integer
-            format: int64
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                newState:
-                  type: string
-                  description: new state for the ride
-                newDescription:
-                  type: string
-                  description: new state for the ride
+        - name: idRide
+          in: path
+          required: true
+          description: ID of the ride.
+          schema:
+            type: integer
       responses:
-        "200":
-          description: successful operation
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Account not found
-        "422":
-          description: Validation exception
-        "500":
+        '200':
+          description: Ride found for the user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ride'
+        '404':
+          description: Ride not found
+        '500':
           description: Internal server error
+        '400':
+          description: Bad request
+  /users/{idUser}/rides:
+    get:
+      summary: Retrieve all rides for a user
+      tags:
+        - Users
+      parameters:
+        - name: idUser
+          in: path
+          required: true
+          description: ID of the user.
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: Maximum number of rides to retrieve.
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          description: Number of rides to skip before starting to collect results.
+          schema:
+            type: integer
+        - name: status
+          in: query
+          description: Status filter for the rides.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of rides retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ride'
+        '500':
+          description: Internal server error
+        '400':
+          description: Bad request
+  /rides/{idRide}:
+  patch:
+    tags:
+      - Rides
+    summary: Change the status of the ride
+    description: Change the status of the ride when the user makes the deposit
+    operationId: changeStatusRide
+    parameters:
+      - name: idRide
+        in: path
+        description: Id of the ride to update
+        required: true
+        schema:
+          type: integer
+          format: int64
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              newState:
+                type: string
+                description: new state for the ride
+              newDescription:
+                type: string
+                description: new state for the ride
+    responses:
+      "200":
+        description: successful operation
+      "400":
+        description: Bad request
+      "404":
+        description: Ride not found
+      "422":
+        description: Unprocessable entity
+      "500":
+        description: Internal server error
 
   /users/{idUser}:
     put:
