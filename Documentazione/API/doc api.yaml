@@ -602,42 +602,10 @@ paths:
           description: Exception occured
 
   /users/{idUser}/Cars:
-    post:
-      tags:
-        - Users
-      summary: Add user's car
-      description: The user can add a own car
-      operationId: addCar
-      parameters:
-        - name: idUser
-          in: path
-          description: ID of the user
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Car"
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/Car"
-      responses:
-        "200":
-          description: Car added correctly
-
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: User not found, access denied
-        "422":
-          description: Exception occured
     get:
       tags:
         - Users
-      summary: View cars
+      summary: View cars of the user
       description: View all the car of the user filter by userId
       operationId: viewCars
       parameters:
@@ -665,34 +633,120 @@ paths:
         "422":
           description: Exception occured
 
-  /users/{idUser}/Cars/{plate}:
+  /cars/{plate}:
+    get:
+      tags:
+        - Cars
+      summary: View car by plate
+      description: View the car filter by plate
+      operationId: viewCarPlate
+      parameters:
+        - name: plate
+          in: path
+          description: car's palte
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The car are viewed correctly
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Car"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Car"
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
     delete:
       tags:
-        - Users
+        - Cars
       summary: Delete car
-      description: Delete a car of the user filtered by idUser ad plate
+      description: Delete a car of the user filtered by plate
       operationId: deleteCar
       parameters:
-        - name: idUser
+        - name: plate
+          in: path
+          description: ID of the owner of the car
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The car are deleted correctly
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+    put:
+      tags:
+        - Cars
+      summary: Update car
+      description: Update a car filtered by plate
+      operationId: updateCar
+      parameters:
+        - name: plate
           in: path
           description: ID of the owner of the car
           required: true
           schema:
             type: integer
             format: int64
-        - name: plate
-          in: path
-          description: ID of the car
-          required: true
-          schema:
-            type: string
       responses:
         "200":
-          description: Car delete complete
+          description: Car update complete
         "400":
-          description: Invalid ID supplied, car wasn't cancelled
+          description: Invalid ID supplied, car wasn't update
         "404":
           description: Car not found
+          
+  /cars:
+    post:
+      tags:
+        - Cars
+      summary: Add user car
+      description: Add a car
+      operationId: addCar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Car"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Car"
+      responses:
+        "200":
+          description: Car added correctly
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+    get:
+      tags:
+        - Cars
+      summary: View all the car
+      description: View all the car
+      operationId: viewCar
+      responses:
+        "200":
+          description: The car are viewed correctly
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Car"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Car"
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+
   /users/{idUser}/rides/payments:
     get:
       parameters:
@@ -1808,6 +1862,10 @@ components:
           type: string
         model:
           type: string
+        user:
+          type: object
+        insure:
+          type: object
       xml:
         name: car
     User:
