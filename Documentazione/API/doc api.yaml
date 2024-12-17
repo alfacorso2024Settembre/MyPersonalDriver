@@ -150,44 +150,44 @@ paths:
         '400':
           description: Bad request
   /rides/{idRide}:
-  patch:
-    tags:
-      - Rides
-    summary: Change the status of the ride
-    description: Change the status of the ride when the user makes the deposit
-    operationId: changeStatusRide
-    parameters:
-      - name: idRide
-        in: path
-        description: Id of the ride to update
-        required: true
-        schema:
-          type: integer
-          format: int64
-    requestBody:
-      required: true
-      content:
-        application/json:
+    patch:
+      tags:
+        - Rides
+      summary: Change the status of the ride
+      description: Change the status of the ride when the user makes the deposit
+      operationId: changeStatusRide
+      parameters:
+        - name: idRide
+          in: path
+          description: Id of the ride to update
+          required: true
           schema:
-            type: object
-            properties:
-              newState:
-                type: string
-                description: new state for the ride
-              newDescription:
-                type: string
-                description: new state for the ride
-    responses:
-      "200":
-        description: successful operation
-      "400":
-        description: Bad request
-      "404":
-        description: Ride not found
-      "422":
-        description: Unprocessable entity
-      "500":
-        description: Internal server error
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                newState:
+                  type: string
+                  description: new state for the ride
+                newDescription:
+                  type: string
+                  description: new state for the ride
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: Bad request
+        "404":
+          description: Ride not found
+        "422":
+          description: Unprocessable entity
+        "500":
+          description: Internal server error
 
   /users/{idUser}:
     put:
@@ -232,20 +232,13 @@ paths:
           description: successful operation
         "404":
           description: User id not found
-  /users/{idUser}/reservations:
+  /reservations:
     post:
       tags:
-        - Users
+        - Reservations
       summary: Add new reservation
       description: User adds a new reservation
-      operationId: addUserReservation
-      parameters:
-        - in: path
-          name: idUser
-          required: true
-          schema:
-            type: integer
-          description: Id of the user that adds a new reservation.
+      operationId: addReservation
       requestBody:
         required: true
         content:
@@ -262,18 +255,32 @@ paths:
       responses:
         "200":
           description: Added successfully
-        "404":
-          description: Invalid ID.
+        "422":
+          description: Invalid ID or JSON body.
         "500":
           description: Errore nel dao
-    
+  /users/{idUser}/reservations:  
     get:
       tags:
         - Users
-      summary: View existing reservations
+      summary: View user reservations
       description: User or driver views the reservations relative to his account
       operationId: viewReservation
       parameters:
+        - name: limit
+          in: query
+          description: number of elements to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: offset
+          in: query
+          description: indicates which element it starts from
+          required: true
+          schema:
+            type: integer
+            format: int64
         - in: path
           name: idUser
           required: true
@@ -283,25 +290,19 @@ paths:
       responses:
         "200":
           description: successful operation
-        "404":
+        "422":
           description: Invalid ID.
         "500":
           description: Errore nel dao  
 
-  /users/{idUser}/reservations/{idReservation}:
+  /reservations/{idReservation}:
     patch:
       tags:
-        - Users
+        - Reservations
       summary: Accept or reject reservation
       description: Driver accepts or rejects booking request from user
-      operationId: acceptReservation
+      operationId: confirmReservation
       parameters:
-        - in: path
-          name: idUser
-          required: true
-          schema:
-            type: integer
-          description: Id of the user that accepts or rejects the booking request
         - in: path
           name: idReservation
           required: true
@@ -325,14 +326,13 @@ paths:
               required:
                 - newStatus
       responses:
-        "204":
+        "200":
           description: Successful operations
-        "404":
-          description: Invalid ID supplied
+        "422":
+          description: Invalid ID or Body supplied
         "500":
           description: Errore nel dao
           
-  /users/{idUser}/reservations/{idReservation}/deleteReservation:
     delete:
       tags:
         - Users
@@ -341,12 +341,6 @@ paths:
       operationId: deleteReservation
       parameters:
         - in: path
-          name: idUser
-          required: true
-          schema:
-            type: integer
-          description: Id of the user that accepts or rejects the booking request
-        - in: path
           name: idReservation
           required: true
           schema:
@@ -354,9 +348,9 @@ paths:
             description: id of the reservation to delete
       
       responses:
-        "204":
+        "200":
           description: Successful operations
-        "404":
+        "422":
           description: Invalid ID supplied
         "500":
           description: Errore nel dao
@@ -1030,6 +1024,31 @@ paths:
           description: incorrect json
         "500":
           description: internal server error
+    get:
+        tags:
+          - Rides
+        summary: View all reviews of a ride
+        description: Displays all reviews that refer to a ride
+        operationId: readByRide
+        parameters:
+          - in: path
+            name: idRide
+            required: true
+            schema:
+              type: integer
+              minimum: 1
+            description: idRide 
+        responses:
+          "200":
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Review"
+          "400":
+            description: incorrect id ride
+          "500":
+            description: internal server error        
               
   /reviews/{idReview}:
     patch:
@@ -1064,7 +1083,7 @@ paths:
                 additionalProperties:
                   type: integer
                   format: int32
-        "400":
+        "422":
           description: incorrect json
         "500":
           description: internal error
@@ -1077,6 +1096,21 @@ paths:
       summary: View all reviews
       description: Lets an admin see all reviews
       operationId: readAll
+      parameters:
+        - name: limit
+          in: query
+          description: number of elements to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: offset
+          in: query
+          description: indicates which element it starts from
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: successful operation
@@ -1084,6 +1118,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Review"
+        "422":
+          description: Incorrect Input
         "500":
           description: Internal server error
           
@@ -1114,34 +1150,6 @@ paths:
         "500":
           description: Internal server error
   
-  /rides/{idRide}/reviews/readByRide:
-    get:
-      tags:
-        - Rides
-      summary: View all reviews of a ride
-      description: Displays all reviews that refer to a ride
-      operationId: readByRide
-      parameters:
-        - in: path
-          name: idRide
-          required: true
-          schema:
-            type: integer
-            minimum: 1
-          description: idRide 
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Review"
-        "400":
-          description: incorrect id ride
-        "500":
-          description: internal server error       
-    
-
   /users/{idUser}/documents:
     get:
       tags:
@@ -1299,7 +1307,7 @@ paths:
       description: The administrator views the document
       operationId: viewDocument
       parameters:
-        - name: limit
+        - name: idDocument
           in: path
           description: document id to return
           required: true
@@ -1326,6 +1334,14 @@ paths:
       summary: Update a document
       description: User can update a document
       operationId: updateDocument
+      parameters:
+        - name: idDocument
+          in: path
+          description: document id to return
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":  
           description: Document updated successfully 
