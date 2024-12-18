@@ -53,6 +53,22 @@ Feature: controllo di un documento
         And l'utente clicca sul bottone "Confirm"
         Then l'email viene inviata allo user prorietario del documento
         And lo stato del documento viene aggiornato in "rejected"
+        And viene visualizzato un popup di info con l'esito positivo dell'invio
+
+    Scenario: rifiuto di un documento 
+        And viene visualizzata la tabella con i documenti 
+        And l'utente clicca il bottone "Visualizza" del documento dell'utente John Driver
+        And l'utente viene reindirizzato alla pagina "Documento" che mostra i dettagli del documento selezionato
+        And l'utente clicca su "Rifiuta documento"
+        And l'utente viene reindirizzato alla pagina "Rifiuta documento"
+        And l'utente clicca sul dropdown
+        And l'utente sceglie come motivo del rifiuto "Documento scaduto"
+        And l'utente clicca sul bottone "Invia"
+        And appare un popup di conferma "Confermi di voler rifiutare il documento?"
+        And l'utente clicca sul bottone "Confirm"
+        Then l'email viene inviata allo user prorietario del documento
+        And lo stato del documento viene aggiornato in "rejected"
+        But viene visualizzato un popup di info con l'esito positivo dell'invio
 
     Scenario: rifiuto di un documento con descrizione
         And viene visualizzata la tabella con i documenti 
