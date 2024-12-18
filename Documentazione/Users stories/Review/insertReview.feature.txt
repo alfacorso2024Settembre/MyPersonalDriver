@@ -1,0 +1,37 @@
+Feature: insertReviews
+    	
+	Come utente registrato
+	Voglio recensire una ride conclusa in cui ho partecipato
+	Per poter dare il mio feedback a altri utenti
+
+Background:
+	Given utente è loggato ed preme il pulsante "Inserisci recensione" sulla pagina del suo profilo che mostra la lista delle sue ride
+	
+Scenario: Inserimento recensione
+	When l'utente clicca sulla seconda stella
+	And  l'utente preme il pulsante conferma
+	Then viene inserita la nuova recensione con un rating di 2 e viene mostrato un popup con il messaggio di conferma "Hai recensito la recensione con successo"
+
+Scenario: Inserimento recensione con descrizione
+	When l'utente clicca sulla seconda stella
+	And  l'utente inserisce la descrizione "Il guidatore è stato troppo lento e maleducato"  
+	And  l'utente preme il pulsante conferma
+	Then viene inserita la nuova recensione con un rating di 2 e la descrizione "Il guidatore è stato troppo lento e maleducato" e viene mostrato un popup con il messaggio di conferma "Hai recensito la ride con successo"
+
+Scenario: Inserimento recensione (Senza inserire rating e descrizione)
+	When l'utente preme il pulsante conferma
+	But  l'utente non ha selezionato un rating
+	Then viene visualizzato il messaggio di errore "Inserire il rating"
+
+Scenario: Inserimento recensione (Senza inserire rating e descrizione)
+	When l'utente inserisce la descrizione "Il guidatore è stato troppo lento e maleducato" 
+	And  l'utente preme il pulsante conferma
+	But  l'utente non ha selezionato un rating
+	Then viene visualizzato il messaggio di errore "Inserire il rating"
+
+Scenario: Inserimento recensione (Servizio non funzionante)
+	When l'utente clicca sulla seconda stella
+	And  l'utente inserisce la descrizione "Il guidatore è stato troppo lento e maleducato"  
+	And  l'utente preme il pulsante conferma
+	But  il servizio non funziona
+	Then viene visualizzato un messaggio di errore con scritto servizio non trovato	

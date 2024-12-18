@@ -1,0 +1,17 @@
+Feature: viewOwnReviews
+    	
+	Come utente registrato
+	Voglio visualizzare tutte le recensioni che ho scritto
+	Per poterle controllare o modificare
+
+Background:
+	Given utente è loggato ed è sulla pagina del suo profilo
+	
+Scenario: visualizza tutte le recensioni dell'utente
+	When  l'utente preme il bottone recensioni
+	then  viene mostrata una lista delle recensioni di quell'utente
+	
+Scenario: visualizza tutte le recensioni dell'utente (problema di servizio)
+	When  l'utente preme il bottone recensioni
+	But   il servizio non è disponibile
+	then  viene mostrato un messaggio di errore "Risorsa non trovata"

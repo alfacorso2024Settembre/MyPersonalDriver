@@ -1,0 +1,38 @@
+Feature: Modify Review
+	Come utente registrato
+	Voglio modificare una recensione che ho scritto
+	Per aggiornare il contenuto con il mio nuovo feedback
+	
+Background:
+	Given utente è loggato, ha effettuato lo scenario "visualizza tutte le recensioni dell'utente" della feature "view own reviews" 
+		  o lo scenario "visualizza tutte le recensioni della ride" della feature "view reviews by ride" e ha premuto il pulsante "Modifica recensione" di una 
+		  delle recensione listate
+		  
+Scenario: Modifica recensione
+	When l'utente clicca sulla seconda stella
+	And  l'utente preme il pulsante conferma
+	Then viene modificata la recensione con un rating di 2 e viene mostrato un popup con il messaggio di conferma "Hai aggiornato la recensione con successo"
+
+Scenario: Modifica recensione con descrizione
+	When l'utente clicca sulla seconda stella
+	And  l'utente inserisce la descrizione "Il guidatore è stato troppo lento e maleducato"  
+	And  l'utente preme il pulsante conferma
+	Then viene modificata la recensione con un rating di 2 e la descrizione "Il guidatore è stato troppo lento e maleducato" e viene mostrato un popup con il messaggio di conferma "Hai modificato la ride con successo"
+
+Scenario: Modifica recensione (Senza inserire rating e descrizione)
+	When l'utente preme il pulsante conferma
+	But  l'utente non ha selezionato un rating
+	Then viene visualizzato il messaggio di errore "Inserire il rating"
+
+Scenario: Modifica recensione (Senza inserire rating e descrizione)
+	When l'utente inserisce la descrizione "Il guidatore è stato troppo lento e maleducato" 
+	And  l'utente preme il pulsante conferma
+	But  l'utente non ha selezionato un rating
+	Then viene visualizzato il messaggio di errore "Inserire il rating"
+
+Scenario: Modifica recensione (Servizio non funzionante)
+	When l'utente clicca sulla seconda stella
+	And  l'utente inserisce la descrizione "Il guidatore è stato troppo lento e maleducato"  
+	And  l'utente preme il pulsante conferma
+	But  il servizio non funziona
+	Then viene visualizzato un messaggio di errore con scritto servizio non trovato			

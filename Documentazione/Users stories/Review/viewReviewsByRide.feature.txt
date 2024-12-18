@@ -1,0 +1,17 @@
+Feature: viewReviewsByRide
+
+	Come utente registrato
+	Voglio visualizzare tutte le recensioni relative a una ride
+	Per poterle controllare o modificare
+
+Background:
+	Given utente è loggato ed è sulla pagina che mostra la lista delle sue ride
+	
+Scenario: visualizza tutte le recensioni della ride
+	When  l'utente preme il bottone recensioni di una ride
+	then  viene mostrata una lista delle recensioni di quella ride
+	
+Scenario: visualizza tutte le recensioni della ride (problema di servizio)
+	When  l'utente preme il bottone recensioni di una ride
+	But   il servizio non è disponibile
+	then  viene mostrato un messaggio di errore "Risorsa non trovata"

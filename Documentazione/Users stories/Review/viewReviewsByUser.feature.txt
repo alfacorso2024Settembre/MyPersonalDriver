@@ -1,0 +1,17 @@
+Feature: viewReviewsByUser
+
+	Come utente registrato in un account di tipo admin
+	Voglio visualizzare tutte le recensioni scritte da uno user
+	Per poterle controllare
+
+Background:
+	Given utente è loggato in un account di tipo admin ed è sulla pagina profilo di un utente
+	
+Scenario: visualizza tutte le recensioni
+	When  l'admin preme il bottone recensioni
+	then  viene mostrata una lista delle recensioni scritte da un utente
+	
+Scenario: visualizza tutte le recensioni (problema di servizio)
+	When  l'admin preme il bottone recensioni
+	But   il servizio non è disponibile
+	then  viene mostrato un messaggio di errore "Risorsa non trovata"	
